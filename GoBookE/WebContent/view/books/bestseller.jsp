@@ -66,15 +66,15 @@
 
         <header>
             <!-- *** TOP *** -->
-            <jsp:include page="../layout/header.jsp"/>
+            <jsp:include page="../../layout/header.jsp"/>
             <!-- *** TOP END *** -->
             <!-- *** NAVBAR ***  -->
-            <jsp:include page="../layout/nav.jsp"/>
+            <jsp:include page="../../layout/nav.jsp"/>
             <!-- *** NAVBAR END *** -->
         </header>
 
         <!-- *** LOGIN MODAL *** -->
-        <jsp:include page="../layout/loginMo.jsp"/>        
+        <jsp:include page="../../layout/loginMo.jsp"/>        
         <!-- *** LOGIN MODAL END *** -->
 
         <div id="heading-breadcrumbs">
@@ -147,7 +147,7 @@
     </div>
     <!-- /#all -->
      <!-- *** FOOTER *** -->
-        <jsp:include page="../layout/footer.jsp"/>
+        <jsp:include page="../../layout/footer.jsp"/>
         <!-- /#footer -->
     
 </body>

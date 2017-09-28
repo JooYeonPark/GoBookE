@@ -1,7 +1,5 @@
 package kr.or.gobooke.users.dao;
 
-import java.util.List;
-
 import kr.or.gobooke.users.domain.Users;
 
 /**

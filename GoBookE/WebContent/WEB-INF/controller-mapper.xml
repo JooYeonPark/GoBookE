@@ -10,5 +10,8 @@
 	<bean name="/user/certify" class="kr.or.kosta.shoppingmall.user.controller.UserCertifyController" />
 	<bean name="/user/list" class="kr.or.kosta.shoppingmall.user.controller.UserListController" />
 	
+	
+	<bean name="/user/certify" class="kr.or.kosta.shoppingmall.user.controller.UserCertifyController" />
+	
 
 </beans>

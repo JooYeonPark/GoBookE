@@ -7,7 +7,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"
           aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="Login">Customer login</h4>
+        <h4 class="modal-title" id="Login">고객 로그인</h4>
       </div>
       <div class="modal-body">
         <form action="customer-orders.html" method="post">
@@ -28,11 +28,9 @@
 
         </form>
 
-        <p class="text-center text-muted">Not registered yet?</p>
+        <p class="text-center text-muted">로그인 해주세요.</p>
         <p class="text-center text-muted">
-          <a href="customer-register.html"><strong>Register
-              now</strong></a>! It is easy and done in 1&nbsp;minute and gives you
-          access to special discounts and much more!
+          <a href="/view/users/UserRegist.jsp"><strong>회원가입</strong></a>
         </p>
 
       </div>

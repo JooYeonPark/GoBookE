@@ -26,7 +26,7 @@
   id="theme-stylesheet">
 
 <!-- Custom stylesheet - for your changes -->
-<link href="css/users/custom.css" rel="stylesheet">
+<link href="/css/users/custom.css" rel="stylesheet">
 
 <!-- Responsivity for older IE -->
 <!--[if lt IE 9]>

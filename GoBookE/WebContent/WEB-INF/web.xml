@@ -45,7 +45,7 @@
     <servlet-class>kr.or.gobooke.common.controller.SimpleFrontControllerServlet_V4</servlet-class>
     <init-param>
       <param-name>controllerMapperLocation</param-name>
-      <param-value>I:/KOSTA164/workspace/Gobooke/WebContent/WEB-INF/controller-mapper.xml</param-value>
+      <param-value>C:\Users\kosta\Documents\GoBookE\GoBookE\WebContent\WEB-INF\controller-mapper.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>

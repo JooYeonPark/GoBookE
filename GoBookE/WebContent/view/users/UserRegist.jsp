@@ -15,20 +15,18 @@
   rel='stylesheet' type='text/css'>
 
 <!-- Bootstrap and Font Awesome css -->
-<link rel="stylesheet"
-  href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/users/font-awesome.min.css">
+<link rel="stylesheet" href="/css/users/bootstrap.min.css">
 
 <!-- Css animations  -->
-<link href="css/animate.css" rel="stylesheet">
+<link href="/css/users/animate.css" rel="stylesheet">
 
 <!-- Theme stylesheet, if possible do not edit this stylesheet -->
-<link href="css/style.default.css" rel="stylesheet"
+<link href="/css/users/style.default.css" rel="stylesheet"
   id="theme-stylesheet">
 
 <!-- Custom stylesheet - for your changes -->
-<link href="css/custom.css" rel="stylesheet">
+<link href="css/users/custom.css" rel="stylesheet">
 
 <!-- Responsivity for older IE -->
 <!--[if lt IE 9]>
@@ -37,22 +35,22 @@
 <![endif]-->
 
 <!-- Favicon and apple touch icons-->
-<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
 <link rel="apple-touch-icon" sizes="57x57"
-  href="img/apple-touch-icon-57x57.png" />
+  href="/img/apple-touch-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="72x72"
-  href="img/apple-touch-icon-72x72.png" />
+  href="/img/apple-touch-icon-72x72.png" />
 <link rel="apple-touch-icon" sizes="76x76"
-  href="img/apple-touch-icon-76x76.png" />
+  href="/img/apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" sizes="114x114"
-  href="img/apple-touch-icon-114x114.png" />
+  href="/img/apple-touch-icon-114x114.png" />
 <link rel="apple-touch-icon" sizes="120x120"
-  href="img/apple-touch-icon-120x120.png" />
+  href="/img/apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" sizes="144x144"
-  href="img/apple-touch-icon-144x144.png" />
+  href="/img/apple-touch-icon-144x144.png" />
 <link rel="apple-touch-icon" sizes="152x152"
-  href="img/apple-touch-icon-152x152.png" />
+  href="/img/apple-touch-icon-152x152.png" />
 </head>
 
 <body>
@@ -119,9 +117,9 @@ _________________________________________________________ -->
             <div class="navbar-header">
 
               <a class="navbar-brand home" href="index.html"> <img
-                src="img/logo.png" alt="Universal logo"
+                src="/img/logo.png" alt="Universal logo"
                 class="hidden-xs hidden-sm"> <img
-                src="img/logo-small.png" alt="Universal logo"
+                src="/img/logo-small.png" alt="Universal logo"
                 class="visible-xs visible-sm"><span
                 class="sr-only">Universal - go to homepage</span>
               </a>
@@ -162,7 +160,7 @@ _________________________________________________________ -->
                       <div class="yamm-content">
                         <div class="row">
                           <div class="col-sm-6">
-                            <img src="img/template-easy-customize.png"
+                            <img src="/img/template-easy-customize.png"
                               class="img-responsive hidden-xs" alt="">
                           </div>
                           <div class="col-sm-3">
@@ -217,7 +215,7 @@ _________________________________________________________ -->
                       <div class="yamm-content">
                         <div class="row">
                           <div class="col-sm-6">
-                            <img src="img/template-homepage.png"
+                            <img src="/img/template-homepage.png"
                               class="img-responsive hidden-xs" alt="">
                           </div>
                           <div class="col-sm-3">
@@ -508,13 +506,13 @@ _________________________________________________________ -->
     <div id="heading-breadcrumbs">
       <div class="container">
         <div class="row">
-          <div class="col-md-7">
-            <h1>New account / Sign in</h1>
+          <div class="col-md-7" align="center">
+            <h1>회원 가입</h1>
           </div>
           <div class="col-md-5">
             <ul class="breadcrumb">
               <li><a href="index.html">Home</a></li>
-              <li>New account / Sign in</li>
+              <li>회원가입</li>
             </ul>
 
           </div>
@@ -657,7 +655,7 @@ _________________________________________________________ -->
           <div class="item same-height-row clearfix">
             <div class="image same-height-always">
               <a href="#"> <img class="img-responsive"
-                src="img/detailsquare.jpg" alt="">
+                src="/img/detailsquare.jpg" alt="">
               </a>
             </div>
             <div class="name same-height-always">
@@ -670,7 +668,7 @@ _________________________________________________________ -->
           <div class="item same-height-row clearfix">
             <div class="image same-height-always">
               <a href="#"> <img class="img-responsive"
-                src="img/detailsquare.jpg" alt="">
+                src="/img/detailsquare.jpg" alt="">
               </a>
             </div>
             <div class="name same-height-always">
@@ -683,7 +681,7 @@ _________________________________________________________ -->
           <div class="item same-height-row clearfix">
             <div class="image same-height-always">
               <a href="#"> <img class="img-responsive"
-                src="img/detailsquare.jpg" alt="">
+                src="/img/detailsquare.jpg" alt="">
               </a>
             </div>
             <div class="name same-height-always">
@@ -725,32 +723,32 @@ _________________________________________________________ -->
 
         <div class="photostream">
           <div>
-            <a href="#"> <img src="img/detailsquare.jpg"
+            <a href="#"> <img src="/img/detailsquare.jpg"
               class="img-responsive" alt="#">
             </a>
           </div>
           <div>
-            <a href="#"> <img src="img/detailsquare2.jpg"
+            <a href="#"> <img src="/img/detailsquare2.jpg"
               class="img-responsive" alt="#">
             </a>
           </div>
           <div>
-            <a href="#"> <img src="img/detailsquare3.jpg"
+            <a href="#"> <img src="/img/detailsquare3.jpg"
               class="img-responsive" alt="#">
             </a>
           </div>
           <div>
-            <a href="#"> <img src="img/detailsquare3.jpg"
+            <a href="#"> <img src="/img/detailsquare3.jpg"
               class="img-responsive" alt="#">
             </a>
           </div>
           <div>
-            <a href="#"> <img src="img/detailsquare2.jpg"
+            <a href="#"> <img src="/img/detailsquare2.jpg"
               class="img-responsive" alt="#">
             </a>
           </div>
           <div>
-            <a href="#"> <img src="img/detailsquare.jpg"
+            <a href="#"> <img src="/img/detailsquare.jpg"
               class="img-responsive" alt="#">
             </a>
           </div>
@@ -797,10 +795,10 @@ _________________________________________________________ -->
   <script
     src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script>
-      window.jQuery
-          || document
-              .write('<script src="js/jquery-1.11.0.min.js"><\/script>')
-    </script>
+			window.jQuery
+					|| document
+							.write('<script src="js/jquery-1.11.0.min.js"><\/script>')
+		</script>
   <script
     src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 

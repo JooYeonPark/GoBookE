@@ -20,7 +20,7 @@
           <a href="#" data-toggle="modal" data-target="#login-modal"><i
             class="fa fa-sign-in"></i> <span
             class="hidden-xs text-uppercase">Sign in</span></a> 
-          <a href="customer-register.html"><i class="fa fa-user"></i>
+          <a href="/view/users/UserRegist.jsp"><i class="fa fa-user"></i>
             <span class="hidden-xs text-uppercase">Sign up</span></a>
           <a href="customer-register.html"><i class="fa fa-shopping-cart"></i>
             <span class="hidden-xs text-uppercase">Cart</span><span class="badge badge-default">0</span></a>

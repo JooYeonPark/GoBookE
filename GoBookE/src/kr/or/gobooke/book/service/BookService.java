@@ -2,10 +2,18 @@ package kr.or.gobooke.book.service;
 
 import kr.or.gobooke.book.domain.Book;
 
-public interface BookService {
-	/** 도서 등록 */
-	public void create(Book book);
+public class BookServiceImpl implements BookService {
 
-	/** 도서 수정 */
-	public void update(Book book); 
+	@Override
+	public void create(Book book) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void update(Book book) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

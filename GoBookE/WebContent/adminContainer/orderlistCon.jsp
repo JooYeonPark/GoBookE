@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-
-<div class="col-md-8" id="customer-orders">
+<div class="col-sm-9">
+<div class="col-md-10" id="customer-orders">
 
   <h3>발주현황</h3>
 
@@ -107,5 +107,6 @@
   </fieldset>
   <!-- /.box -->
 
+</div>
 </div>
 <!-- /.col-md-9 -->

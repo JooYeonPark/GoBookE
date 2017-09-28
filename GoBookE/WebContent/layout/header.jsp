@@ -25,9 +25,9 @@
             <span class="hidden-xs text-uppercase">Cart</span><span class="badge badge-default">0</span></a>
             
           <!-- 주문확인버튼이 따로 없어 확인을 하기 위해 임시로 추가한 버튼입니다. (by.주연) -->
-              <a href="#" data-toggle="modal" data-target="/ordercontainer/order.html"><i
+              <a href="ordercontainer/order.html" data-toggle="modal" data-target=""><i
             class="fa fa-key"></i> <span
-            class="hidden-xs text-uppercase">Sign in</span></a> 
+            class="hidden-xs text-uppercase">주문</span></a> 
           <!-- 주문확인버튼 테스트 부분 끝 -->
           
         </div>

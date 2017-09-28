@@ -54,7 +54,9 @@
               <li><a href="contact3.html">프랑스도서</a></li>
               <li><a href="contact3.html">중국도서</a></li>
             </ul></li>
-
+            <li class="dropdown use-yamm yamm-fw"><a href="#"
+            class="dropdown-toggle" data-toggle="dropdown">관리자</a>
+          </li>
         </ul>
 
       </div>

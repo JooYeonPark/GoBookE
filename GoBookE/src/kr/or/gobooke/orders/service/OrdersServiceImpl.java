@@ -13,13 +13,7 @@ public class OrdersServiceImpl implements OrdersService {
 	}
 
 	@Override
-	public Orders search(Orders no) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Orders> listAll() {
+	public List<Orders> search(String startDate, String endDate, String userId){
 		// TODO Auto-generated method stub
 		return null;
 	}

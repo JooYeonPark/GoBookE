@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head> <meta charset="utf-8">
+<head> 
+    <meta charset="utf-8">
     <meta name="robots" content="all,follow">
     <meta name="googlebot" content="index,follow,snippet,archive">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +41,14 @@
     <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
     <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
     <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
-    <!-- owl carousel css -->
+    
+
+<!-- 스크롤배너 -->
+    <script src="/js/sidebanner.js"></script>
+
+<style type="text/css">
+#STATICMENU { margin: 0pt; padding: 0pt;  position: absolute; right: 0px; top: 0px;}
+</style>
 
 </head>
 
@@ -62,7 +70,7 @@
         <!-- *** LOGIN MODAL END *** -->
 
         
-
+        <!-- *** ORDER *** -->
         <div id="heading-breadcrumbs">
             <div class="container">
                 <div class="row">
@@ -117,19 +125,6 @@
                                                     <td>$0.00</td>
                                                     <td>$246.00</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#">
-                                                            <img src="/img/basketsquare.jpg" alt="Black Blouse Armani">
-                                                        </a>
-                                                    </td>
-                                                    <td><a href="#">Black Blouse Armani</a>
-                                                    </td>
-                                                    <td>1</td>
-                                                    <td>$200.00</td>
-                                                    <td>$0.00</td>
-                                                    <td>$200.00</td>
-                                                </tr>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -141,29 +136,29 @@
 
                                     </div>
                                     <!-- /.table-responsive -->
-                                </div>
+                                </div> <!-- /.content -->
                                 
                                 
-                                <!-- 주문자 정보는 기존의 user정보를 디비에서 불러와 찍어줌 -->
+                              <!-- 주문자 정보는 기존의 user정보를 디비에서 불러와 찍어줌 -->
                                 
                               <fieldset>
                                 <legend>주문정보</legend>
-                                  <div class="content">
-                                      <div class="row">
-                                          <div class="col-sm-3">
-                                              <div class="form-group">
-                                                  <label for="order-name">주문자</label>
-                                                  <input type="text" class="form-control" id="order-name">
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <!-- /.row -->
+                                     <div class="content">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label for="order-name">주문자</label>
+                                                    <input type="text" class="form-control" id="order-name">
+                                                </div>
+                                            </div>
+                                      </div>  <!-- /.row -->
+                                      
+                                      
                                       
                                        <label for="telephone">휴대폰번호</label>
                                        <div class="row">
-                                         <div class="form-group">
-                                              <div class="col-sm-2">
-                                                      <select class="form-control" style="width:auto; ">
+                                              <div class="col-sm-2 form-group">
+                                                      <select class="form-control" style="width:100%; text-align: center;">
                                                         <option value="010">010</option>
                                                         <option value="02">02</option>
                                                         <option value="031">031</option>
@@ -184,14 +179,15 @@
                                                       </select>
                                                 </div><!-- ./col-sm-2 -->
                                                 
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-2 form-group">
                                                    <input type="text" class="form-control" id="tel2">
                                                 </div>
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-2 form-group">
                                                     <input type="text" class="form-control" id="tel3">
                                                 </div>
-                                        </div><!-- /.form-group -->
                                       </div><!-- /.row -->
+                                     
+                                      
                                    </div><!-- /.content -->
                                 </fieldset>
                                 
@@ -199,13 +195,13 @@
                                   <legend>배송지 정보</legend>
                                   <div class="content">
                                       <div class="row">
-                                          <div class="col-sm-6">
+                                          <div class="col-sm-6 form-group">
                                             <label><input type="radio" name="same" value="same">주문자 정보와 동일</label>
-                                            <label><input type="radio" name="different" value="different">새로운 배송지 정보</label>
+                                            <label><input type="radio" name="different" value="different" checked>새로운 배송지 정보</label>
                                           </div>
                                       </div>
                                       <div class="row">
-                                          <div class="col-sm-3">
+                                          <div class="col-sm-3 form-group">
                                               <div class="form-group">
                                                   <label for="order-name">주문자</label>
                                                   <input type="text" class="form-control" id="order-name">
@@ -216,22 +212,23 @@
                                       
                                        <label for="street">주소</label>
                                        <div class="row">
-                                          <div class="col-sm-6">
-                                              <div class="col-sm-4">
+                                         
+                                              <div class="col-sm-4 form-group">
                                                      <input type="text" class="form-control" id="address">
                                               </div>
-                                              <div class="col-sm-2">
-                                                     <input type="button" value="우편번호찾기" id="findCodeBtn">
+                                              <div class="col-sm-2 form-group">
+                                                     <a href="#" class="btn btn-template-main"></i>우편번호찾기</a>
+                                                 <!-- <input type="button" value="우편번호찾기" id="findCodeBtn" class="btn"> -->
                                               </div>
-                                          </div><!-- /.col-sm-6 -->
+                                          
                                        </div><!-- /.row -->
                                        
                                         
                                        <div class="row">
-                                          <div class="col-sm-6">
+                                          <div class="col-sm-6 form-group">
                                                  <input type="text" class="form-control" id="address">
                                           </div>
-                                          <div class="col-sm-6">
+                                          <div class="col-sm-6 form-group">
                                                  <input type="text" class="form-control" id="addressDetail">
                                           </div>
                                         </div><!-- /.row -->
@@ -239,8 +236,8 @@
                                        <label for="telephone">휴대폰번호</label>
                                        <div class="row">
                                          <div class="form-group">
-                                              <div class="col-sm-2">
-                                                      <select class="form-control" style="width:auto; ">
+                                              <div class="col-sm-2 form-group">
+                                                      <select class="form-control" style="width:100%; ">
                                                         <option value="010">010</option>
                                                         <option value="02">02</option>
                                                         <option value="031">031</option>
@@ -261,114 +258,58 @@
                                                       </select>
                                                 </div><!-- ./col-sm-2 -->
                                                 
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-2 form-group">
                                                    <input type="text" class="form-control" id="tel2">
                                                 </div>
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-2 form-group">
                                                     <input type="text" class="form-control" id="tel3">
                                                 </div>
                                         </div><!-- /.form-group -->
                                       </div><!-- /.row -->
                                       
-                                      
+                                      <label for="order-name">배송메세지</label>
+                                      <div class="row">
+                                          <div class="col-sm-12 form-group">
+                                               <textarea rows="2" cols="100%"></textarea>
+                                          </div>
+                                      </div> <!-- /.row -->
                                         
                                   </div><!-- /.content -->
                                 </fieldset>
                                 
-                                 <div class="content">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="box shipping-method">
-
-                                                <h4>USPS Next Day</h4>
-
-                                                <p>Get it right on next day - fastest option possible.</p>
-
-                                                <div class="box-footer text-center">
-
-                                                    <input type="radio" name="delivery" value="delivery1">
+                                <fieldset>
+                                  <legend>카드 정보</legend>
+                                  <label for="cardNum">카드번호</label>
+                                       <div class="row">
+                                              <div class="col-sm-3 form-group">
+                                                   <input type="text" class="form-control" id="card1">
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="box shipping-method">
-
-                                                <h4>USPS Next Day</h4>
-
-                                                <p>Get it right on next day - fastest option possible.</p>
-
-                                                <div class="box-footer text-center">
-
-                                                    <input type="radio" name="delivery" value="delivery2">
+                                                <div class="col-sm-3 form-group">
+                                                   <input type="text" class="form-control" id="card2">
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <div class="box shipping-method">
-
-                                                <h4>USPS Next Day</h4>
-
-                                                <p>Get it right on next day - fastest option possible.</p>
-
-                                                <div class="box-footer text-center">
-
-                                                    <input type="radio" name="delivery" value="delivery3">
+                                                <div class="col-sm-3 form-group">
+                                                    <input type="text" class="form-control" id="card3">
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-
-                                </div>
+                                                <div class="col-sm-3 form-group">
+                                                    <input type="text" class="form-control" id="card4">
+                                                </div>
+                                      </div><!-- /.row -->
+                                      
+                                   <label for="cvc">CVC</label>
+                                       <div class="row">
+                                                <div class="col-sm-1">
+                                                   <input type="text" class="form-control" id="card1">
+                                                </div>
+                                                <div class="col-sm-1">
+                                                   <input type="text" class="form-control" id="card2">
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <input type="text" class="form-control" id="card3">
+                                                </div>
+                                      </div><!-- /.row -->
+                                </fieldset>
                                 
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="box payment-method">
-
-                                                <h4>Paypal</h4>
-
-                                                <p>We like it all.</p>
-
-                                                <div class="box-footer text-center">
-
-                                                    <input type="radio" name="payment" value="payment1">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="box payment-method">
-
-                                                <h4>Payment gateway</h4>
-
-                                                <p>VISA and Mastercard only.</p>
-
-                                                <div class="box-footer text-center">
-
-                                                    <input type="radio" name="payment" value="payment2">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <div class="box payment-method">
-
-                                                <h4>Cash on delivery</h4>
-
-                                                <p>You pay when you get it.</p>
-
-                                                <div class="box-footer text-center">
-
-                                                    <input type="radio" name="payment" value="payment3">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-
-                                </div>
-
+                                
                                 <div class="box-footer">
                                     <div class="pull-left">
                                         <a href="shop-basket.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to basket</a>
@@ -388,7 +329,7 @@
 
                     <div class="col-md-3">
 
-                        <div class="box" id="order-summary">
+                        <div class="box" id="STATICMENU"> 
                             <div class="box-header">
                                 <h3>Order summary</h3>
                             </div>
@@ -416,8 +357,9 @@
                                     </tbody>
                                 </table>
                             </div>
-
-                        </div>
+                                <button type="submit" class="btn btn-template-main">ORDER<i class="fa fa-chevron-right"></i></button>
+                           
+                        </div><!-- /.box -->
 
                     </div>
                     <!-- /.col-md-3 -->
@@ -435,9 +377,10 @@
 
     </div>
     <!-- /#all -->
+    <!-- *** ORDER END *** -->
+
 
     <!-- #### JAVASCRIPT FILES ### -->
-
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="/js/jquery-1.11.0.min.js"><\/script>')

@@ -4,14 +4,11 @@ import java.util.List;
 
 import kr.or.gobooke.ordersList.domain.OrderList;
 
-public class OrderListService {
+public interface OrderListService {
 	/** 주문항목 추가 */
-	public void create(OrderList orderList) {
-
-	}
+	public void create(OrderList orderList);
 
 	/** 주문항목 조회 */
-	public List<OrderList> search(int orderNo){
-		return null;
-	}
+	public List<OrderList> search(int orderNo);
+	
 }

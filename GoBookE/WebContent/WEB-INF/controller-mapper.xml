@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>	
-	<!-- 홈페이지 세부컨트롤러 등록 -->
-	<bean name="/index" class="kr.or.kosta.shoppingmall.main.controller.MainController" />
-	
 	<!-- cartListController  등록 -->
 	<bean name="/view/carts" class="kr.or.gobooke.cart.controller.CartListController"></bean>
 </beans>

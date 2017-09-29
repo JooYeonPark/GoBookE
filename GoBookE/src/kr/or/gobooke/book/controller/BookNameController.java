@@ -2,7 +2,6 @@ package kr.or.gobooke.book.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,8 +12,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import kr.or.gobooke.book.domain.Book;
-import kr.or.gobooke.book.service.BookService;
-import kr.or.gobooke.book.service.BookServiceImpl;
+import kr.or.gobooke.book.service.BookService2;
+import kr.or.gobooke.book.service.BookServiceImpl2;
 import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
 
@@ -27,11 +26,12 @@ import kr.or.gobooke.common.controller.ModelAndView;
  */
 public class BookNameController implements Controller {
 	
-	private BookServiceImpl bookService = new BookService();
+	private BookServiceImpl2 bookService = new BookService2();
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)	throws ServletException {
 		
+		System.out.println("BookName 컨트롤러 입장");
 		String publisher = request.getParameter("publisher");
 		List<Book> books = bookService.search("publisher", publisher);
 		

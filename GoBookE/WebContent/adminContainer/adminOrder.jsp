@@ -51,11 +51,11 @@
 		var data = {
 			publisher : selectVal
 		};
-		var params = $.param(data);
+		var param = $.param(data);
 		//ajax요청...!
 		$.ajax({
 			url : "/searchBookname.do",
-			data : params,
+			data : param,
 			dataType : "json",
 			success : function(data) {
 				var bookList = data;

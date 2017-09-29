@@ -124,6 +124,7 @@ public class JdbcBookDao implements BookDao {
 			
 			while (rs.next()) {
 				book = createBook(rs);
+				System.out.println("search 안 : "+book.toString());
 				books.add(book);
 			}
 
@@ -150,7 +151,6 @@ public class JdbcBookDao implements BookDao {
 	}
 
 	/** Book 객제 생성 */
-	@Override
 	public Book createBook(ResultSet rs) {
 		Book book = null;
 		try {

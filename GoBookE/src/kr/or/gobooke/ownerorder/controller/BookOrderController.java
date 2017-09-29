@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.gobooke.book.domain.Book;
-import kr.or.gobooke.book.service.BookService;
-import kr.or.gobooke.book.service.BookServiceImpl;
+import kr.or.gobooke.book.service.BookService2;
+import kr.or.gobooke.book.service.BookServiceImpl2;
 import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
@@ -25,7 +25,7 @@ import kr.or.gobooke.ownerorder.service.OwnerOrderServiceImpl;
 public class BookOrderController implements Controller {
 	
 	private OwnerOrderService orderService = new OwnerOrderServiceImpl();
-	private BookServiceImpl bookService = new BookService();
+	private BookServiceImpl2 bookService = new BookService2();
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)	throws ServletException {

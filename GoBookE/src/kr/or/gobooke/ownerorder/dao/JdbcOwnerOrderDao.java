@@ -1,7 +1,12 @@
 package kr.or.gobooke.ownerorder.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javax.sql.DataSource;
 
+import kr.or.gobooke.common.exception.MallException;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 
 /**
@@ -29,8 +34,53 @@ private DataSource dataSource;
 
 	@Override
 	public void create(OwnerOrder ownerOrder) {
-		// TODO Auto-generated method stub
-		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		String sql = " INSERT INTO owner_order " + 
+					 "            (owner_order_no, " + 
+					 "             owner_order_publisher, " + 
+					 "             owner_order_bookname,  " + 
+					 "             owner_order_qty,  " + 
+					 "             owner_order_totalprice,  " + 
+					 "             user_id)  " + 
+					 " VALUES     (owner_order_no_seq.nextval,  " + 
+					 "            ?,  " + //출판사  
+					 "            ?, " +  // 책제목
+					 "            ?,  " +  // 수량
+					 "            ?,  " +  // 총가격
+					 "            'bangry11' ) "; // 관리자 아이디 - 나중에 로그인 아이디 받아오기.
+		try {
+			con = dataSource.getConnection();
+			con.setAutoCommit(false);
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ownerOrder.getPublisher());
+			pstmt.setString(2, ownerOrder.getBookName());
+			pstmt.setInt(3, ownerOrder.getQty());
+			pstmt.setInt(4, ownerOrder.getTotalPrice());
+			pstmt.executeUpdate();
+
+			con.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+			}
+
+			throw new MallException("JdbcUserDao.create(User) 실행중 예외 발생", e);
+
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+			}
+		}
 	}
 
 	@Override

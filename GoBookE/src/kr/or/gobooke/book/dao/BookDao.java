@@ -1,5 +1,6 @@
 package kr.or.gobooke.book.dao;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import kr.or.gobooke.book.domain.Book;
@@ -17,6 +18,10 @@ public interface BookDao {
 	/** 도서 수정 */
 	public void update(Book book);
 	
-	/** 도서 검색 */
+	/** 도서 검색 - 관리자 */
 	public List<Book> search(String filter, String content);
+	
+	/** BOOK 객체 생성*/
+	public Book createBook(ResultSet set);
+	
 }

@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>Model2WebStudy</display-name>
+  <display-name>GoBookE</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  <listener>
-    <listener-class>kr.or.gobooke.common.web.ServletContextLoadListener</listener-class>
-  </listener>
+  
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/error/500.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>400</error-code>
+    <location>/error/400.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error/404.jsp</location>
+  </error-page>
+  
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
     <filter-class>kr.or.gobooke.common.web.CharacterEncodingFilter</filter-class>
@@ -16,41 +27,38 @@
       <param-value>utf-8</param-value>
     </init-param>
   </filter>
+
   <filter-mapping>
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
   <filter>
     <filter-name>LoginCheckFilter</filter-name>
     <filter-class>kr.or.gobooke.common.web.LoginCheckFilter</filter-class>
   </filter>
+
   <filter-mapping>
     <filter-name>LoginCheckFilter</filter-name>
     <url-pattern>/user/list.do</url-pattern>
   </filter-mapping>
-  <error-page>
-    <exception-type>java.lang.Exception</exception-type>
-    <location>/error/error_500.jsp</location>
-  </error-page>
-  <error-page>
-    <error-code>400</error-code>
-    <location>/error/error_400.jsp</location>
-  </error-page>
-  <error-page>
-    <error-code>404</error-code>
-    <location>/error/error_404.jsp</location>
-  </error-page>
-  <servlet>
-    <servlet-name>frontController</servlet-name>
-    <servlet-class>kr.or.gobooke.common.controller.SimpleFrontControllerServlet_V4</servlet-class>
-    <init-param>
-      <param-name>controllerMapperLocation</param-name>
-      <param-value>C:\Users\kosta\Documents\GoBookE\GoBookE\WebContent\WEB-INF\controller-mapper.xml</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>frontController</servlet-name>
-    <url-pattern>*.do</url-pattern>
-  </servlet-mapping>
+  
+  <!-- 웹브라우저 모든 요청에 대한 단일 진입점 역할의 Front Controller Servlet(메인서블릿) 등록 -->
+	<servlet>
+		<servlet-name>frontController</servlet-name>
+		<servlet-class>kr.or.gobooke.common.controller.SimpleFrontControllerServlet_V4</servlet-class> 
+		<!-- 초기파라미터를 전달하기 위해 init을 설정해줘야함 -->
+		<init-param>
+			<param-name>controllerMapperLocation</param-name>
+			<!-- <param-value>C:/Users/kosta/Dropbox/KOSTA164/workspace/Model2WebStudy/WebContent/WEB-INF/controller-mapper.properties</param-value> -->
+			<param-value>C:/Users/kosta/Documents/GoBookE/GoBookE/WebContent/WEB-INF/controller-mapper.xml</param-value>
+		</init-param>
+		
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>frontController</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
 </web-app>

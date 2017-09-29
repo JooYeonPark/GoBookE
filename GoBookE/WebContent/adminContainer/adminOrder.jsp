@@ -3,6 +3,8 @@
 <%@page import="kr.or.gobooke.book.dao.BookDao"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+
 <script>
 	var selectVal;
 	var bookno;

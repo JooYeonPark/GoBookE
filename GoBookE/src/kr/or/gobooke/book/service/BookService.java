@@ -7,7 +7,6 @@ import kr.or.gobooke.book.dao.JdbcBookDao;
 import kr.or.gobooke.book.domain.Book;
 import kr.or.gobooke.common.db.DaoFactory;
 
-
 public class BookService implements BookServiceImpl {
 	
 	BookDao bookDao = (BookDao) DaoFactory.getInstance().getDao(JdbcBookDao.class);

@@ -32,13 +32,6 @@ public class BookNameController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)	throws ServletException {
 		
-		try {
-			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		String publisher = request.getParameter("publisher");
 		List<Book> books = bookService.search("publisher", publisher);
 		

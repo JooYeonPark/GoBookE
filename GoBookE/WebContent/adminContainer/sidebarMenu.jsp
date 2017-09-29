@@ -1,5 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 
+<script>
+	
+</script>
+
 <div class="panel panel-default sidebar-menu">
   <div class="panel-heading">
     <h3 class="panel-title">Admin</h3>

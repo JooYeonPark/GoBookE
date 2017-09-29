@@ -18,6 +18,7 @@ public class Book {
 	private String image;
 	private String regdate;
 	private int qty;
+	private int categoryBigNo;
 	private int categoryNo;
 	private double grade;
 	
@@ -25,16 +26,19 @@ public class Book {
 	/** 생성자 */
 	
 	public Book() {
-		this(0,null,null,null,null,0,null,null,0,0,0.0);
+		this(0, null, null, null, null, 0, null, null, 0, 0, 0, 0);
 	}
 	
-	public Book(String title, String author, String publisher, String detail, int price, String image,
-			int qty, int categoryNo, double grade) {
-		this(0, title, author, publisher, detail, price, image, null, qty, categoryNo, grade);
+	public Book(String title, String author, String publisher, String detail, int price, String image, int qty,
+			int categoryBigNo, int categoryNo, double grade) {
+		this(0, title, author, publisher, detail, price, image, null, qty, categoryBigNo, categoryNo, grade);
 	}
-	
+
+
+
 	public Book(int no, String title, String author, String publisher, String detail, int price, String image,
-			String regdate, int qty, int categoryNo, double grade) {
+			String regdate, int qty, int categoryBigNo, int categoryNo, double grade) {
+		super();
 		this.no = no;
 		this.title = title;
 		this.author = author;
@@ -44,10 +48,11 @@ public class Book {
 		this.image = image;
 		this.regdate = regdate;
 		this.qty = qty;
+		this.categoryBigNo = categoryBigNo;
 		this.categoryNo = categoryNo;
 		this.grade = grade;
 	}
-
+	
 	
 	/** Getter, Setter */
 	
@@ -138,15 +143,21 @@ public class Book {
 	public void setGrade(double grade) {
 		this.grade = grade;
 	}
+	
+
+	public int getCategoryBigNo() {
+		return categoryBigNo;
+	}
+
+	public void setCategoryBigNo(int categoryBigNo) {
+		this.categoryBigNo = categoryBigNo;
+	}
 
 	@Override
 	public String toString() {
 		return "Book [no=" + no + ", title=" + title + ", author=" + author + ", publisher=" + publisher + ", detail="
 				+ detail + ", price=" + price + ", image=" + image + ", regdate=" + regdate + ", qty=" + qty
-				+ ", categoryNo=" + categoryNo + ", grade=" + grade + "]";
+				+ ", categoryBigNo=" + categoryBigNo + ", categoryNo=" + categoryNo + ", grade=" + grade + "]";
 	}
-	
-	
-	
 	
 }

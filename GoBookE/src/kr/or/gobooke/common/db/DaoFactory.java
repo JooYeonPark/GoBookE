@@ -1,10 +1,8 @@
 package kr.or.gobooke.common.db;
 
 import java.lang.reflect.Method;
-
 import javax.sql.DataSource;
-
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 import kr.or.gobooke.common.exception.MallException;
 

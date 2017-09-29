@@ -3,12 +3,7 @@
 <%@page import="kr.or.gobooke.cart.domain.Cart"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=utf-8" %>
-
-<%
-CartService service = new CartServiceImpl(); 
-
-
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -85,15 +80,15 @@ CartService service = new CartServiceImpl();
 
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="text-muted lead">You currently have 3 item(s) in your cart.</p>
+                        <p class="text-muted lead">You currently have ${pageBuilder.totalRowCount} item(s) in your cart.</p>
                     </div>
-
+                    
 
                     <div class="col-md-9 clearfix" id="basket">
 
                     	<div class="box"> 
 
-                            <form method="post" action="shop-checkout1.html">
+                            <form method="post" action="#">
 
                                 <div class="table-responsive">
                                     <table class="table">
@@ -106,27 +101,33 @@ CartService service = new CartServiceImpl();
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <a href="#">
-                                                        <img src="/img/detailsquare.jpg" alt="White Blouse Armani">
-                                                    </a>
-                                                </td>
-                                                <td><a href="#">White Blouse Armani</a>
-                                                </td>
-                                                <td>
-                                                    <input type="number" value="2" class="form-control">
-                                                </td>
-                                                <td>$123.00</td>
-                                                <td>$246.00</td>
-                                                <td><a href="#"><i class="fa fa-trash-o"></i></a>
-                                                </td>
-                                            </tr>
+                                          <c:if test = "${not empty list}">
+                                            <c:forEach items="${list}" varStatus="status">
+                                                  <tr>
+                                                      <td>
+                                                          <a href="#">
+                                                              <img src="/img/books/${list[status.index].bookImage}">
+                                                          </a>
+                                                      </td>
+                                                      <td><a href="#">${list[status.index].bookTitle}</a>
+                                                      </td>
+                                                      <td>
+                                                          <input type="number" value="${list[status.index].cartBookQty}" class="form-control">
+                                                      </td>
+                                                      <td>${list[status.index].bookPrice}</td>
+                                                      <td>${list[status.index].bookTotalPrice}</td>
+                                                      <td><a href="#"><i class="fa fa-trash-o"></i></a>
+                                                      </td>
+                                                  </tr>
+                                              </c:forEach>
+                                          </c:if>
                                         </tbody>
+                                        
                                         <tfoot>
                                             <tr>
+                                            
                                                 <th colspan="5">Total</th>
-                                                <th colspan="2">$446.00</th>
+                                                <th colspan="2">${total-2500} </th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -166,19 +167,16 @@ CartService service = new CartServiceImpl();
                                     <tbody>
                                         <tr>
                                             <td>Order subtotal</td>
-                                            <th>$446.00</th>
+                                            <th>${total-2500}</th>
                                         </tr>
                                         <tr>
                                             <td>Shipping and handling</td>
-                                            <th>$10.00</th>
+                                            <th>2500</th>
                                         </tr>
-                                        <tr>
-                                            <td>Tax</td>
-                                            <th>$0.00</th>
-                                        </tr>
+                                        
                                         <tr class="total">
                                             <td>Total</td>
-                                            <th>$456.00</th>
+                                            <th>${total}</th>
                                         </tr>
                                     </tbody>
                                 </table>

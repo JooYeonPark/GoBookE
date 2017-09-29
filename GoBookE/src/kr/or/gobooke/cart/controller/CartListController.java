@@ -35,8 +35,10 @@ public class CartListController implements Controller {
 		String page = request.getParameter("page");
 		if(page == null) { page="1"; }
 		int pageCount = Integer.parseInt(page);
-		String type = request.getParameter("type");
-		String value = request.getParameter("value");
+//		String type = request.getParameter("type");
+//		String value = request.getParameter("value");
+		String type = "user_id";
+		String value = "joo";
 		
 		Params params = new Params();
 		params.setPage(pageCount);
@@ -45,6 +47,15 @@ public class CartListController implements Controller {
 		/************************************/
 		
 		List<CartList> cartList = cartService.listAll(params);
+		
+		//cart의 총 주문금액 반환
+		int total = 0;
+		for (CartList cart : cartList) {
+			total += cart.getBookTotalPrice(); 
+		}
+		
+		//배송비 추가
+		total += 2500;
 		
 		//페이징 계산을 위한 cart안의 책 갯수 반환
 		int rowCount = cartService.pageCount(params);
@@ -55,7 +66,10 @@ public class CartListController implements Controller {
 		//페이징 계산		
 		pageBuilder.build();
 		
+		
+		
 		mav.addObject("list", cartList);
+		mav.addObject("total", total);
 		mav.addObject("rowCount", rowCount);
 		mav.addObject("pageBuilder", pageBuilder);
 		mav.addObject("params", params);

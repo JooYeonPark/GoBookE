@@ -176,6 +176,7 @@ private DataSource dataSource;
 		return count;
 	}
 	
+	
 	/* 단위테스트 */
 	public static void main(String[] args) {
 		CartDao cartDao = (CartDao) DaoFactory.getInstance().getDao(JdbcCartDao.class);

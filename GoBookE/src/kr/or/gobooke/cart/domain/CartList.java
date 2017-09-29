@@ -1,6 +1,9 @@
 package kr.or.gobooke.cart.domain;
 
+import java.util.List;
+
 public class CartList {
+	
 
 	private String bookImage;
 	private String bookTitle;
@@ -14,7 +17,6 @@ public class CartList {
 	}
 
 	public CartList(String bookImage, String bookTitle, int cartBookQty, int bookPrice, int bookTotalPrice) {
-		super();
 		this.bookImage = bookImage;
 		this.bookTitle = bookTitle;
 		this.cartBookQty = cartBookQty;
@@ -62,6 +64,7 @@ public class CartList {
 	public void setBookTotalPrice(int bookTotalPrice) {
 		this.bookTotalPrice = bookTotalPrice;
 	}
+	
 
 	@Override
 	public String toString() {

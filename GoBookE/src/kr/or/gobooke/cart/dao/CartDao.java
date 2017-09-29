@@ -29,4 +29,5 @@ public interface CartDao {
 	/** 출력페이지 계산을 위한 {검색유형, 검색값}에 대한 행의 수 반환 */
 	public int pageCount(Params params);
 	
+	
 }

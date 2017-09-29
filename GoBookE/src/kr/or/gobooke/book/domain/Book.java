@@ -34,8 +34,6 @@ public class Book {
 		this(0, title, author, publisher, detail, price, image, null, qty, categoryBigNo, categoryNo, grade);
 	}
 
-
-
 	public Book(int no, String title, String author, String publisher, String detail, int price, String image,
 			String regdate, int qty, int categoryBigNo, int categoryNo, double grade) {
 		super();

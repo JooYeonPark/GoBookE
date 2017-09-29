@@ -44,7 +44,41 @@ public class JdbcBookDao implements BookDao {
 	@Override
 	/** 도서 수정 */
 	public void update(Book book) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
 
+		String sql = "UPDATE book  " + 
+					 "SET    book_qty = ? " + 
+					 "WHERE  book_no = ? "; 
+		
+		try {
+			con = dataSource.getConnection();
+			con.setAutoCommit(false);
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, book.getQty());
+			pstmt.setInt(2, book.getNo());
+			
+			pstmt.executeUpdate();
+			
+			con.commit();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+			}finally {
+				try {
+					if (pstmt != null) pstmt.close();
+					if (con != null) con.close();
+				} catch (SQLException e1) {
+				}
+			}
+
+			throw new MallException("JDBCBookDao.update(Book book) 실행중 예외 발생", e);
+		}
+		
 	}
 	
 	@Override
@@ -109,13 +143,13 @@ public class JdbcBookDao implements BookDao {
 				}
 			}
 
-			throw new MallException("JdbcArticleDao.listAll() 실행중 예외 발생", e);
+			throw new MallException("JDBCBookDao.listAll() 실행중 예외 발생", e);
 		}
 
 		return books;
 	}
 
-
+	/** Book 객제 생성 */
 	@Override
 	public Book createBook(ResultSet rs) {
 		Book book = null;
@@ -141,16 +175,5 @@ public class JdbcBookDao implements BookDao {
 		}
 		return book;
 	}
-	
-	/*public static void main(String[] args) {
-		BookDao bookdao = (BookDao) DaoFactory.getInstance().getDao(JdbcBookDao.class);
-		
-		List<Book> list = bookdao.searchPublisher("민음사");
-		System.out.println(list.size());
-		
-		for (Book book : list) {
-			System.out.println(book.getTitle());
-		}
-	}*/
 
 }

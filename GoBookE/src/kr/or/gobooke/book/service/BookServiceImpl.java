@@ -11,5 +11,7 @@ public interface BookServiceImpl {
 	/** 도서 수정 */
 	public void update(Book book); 
 	
+	/** 도서 검색 - 관리자 */
 	public List<Book> search(String filter, String publisher);
+	
 }

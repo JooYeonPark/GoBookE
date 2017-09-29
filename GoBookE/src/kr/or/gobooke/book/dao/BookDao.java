@@ -15,7 +15,7 @@ public interface BookDao {
 	/** 도서 등록 */
 	public void create(Book book);
 	
-	/** 도서 수정 */
+	/** 도서 수정 - 수량변경 기능(update추가 가능) */
 	public void update(Book book);
 	
 	/** 도서 검색 - 관리자 */

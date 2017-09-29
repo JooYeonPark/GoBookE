@@ -9,7 +9,7 @@ import kr.or.gobooke.common.db.DaoFactory;
 
 public class BookService implements BookServiceImpl {
 	
-	BookDao bookDao = (BookDao) DaoFactory.getInstance().getDao(JdbcBookDao.class);
+	BookDao dao = (BookDao) DaoFactory.getInstance().getDao(JdbcBookDao.class);
 
 	@Override
 	public void create(Book book) {
@@ -19,13 +19,12 @@ public class BookService implements BookServiceImpl {
 
 	@Override
 	public void update(Book book) {
-		// TODO Auto-generated method stub
-
+		dao.update(book);
 	}
 
 	@Override
 	public List<Book> search(String filter, String publisher) {
-		return bookDao.search(filter, publisher);
+		return dao.search(filter, publisher);
 	}
 
 }

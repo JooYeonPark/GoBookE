@@ -1,19 +1,13 @@
+<%@page import="kr.or.gobooke.cart.service.CartServiceImpl"%>
+<%@page import="kr.or.gobooke.cart.service.CartService"%>
+<%@page import="kr.or.gobooke.cart.domain.Cart"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 
 <%
-/*
-	int price = Integer.parseInt(request.getParameter("price"));
-	int qty = Integer.parseInt(request.getParameter("qty"));
-	String bookNo = request.getParameter("bookNo");
-	String imgPath = request.getParameter("imgPath");
-*/
+CartService service = new CartServiceImpl(); 
 
-//테스트 데이터 - 원래는 데이터베이스에서 가져온다
-	int price = 10000;
-    int qty = 1;
-    String bookNo = "6";
-    String imgPath = "/img/detailsquare.jpg";
-    String userId = "joo";
+
 %>
 
 <!DOCTYPE html>

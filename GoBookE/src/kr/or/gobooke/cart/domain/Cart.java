@@ -10,29 +10,42 @@ package kr.or.gobooke.cart.domain;
 
 public class Cart {
 	
-	/** Cart의 인스턴스 변수 : 총 3개 */
+	/** Cart의 인스턴스 변수 : 총 4개 */
 	private int no;
+	private int cartBookQty;
 	private int bookNo;
 	private String userId;
 	
+	/** 생성자 */
 	public Cart() {}
 	
-	public Cart(int bookNo, String userId) {
-		this(0, bookNo, userId);
+	public Cart(int bookNo, int cartBookQty, String userId) {
+		this(0, cartBookQty, bookNo, userId);
 	}
 
-	public Cart(int no, int bookNo, String userId) {
+	public Cart(int no, int cartBookQty, int bookNo, String userId) {
 		this.no = no;
+		this.cartBookQty = cartBookQty;
 		this.bookNo = bookNo;
 		this.userId = userId;
 	}
 
+
+	/** Getter, Setter */
 	public int getNo() {
 		return no;
 	}
 
 	public void setNo(int no) {
 		this.no = no;
+	}
+
+	public int getCartBookQty() {
+		return cartBookQty;
+	}
+
+	public void setCartBookQty(int cartBookQty) {
+		this.cartBookQty = cartBookQty;
 	}
 
 	public int getBookNo() {
@@ -53,7 +66,7 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [no=" + no + ", bookNo=" + bookNo + ", userId=" + userId + "]";
+		return "Cart [no=" + no + ", cartBookQty=" + cartBookQty + ", bookNo=" + bookNo + ", userId=" + userId + "]";
 	}
 	
 	

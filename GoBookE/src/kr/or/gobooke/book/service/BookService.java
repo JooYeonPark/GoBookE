@@ -2,7 +2,7 @@ package kr.or.gobooke.book.service;
 
 import kr.or.gobooke.book.domain.Book;
 
-public class BookServiceImpl implements BookService {
+public class BookService implements BookServiceImpl {
 
 	@Override
 	public void create(Book book) {

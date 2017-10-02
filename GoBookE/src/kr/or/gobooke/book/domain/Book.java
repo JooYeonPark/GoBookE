@@ -36,7 +36,6 @@ public class Book {
 
 	public Book(int no, String title, String author, String publisher, String detail, int price, String image,
 			String regdate, int qty, int categoryBigNo, int categoryNo, double grade) {
-		super();
 		this.no = no;
 		this.title = title;
 		this.author = author;

@@ -7,13 +7,13 @@
     <table class="table">
       <tr>
         <td style="height: 385px" class="text-center"><img
-          src="img/portfolio-4.jpg" alt="사진을 등록해주세요."
+          src="" alt="사진을 등록해주세요."
           class="img-responsive"></td>
       </tr>
 
       <tr>
         <td class="center-block"><input class="form-control "
-          id="imgRegist" type="button" value="사진등록"></td>
+          id="img" type="button" value="사진등록"></td>
       </tr>
     </table>
   </div>
@@ -54,7 +54,7 @@
       <div class="col-sm-10">
         <div class="form-group">
           <label for="lastname">소분류</label> <select class="form-control"
-            id="Category">
+            id="category">
             <option value="volvo">소설</option>
             <option value="saab">참고서</option>
             <option value="saab">만화</option>
@@ -68,7 +68,16 @@
       <div class="col-sm-10">
         <div class="form-group">
           <label for="lastname">가격</label> <input type="number"
-            class="form-control" id="publisher">
+            class="form-control" id="price">
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-10">
+        <div class="form-group">
+          <label for="lastname">도서설명</label>
+          <textarea rows="3" cols="100" class="form-control" id="detail"></textarea>
         </div>
       </div>
     </div>

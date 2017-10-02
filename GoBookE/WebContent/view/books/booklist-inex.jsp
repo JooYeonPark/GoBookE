@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -68,27 +69,32 @@
        _________________________________________________________ -->
 
                     <div class="col-md-9" id="blog-listing-medium">
-                        <section class="post">
+                        <c:choose>
+                          <c:when test="${empty list }">
+                          
+                          </c:when>
+                          <c:otherwise>
+                          <c:forEach items="${list}" var="book" varStatus="status">
+                           <section class="post">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="image">
-                                        <a href="blog-post.html">
-                                            <img src="../../img/blog-medium.jpg" class="img-responsive" alt="Example blog post alt">
+                                        <a href="${pageContext.servletContext.contextPath}/book/bookDetail.do?book_no=${book.no}">
+                                            <img src="../../img/books/${book.image}" class="img-responsive" alt="Example blog post alt">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="post.htmls">책제목</a></h2>
+                                    <h2><a href="${pageContext.servletContext.contextPath}/book/bookDetail.do?book_no=${book.no}">${book.title}</a></h2>
                                     <div class="clearfix">
-                                        <p class="author-category">By <a href="#">저자이름</a>
+                                        <p class="author-category">By <a href="#">${book.author}</a>
                                         </p>
                                         <p class="date-comments">
-                                            <a href="blog-post.html"><i class="fa fa-calendar-o"></i>등록일</a>
+                                            <a href="blog-post.html"><i class="fa fa-calendar-o"></i>${book.regdate}</a>
                                             <a href="blog-post.html"><i class="fa fa-comment-o"></i>댓글수</a>
                                         </p>
                                     </div>
-                                    <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                    <p class="intro">${book.detail}</p>
                                       
                                     <p class="read-more"><a href="blog-post.html" class="btn btn-template-main"><i class="fa fa-won"></i>바로구매하기</a>
                                    <a href="blog-post.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>장바구니에담기</a>
@@ -97,89 +103,57 @@
                                 </div>
                             </div>
                         </section>
-                        
-                          <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="image">
-                                        <a href="blog-post.html">
-                                            <img src="../../img/blog-medium.jpg" class="img-responsive" alt="Example blog post alt">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="post.htmls">책제목</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">By <a href="#">저자이름</a>
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="blog-post.html"><i class="fa fa-calendar-o"></i>등록일</a>
-                                            <a href="blog-post.html"><i class="fa fa-comment-o"></i>댓글수</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                      
-                                    <p class="read-more"><a href="blog-post.html" class="btn btn-template-main"><i class="fa fa-won"></i>바로구매하기</a>
-                                   <a href="blog-post.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>장바구니에담기</a>
-                                    </p>
-                                  
-                                </div>
-                            </div>
-                        </section>
-                        
-                          <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="image">
-                                        <a href="blog-post.html">
-                                            <img src="../../img/blog-medium.jpg" class="img-responsive" alt="Example blog post alt">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="post.htmls">책제목</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">By <a href="#">저자이름</a>
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="blog-post.html"><i class="fa fa-calendar-o"></i>등록일</a>
-                                            <a href="blog-post.html"><i class="fa fa-comment-o"></i>댓글수</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                      
-                                    <p class="read-more"><a href="blog-post.html" class="btn btn-template-main"><i class="fa fa-won"></i>바로구매하기</a>
-                                   <a href="blog-post.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>장바구니에담기</a>
-                                    </p>
-                                  
-                                </div>
-                            </div>
-                        </section>
-                        <div style="text-align: center;">
-                          <form action="">
+                          
+                          </c:forEach>
+                          
+                          </c:otherwise>
+                       </c:choose>
+                       
+                      <div style="text-align: center;">
+                          <form name="search" role="form" method="get">
                           <div class="row">
-                            <p><select><option>책제목</option><option>저자</option></select><input type="text"><a href="blog-post.html" class="btn btn-template-main">검색</a></p>
+                            <p>
+                            <select name="type">
+                            <option value="title">책제목</option>
+                            <option value="author">저자</option>
+                            </select>
+                            <input type="text" name="value" required><button type="submit" class="btn btn-default">검색</button></p>
+                            <input type="hidden" name="category_big_no"value="${category_big_no}"/>
+                            <input type="hidden" name="category_no"value="${category_no}"/>
                           </div>
                           </form>
                         </div>
                          <div class="pages">
                         <ul class="pagination">
-                                <li><a href="#">&laquo;</a>
-                                </li>
-                                <li class="active"><a href="#">1</a>
-                                </li>
-                                <li><a href="#">2</a>
-                                </li>
-                                <li><a href="#">3</a>
-                                </li>
-                                <li><a href="#">4</a>
-                                </li>
-                                <li><a href="#">5</a>
-                                </li>
-                                <li><a href="#">&raquo;</a>
-                                </li>
+                                <c:if test="${pageBuilder.showFirst }">
+            <li><a href="${pageBuilder.getQueryString(1)}">처음으로</a></li>
+          </c:if>
+
+          <c:if test="${pageBuilder.showPrevious }">
+            <li class="prev"><a
+              href="${pageBuilder.getQueryString(pageBuilder.previousStartPage)}">이전목록</a></li>
+          </c:if>
+
+          <c:forEach var="i" begin="${pageBuilder.currentStartPage}"
+            end="${pageBuilder.currentEndPage }">
+            <c:choose>
+              <c:when test="${i == params.page }">
+                <li class="active"><a>${i }</a></li>
+              </c:when>
+              <c:otherwise>
+                <li><a href="${pageBuilder.getQueryString(i)}">${i }</a></li>
+              </c:otherwise>
+            </c:choose>
+          </c:forEach>
+
+          <c:if test="${pageBuilder.showNext }">
+            <li class="next"><a href="${pageBuilder.getQueryString(pageBuilder.nextStartPage)}">다음목록</a></li>
+          </c:if>
+
+          <c:if test="${pageBuilder.showLast }">
+            <li><a
+              href="${pageBuilder.getQueryString(pageBuilder.totalPageCount)}">끝으로</a></li>
+          </c:if>
                             </ul>
                        </div>
 

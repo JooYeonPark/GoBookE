@@ -7,4 +7,7 @@
 	<bean name="/searchBookname" class="kr.or.gobooke.book.controller.BookNameController" /><!-- 북제목 리스트 -->
 	<bean name="/adminBookOrder" class="kr.or.gobooke.ownerorder.controller.BookOrderController" /><!-- 발주 -->
 	
+	<!-- 책관련 리스트 -->
+	<bean name="/book/inexBookList" class="kr.or.gobooke.book.controller.InexBookListController"/>
+	
 </beans>

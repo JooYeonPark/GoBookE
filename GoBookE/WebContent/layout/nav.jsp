@@ -40,19 +40,19 @@
             class="dropdown-toggle" data-toggle="dropdown">국내도서 <b
               class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="contact.html">소설</a></li>
-              <li><a href="contact2.html">참고서</a></li>
-              <li><a href="contact3.html">만화</a></li>
-              <li><a href="contact3.html">잡지</a></li>
+              <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=1">소설</a></li>
+              <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=2">참고서</a></li>
+              <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=3">만화</a></li>
+              <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=4">잡지</a></li>
             </ul></li>
           <li class="dropdown"><a href="javascript: void(0)"
             class="dropdown-toggle" data-toggle="dropdown">외국도서 <b
               class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="contact.html">영미도서</a></li>
-              <li><a href="contact2.html">일본도서</a></li>
-              <li><a href="contact3.html">프랑스도서</a></li>
-              <li><a href="contact3.html">중국도서</a></li>
+              <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=1">영미도서</a></li>
+              <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=2">일본도서</a></li>
+              <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=3">프랑스도서</a></li>
+              <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=4">중국도서</a></li>
             </ul></li>
             <li class="dropdown use-yamm yamm-fw"><a href="/view/admin/adminorder.jsp">관리자</a>
           </li>

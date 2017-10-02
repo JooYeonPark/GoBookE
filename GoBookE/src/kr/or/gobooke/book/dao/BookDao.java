@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.List;
 
 import kr.or.gobooke.book.domain.Book;
+import kr.or.gobooke.common.web.BookParams;
 
 /**
  * 책 데이터 베이스 처리 인터페이스
@@ -23,5 +24,9 @@ public interface BookDao {
 	
 	/** BOOK 객체 생성*/
 	public Book createBook(ResultSet set);
+
+	public List<Book> getBookListByParams(BookParams params);
+
+	public int pageCount(BookParams params);
 	
 }

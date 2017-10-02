@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import kr.or.gobooke.book.domain.Book;
 import kr.or.gobooke.common.db.DaoFactory;
 import kr.or.gobooke.common.exception.MallException;
+import kr.or.gobooke.common.web.BookParams;
 
 /**
  * 책 데이터 베이스 처리 클래스
@@ -174,6 +175,169 @@ public class JdbcBookDao implements BookDao {
 			throw new MallException("JDBCBookDao.createBook(ResultSet)실행중 예외 발생", e);
 		}
 		return book;
+	}
+
+	@Override
+	public List<Book> getBookListByParams(BookParams params) {
+List<Book> list = null;		
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT book_no,"); 
+		sb.append("       book_title,"); 
+		sb.append("       book_author,"); 
+		sb.append("       book_publisher,"); 
+		sb.append("       book_detail,"); 
+		sb.append("       book_price,"); 
+		sb.append("       book_image,"); 
+		sb.append("       book_regdate,"); 
+		sb.append("       book_qty,"); 
+		sb.append("       book_grade,"); 
+		sb.append("       category_big_no,"); 
+		sb.append("       category_no "); 
+		sb.append("FROM   (SELECT Ceil(rownum / ?) request_page,"); 
+		sb.append("               book_no,"); 
+		sb.append("               book_title,"); 
+		sb.append("               book_author,"); 
+		sb.append("               book_publisher,"); 
+		sb.append("               book_detail,"); 
+		sb.append("               book_price,"); 
+		sb.append("               book_image,"); 
+		sb.append("               book_regdate,"); 
+		sb.append("               book_qty,"); 
+		sb.append("               book_grade,"); 
+		sb.append("               category_big_no,"); 
+		sb.append("               category_no"); 
+		sb.append("        FROM   (SELECT book_no,"); 
+		sb.append("                       book_title,"); 
+		sb.append("                       book_author,"); 
+		sb.append("                       book_publisher,"); 
+		sb.append("                       book_detail,"); 
+		sb.append("                       book_price,"); 
+		sb.append("                       book_image,"); 
+		sb.append("                       To_char(book_regdate, 'YYYY/MM/DD HH24:MI:SS')"); 
+		sb.append("                       book_regdate,"); 
+		sb.append("                       book_qty,"); 
+		sb.append("                       book_grade,"); 
+		sb.append("                       category_big_no,"); 
+		sb.append("                       category_no "); 
+		sb.append("                FROM   book  "); 
+		sb.append("                WHERE  category_big_no = ?"); 
+		sb.append("                       AND category_no = ?"); 
+		
+		
+		// 검색 유형별 WHERE 절 동적 추가
+		String type = params.getType();
+		String value = params.getValue();
+		if(type != null){
+			switch (params.getType()) {
+				case "title":    
+					sb.append(" AND  book_title  = ?");
+					break;
+				case "author":  
+					sb.append(" AND  book_author LIKE ?");
+					value = "%" + value + "%";
+					break;
+			}
+		}
+		sb.append("                ORDER  BY book_regdate DESC))"); 
+		sb.append("WHERE  request_page = ?"); 
+		
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setInt(1, params.getPageSize());
+			pstmt.setInt(2, params.getCategory_big_no());
+			pstmt.setInt(3, params.getCategory_no());
+			
+			// 전체검색이 아닌경우 경우
+			if(type != null){
+				pstmt.setString(4, value);
+				pstmt.setInt(5, params.getPage());
+			}else{// 전체검색인 경우
+				pstmt.setInt(4, params.getPage());
+			}
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<Book>();
+			
+			while(rs.next()){
+				Book book = createBook(rs);
+				list.add(book);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcUserDao.listByParams(Params params) 실행 중 예외발생", e);
+		} finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			} catch (Exception e) {}
+		}
+		return list;
+	}
+
+	@Override
+	public int pageCount(BookParams params) {
+		int count = 0;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(" SELECT COUNT(book_no) count");
+		sb.append(" FROM   book");
+		sb.append(" WHERE category_big_no=? AND category_no=?");
+		
+		// 검색 유형별 WHERE 절 동적 추가
+		String type = params.getType();
+		String value = params.getValue();
+		if(type != null){
+			switch (params.getType()) {
+				case "title":
+					sb.append(" AND  book_title  = ?");
+					break;
+				case "author":
+					sb.append(" AND  book_author LIKE ?");
+					value = "%" +value + "%";
+					break;
+			}
+		}
+		
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setInt(1, params.getCategory_big_no());
+			pstmt.setInt(2, params.getCategory_no());
+			// 전체검색이 아닌경우 경우
+			if(type != null){
+				pstmt.setString(3, value);
+			}
+
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcUserDao.pageCount(Params params) 실행 중 예외발생", e);
+		} finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			} catch (Exception e) {}
+		}
+		return count;
 	}
 
 }

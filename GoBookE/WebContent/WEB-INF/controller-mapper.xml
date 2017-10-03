@@ -12,6 +12,7 @@
 	<bean name="/book/inexBookList" class="kr.or.gobooke.book.controller.InexBookListController"/>
 	<bean name="/book/bookDetail" class="kr.or.gobooke.book.controller.BookDetailController"/>
 	<bean name="/book/bestSellerList" class="kr.or.gobooke.book.controller.BookBestSellerController"/>
+	<bean name="/book/bestSellerDetail" class="kr.or.gobooke.book.controller.BookBestSellerDetailController"/>
 	
 	<!-- 로그인 -->
 	<bean name="/user/certify" class="kr.or.gobooke.users.controller.UserCertifyController"/>

@@ -30,5 +30,7 @@ public interface BookDao {
 	public int pageCount(BookParams params);
 
 	public Book getBookDetail(int book_no);
+
+	public Book getBookByTitle(String title);
 	
 }

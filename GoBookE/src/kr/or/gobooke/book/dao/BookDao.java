@@ -28,5 +28,7 @@ public interface BookDao {
 	public List<Book> getBookListByParams(BookParams params);
 
 	public int pageCount(BookParams params);
+
+	public Book getBookDetail(int book_no);
 	
 }

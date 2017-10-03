@@ -17,4 +17,6 @@ public interface BookServiceImpl2 {
 	public List<Book> listByParams(BookParams params);
 
 	public int pageCount(BookParams params);
+
+	public Book getBookDetail(int book_no);
 }

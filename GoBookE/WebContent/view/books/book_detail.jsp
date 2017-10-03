@@ -122,7 +122,7 @@
                         <div class="row" id="productMain">
                             <div class="col-sm-6">
                                 <div id="mainImage">
-                                    <img src="../../img/detailbig1.jpg" alt="" class="img-responsive">
+                                    <img src="../../img/books/${book.image }" alt="" class="img-responsive">
                                 </div>
 
                                 <div class="ribbon sale">
@@ -144,16 +144,16 @@
                                     <form>
                                         <div class="sizes">
 
-                                            <h3>책이름</h3>
-                                            <h5>저자</h5>
-                                            <h5>출판사</h5>
-                                            <h5>출판일</h5>
-                                            <h5>재고량</h5>
-                                            <h5>평점</h5>
+                                            <h3>${book.title}</h3>
+                                            <h5>저자:${book.author}</h5>
+                                            <h5>출판사:${book.publisher}</h5>
+                                            <h5>출판일:${book.regdate}</h5>
+                                            <h5>재고량:${book.qty }</h5>
+                                            <h5>평점 : ${book.grade}</h5>
 
                                         </div>
 
-                                        <p class="price">가격 : $124.00</p>
+                                        <p class="price">가격 : ${book.price} 원</p>
 
                                         <p class="text-center">
                                             <button type="submit" class="btn btn-template-main"><i class="fa fa-won"></i>바로 구매하기</button>
@@ -185,7 +185,7 @@
 
                                 <blockquote>
                                 <h4>책 소개</h4>
-                                    <p><em>Define style this season with Armani's new range of trendy tops, crafted with intricate details. Create a chic statement look by teaming this lace number with skinny jeans and pumps.</em>
+                                    <p><em>${book.detail}</em>
                                     </p>
                                 </blockquote>
                         </div>

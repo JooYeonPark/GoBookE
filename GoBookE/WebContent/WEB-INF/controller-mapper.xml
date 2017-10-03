@@ -9,5 +9,6 @@
 	
 	<!-- 책관련 리스트 -->
 	<bean name="/book/inexBookList" class="kr.or.gobooke.book.controller.InexBookListController"/>
+	<bean name="/book/bookDetail" class="kr.or.gobooke.book.controller.BookDetailController"/>
 	
 </beans>

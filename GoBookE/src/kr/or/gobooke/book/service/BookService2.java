@@ -40,4 +40,9 @@ public class BookService2 implements BookServiceImpl2 {
 		return bookDao.pageCount(params);
 	}
 
+	@Override
+	public Book getBookDetail(int book_no) {
+		return bookDao.getBookDetail(book_no);
+	}
+
 }

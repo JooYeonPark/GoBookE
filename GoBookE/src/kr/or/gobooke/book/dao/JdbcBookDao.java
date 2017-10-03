@@ -340,4 +340,65 @@ List<Book> list = null;
 		return count;
 	}
 
+	@Override
+	public Book getBookDetail(int book_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Book book=null;
+		String sqlSelect="select book_no,\r\n" + 
+				"      book_title,\r\n" + 
+				"      book_author,\r\n" + 
+				"      book_publisher,\r\n" + 
+				"      book_detail,\r\n" + 
+				"      book_price,\r\n" + 
+				"      book_image,\r\n" + 
+				"      book_regdate,\r\n" + 
+				"      book_qty,\r\n" + 
+				"      book_grade,\r\n" + 
+				"      category_big_no,\r\n" + 
+				"      category_no\r\n" + 
+				"      from book where book_no=?";
+		
+		try {
+			con = dataSource.getConnection();
+			con.setAutoCommit(false);
+			pstmt = con.prepareStatement(sqlSelect);
+			pstmt.setInt(1, book_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				book=new Book();
+				book.setNo(rs.getInt("book_no"));
+				book.setTitle(rs.getString("book_title"));
+				book.setAuthor(rs.getString("book_author"));
+				book.setPublisher(rs.getString("book_publisher"));
+				book.setDetail(rs.getString("book_detail"));
+				book.setPrice(rs.getInt("book_price"));
+				book.setImage(rs.getString("book_image"));
+				book.setRegdate(rs.getString("book_regdate"));
+				book.setQty(rs.getInt("book_qty"));
+				book.setGrade(rs.getFloat("book_grade"));
+				book.setCategoryNo(rs.getInt("category_no"));
+			}
+			con.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+			}
+			throw new MallException("JdbcArticleDao.readArticle(int article_id) 실행 중 예외발생", e);
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (Exception e) {
+			}
+		}
+		return book;
+	}
+
 }

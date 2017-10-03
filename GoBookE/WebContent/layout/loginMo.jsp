@@ -10,18 +10,18 @@
         <h4 class="modal-title" id="Login">고객 로그인</h4>
       </div>
       <div class="modal-body">
-        <form action="customer-orders.html" method="post">
+        <form action="${pageContext.servletContext.contextPath}/user/certify.do" method="post">
           <div class="form-group">
-            <input type="text" class="form-control" id="email_modal"
+            <input type="text" class="form-control" name="id" id="email_modal"
               placeholder="ID">
           </div>
           <div class="form-group">
-            <input type="password" class="form-control"
+            <input type="password" class="form-control" name="passwd"
               id="password_modal" placeholder="password">
           </div>
 
           <p class="text-center">
-            <button class="btn btn-template-main">
+            <button type="submit" class="btn btn-template-main">
               <i class="fa fa-sign-in"></i> Log in
             </button>
           </p>

@@ -18,7 +18,7 @@ public class Users {
 	private String telephone;
 	private String adress;
 	private String adressDetail;
-	private String adminFlag;
+	private char adminFlag;
 	private String regdate;
 	
 	public Users() {}
@@ -35,7 +35,7 @@ public class Users {
 	 * @param adminFlag
 	 */
 	public Users(String id, String name, String password, String email, String telephone, String adress,
-			String adressDetail, String adminFlag) {
+			String adressDetail, char adminFlag) {
 		this(id, name, password, email, telephone, adress, adressDetail, adminFlag, null);
 	}
 
@@ -52,7 +52,7 @@ public class Users {
 	 * @param regdate
 	 */
 	public Users(String id, String name, String password, String email, String telephone, String adress,
-			String adressDetail, String adminFlag, String regdate) {
+			String adressDetail, char adminFlag, String regdate) {
 		this.id = id;
 		this.name = name;
 		this.password = password;
@@ -121,11 +121,11 @@ public class Users {
 		this.adressDetail = adressDetail;
 	}
 
-	public String getAdminFlag() {
+	public char getAdminFlag() {
 		return adminFlag;
 	}
 
-	public void setAdminFlag(String adminFlag) {
+	public void setAdminFlag(char adminFlag) {
 		this.adminFlag = adminFlag;
 	}
 

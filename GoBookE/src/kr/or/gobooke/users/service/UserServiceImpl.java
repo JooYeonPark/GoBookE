@@ -37,8 +37,7 @@ public class UserServiceImpl implements UsersService {
 
 	@Override
 	public Users isMember(String id, String passwd) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.isMember(id, passwd);
 	}
 
 

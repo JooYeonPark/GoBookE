@@ -98,7 +98,7 @@ private DataSource dataSource;
 			while(rs.next()) {
 				int totalPrice = rs.getInt("cart_book_qty") * rs.getInt("book_price");
 			
-				cartList.add(new CartList(rs.getString("book_image"),rs.getString("book_title"),
+				cartList.add(new CartList(rs.getInt("cart_no"), rs.getString("book_image"),rs.getString("book_title"),
 						rs.getInt("cart_book_qty"), rs.getInt("book_price"), totalPrice));
 			}
 				
@@ -118,15 +118,78 @@ private DataSource dataSource;
 	}
 	
 	@Override
-	public void update(Cart cart) {
-		// TODO Auto-generated method stub
+	public void update(String userId, String bookTitle, int qty) {
 		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(" UPDATE cart   ");
+		sb.append(" SET cart_book_qty = ?  ");
+		sb.append(" WHERE user_id = ?   ");
+		sb.append(" 	  AND book_no =   ");
+		sb.append(" 				(SELECT book_no FROM book  ");
+		sb.append(" 				 WHERE book_title = ?)  ");
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			
+			pstmt.setInt(1, qty);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, bookTitle);
+			
+			System.out.println("qty:"+qty+",userId:"+userId+",title:"+bookTitle);
+			
+			pstmt.executeUpdate();
+			System.out.println("Cart Update Complated");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcCartDao.update 실행 중 예외발생", e);
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			} catch (Exception e) {}
+		}
 	}
 
 	@Override
-	public void delete(Cart cart) {
-		// TODO Auto-generated method stub
+	public void deleteCart(String userId, String bookTitle) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		StringBuilder sb = new StringBuilder();
+		  
+		sb.append(" DELETE from cart  ");
+		sb.append(" WHERE user_id = ?  ");
+		sb.append(" AND book_no =   ");
+		sb.append(" 				(SELECT book_no FROM book  ");
+		sb.append(" 				 WHERE book_title = ?)  ");
 		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, bookTitle);
+			
+			System.out.println("userId:"+userId+",title:"+bookTitle);
+			
+			pstmt.executeUpdate();
+			System.out.println("Cart Delete Complated");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcCartDao.delete 실행 중 예외발생", e);
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			} catch (Exception e) {}
+		}
 	}
 	
 
@@ -181,35 +244,30 @@ private DataSource dataSource;
 	public static void main(String[] args) {
 		CartDao cartDao = (CartDao) DaoFactory.getInstance().getDao(JdbcCartDao.class);
 
-		int pageSize = 5;
-		int pageNum = 5;
+//		int pageSize = 5;
+//		int pageNum = 5;
 		
-		Params params = new Params();
-		params.setPage(1);
-		params.setType("user_id");
-		params.setValue("joo");
+//		Params params = new Params();
+//		params.setPage(1);
+//		params.setType("user_id");
+//		params.setValue("joo");
 		
 //		List<CartList> books = cartDao.listAll(params);
 //		for (CartList list : books) {
 //			System.out.println(list);
 //		}
 		
-		int count = cartDao.pageCount(params);
-		System.out.println(count);
+//		int count = cartDao.pageCount(params);
+//		System.out.println(count);
+		
+		//삭제 기능 테스트
+	//	cartDao.deleteCart("joo","1st Look(퍼스트 룩)(Vol. 142)");
+		
+		//수정 기능 테스트
+		cartDao.update("joo", "1st Look(퍼스트 룩)(Vol. 142)", 1);
 	}
 	
-	
-	
-	
 }
-
-
-
-
-
-
-
-
 
 
 

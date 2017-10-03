@@ -33,7 +33,7 @@ public class CartListController implements Controller {
 		int pageNum = 5;
 		
 		String page = request.getParameter("page");
-		if(page == null) { page="1"; }
+		if(page == null) { page= "1"; }
 		int pageCount = Integer.parseInt(page);
 //		String type = request.getParameter("type");
 //		String value = request.getParameter("value");
@@ -65,8 +65,6 @@ public class CartListController implements Controller {
 		
 		//페이징 계산		
 		pageBuilder.build();
-		
-		
 		
 		mav.addObject("list", cartList);
 		mav.addObject("total", total);

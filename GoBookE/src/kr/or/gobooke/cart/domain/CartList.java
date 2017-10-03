@@ -1,22 +1,25 @@
 package kr.or.gobooke.cart.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartList {
 	
-
+	private int cartNo;
 	private String bookImage;
 	private String bookTitle;
 	private int cartBookQty;
 	private int bookPrice;
 	private int bookTotalPrice;
 	
+	
 	/** 생성자 */
 	public CartList() { 
-		this(null, null, 0, 0, 0);
+		this(0, null, null, 0, 0, 0);
 	}
 
-	public CartList(String bookImage, String bookTitle, int cartBookQty, int bookPrice, int bookTotalPrice) {
+	public CartList(int cartNo, String bookImage, String bookTitle, int cartBookQty, int bookPrice, int bookTotalPrice) {
+		this.cartNo = cartNo;
 		this.bookImage = bookImage;
 		this.bookTitle = bookTitle;
 		this.cartBookQty = cartBookQty;
@@ -65,6 +68,13 @@ public class CartList {
 		this.bookTotalPrice = bookTotalPrice;
 	}
 	
+	public int getCartNo() {
+		return cartNo;
+	}
+
+	public void setCartNo(int cartNo) {
+		this.cartNo = cartNo;
+	}
 
 	@Override
 	public String toString() {

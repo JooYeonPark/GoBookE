@@ -32,15 +32,15 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void update(Cart cart) {
-		// TODO Auto-generated method stub
-		
+	/** 카트 수정 */
+	public void update(String userId, String bookTitle, int qty) {
+		cartDao.update(userId, bookTitle, qty);
 	}
 
 	@Override
-	public void delete(Cart cart) {
-		// TODO Auto-generated method stub
-		
+	/** 카트 삭제 */
+	public void deleteCart(String userId,String bookTitle) {
+		cartDao.deleteCart(userId, bookTitle);
 	}
 	
 	@Override
@@ -48,6 +48,7 @@ public class CartServiceImpl implements CartService {
 	public int pageCount(Params params) {
 		return cartDao.pageCount(params);
 	}
+	
 
 
 }

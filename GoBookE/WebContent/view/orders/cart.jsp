@@ -19,26 +19,26 @@
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
-    <!-- Bootstrap and Font Awesome css -->
+    <%-- Bootstrap and Font Awesome css --%>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-    <!-- Css animations  -->
+    <%-- Css animations  --%>
     <link href="/css/animate.css" rel="stylesheet">
 
-    <!-- Theme stylesheet, if possible do not edit this stylesheet -->
+    <%-- Theme stylesheet, if possible do not edit this stylesheet --%>
     <link href="/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
-    <!-- Custom stylesheet - for your changes -->
+    <%-- Custom stylesheet - for your changes --%>
     <link href="/css/custom.css" rel="stylesheet">
 
-    <!-- Responsivity for older IE -->
-    <!--[if lt IE 9]>
+    <%-- Responsivity for older IE --%>
+    <%--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]--%>
 
-    <!-- Favicon and apple touch icons-->
+    <%-- Favicon and apple touch icons--%>
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
@@ -49,11 +49,75 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
     <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
     
-    <!-- Side Banner -->
+    <%-- Side Banner --%>
     <script src="/js/sidebanner.js"></script>
     <style type="text/css">
       #STATICMENU { margin: 0pt; padding: 0pt;  position: absolute; right: 0px; top: 0px;}
+      td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
     </style>
+    
+<script>
+window.onload = function(){
+	var cartArr = new Array();
+	var arrSize = 0;
+	
+	$(btnDelete).click(function(){
+		var sibling = $(this).parent().siblings();
+		var bookTitle = sibling.eq(2).text();
+		
+		$.ajax({
+			url : "/func/deleteCartList.jsp",
+			data : "userId="+"joo"+"&bookTitle="+bookTitle,
+			success : function(data){
+				alert("삭제 완료");
+				var tr = $(this).parent().parent();
+				tr.remove();
+			},
+			error : function(xhr, statusText){
+				console.log("("+xhr.status+", "+statusText+")");
+			}
+		
+		})
+	});
+	
+	$(btnEdit).click(function(){
+		var sibling = $(this).parent().siblings();
+		var bookTitle = sibling.eq(2).text();
+		
+		sibling = $(this).siblings();
+		var qty = sibling.eq(0).val();
+		
+		$.ajax({
+			url : "/func/updateCart.jsp",
+			data : "userId="+"joo"+"&qty="+qty+"&bookTitle="+bookTitle,
+			success : function(data){
+				alert("수정완료");
+				sibling.eq(0).val(qty);
+			},
+			error : function(xhr, statusText){
+				console.log("("+xhr.status+", "+statusText+")");
+			}
+		
+		})
+		
+	});
+	
+	$(btnCheckout).click(function(){
+		
+	});
+	
+	$(checkBox).click(function(){
+		var cartNo = $(this).siblings().eq(0).val();
+		cartArr[arrSize++] = cartNo;
+	});
+
+}
+
+
+</script>
 </head>
 <body>
 
@@ -77,71 +141,78 @@
 
         <div id="content">
             <div class="container">
-
                 <div class="row">
-                    <div class="col-md-12">
-                        <p class="text-muted lead">You currently have ${pageBuilder.totalRowCount} item(s) in your cart.</p>
-                    </div>
-                    
-
                     <div class="col-md-9 clearfix" id="basket">
-
                     	<div class="box"> 
-
                             <form method="post" action="#">
-
                                 <div class="table-responsive">
                                     <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="2">Product</th>
-                                                <th>Quantity</th>
-                                                <th>Unit price</th>
-                                                <th colspan="2">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                       
+                                       <%-- 리스트가 존재 할 경우 --%>
                                           <c:if test = "${not empty list}">
-                                            <c:forEach items="${list}" varStatus="status">
+                                           <tbody>
+                                              <div class="col-md-12">
+                                                <p class="text-muted lead">You currently have ${pageBuilder.totalRowCount} item(s) in your cart.</p>
+                                              </div>
+                                                <thead>
                                                   <tr>
-                                                      <td>
-                                                          <a href="#">
-                                                              <img src="/img/books/${list[status.index].bookImage}">
-                                                          </a>
-                                                      </td>
-                                                      <td><a href="#">${list[status.index].bookTitle}</a>
-                                                      </td>
-                                                      <td>
-                                                          <input type="number" value="${list[status.index].cartBookQty}" class="form-control">
-                                                      </td>
-                                                      <td>${list[status.index].bookPrice}</td>
-                                                      <td>${list[status.index].bookTotalPrice}</td>
-                                                      <td><a href="#"><i class="fa fa-trash-o"></i></a>
-                                                      </td>
+                                                     <th></th>
+                                                      <th colspan="2">Product</th>
+                                                      <th>Quantity</th>
+                                                      <th>Unit price</th>
+                                                      <th colspan="2">Total</th>
                                                   </tr>
-                                              </c:forEach>
+                                                </thead>
+                                                <c:forEach items="${list}" varStatus="status">
+                                                  	
+                                                    <tr>
+                                                        <td> <input type="checkbox" id="checkBox">
+                                                        <input type="hidden" value="${list[status.index].cartNo}" id="cartNo">
+                                                        </td>
+                                                        <td>
+                                                            <a href="#">
+                                                                <img src="/img/books/${list[status.index].bookImage}">
+                                                            </a>
+                                                        </td>
+                                                        <td><p id="bookTitle">${list[status.index].bookTitle}</p>
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" value="${list[status.index].cartBookQty}" class="form-control" id="qty">
+                                                            <button class="btn btn-default btn-sm" id="btnEdit">EDIT</button>
+                                                        </td>
+                                                        <td>${list[status.index].bookPrice}</td>
+                                                        <td>${list[status.index].bookTotalPrice}</td>
+                                                        <td><i class="fa fa-trash-o" id="btnDelete"></i></td>
+                                                    </tr>
+                                                  </c:forEach>
+                                         	    </c:if>
+                                               </tbody>
+                                               
+                                               <tfoot>
+                                                  <tr>
+                                                     <th colspan="5">Total</th>
+                                                     <th colspan="2">${total-2500} </th>
+                                                  </tr>
+                                               </tfoot>
+                                                
+                                          
+                                          <%-- 리스트가 존재 하지 않을 경우 --%>
+                                          <c:if test="${empty list}">
+                                            <h2>장바구니에 담긴 리스트가 없습니다</h2>
                                           </c:if>
-                                        </tbody>
-                                        
-                                        <tfoot>
-                                            <tr>
-                                            
-                                                <th colspan="5">Total</th>
-                                                <th colspan="2">${total-2500} </th>
-                                            </tr>
-                                        </tfoot>
+                                          
                                     </table>
 
                                 </div>
-                                <!-- /.table-responsive -->
+                                <%-- /.table-responsive --%>
+
 
                                 <div class="box-footer">
                                     <div class="pull-left">
-                                        <a href="shop-category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                                        <a href="#" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                                     </div>
                                     <div class="pull-right">
-                                        <button class="btn btn-default"><i class="fa fa-refresh"></i> Update cart</button>
-                                        <button type="submit" class="btn btn-template-main">Proceed to checkout <i class="fa fa-chevron-right"></i>
+                                        <button type="submit" class="btn btn-template-main" id="btnCheckout">Proceed to checkout <i class="fa fa-chevron-right"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -149,56 +220,59 @@
                             </form>
 
                         </div>
-                        <!-- /.box -->
+                        <%-- /.box --%>
 
                     </div>
-                    <!-- /.col-md-9 -->
-
-                    <div class="col-md-3">
-                    <!--  <div class="box" id="order-summary STATICMENU"> -->
-                        <div class="box" id="STATICMENU">
-                            <div class="box-header">
-                                <h3>Order summary</h3>
-                            </div>
-                            <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>Order subtotal</td>
-                                            <th>${total-2500}</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Shipping and handling</td>
-                                            <th>2500</th>
-                                        </tr>
-                                        
-                                        <tr class="total">
-                                            <td>Total</td>
-                                            <th>${total}</th>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-template-main">ORDER<i class="fa fa-chevron-right"></i></button>
-                           
-                        </div><!-- /.BOX -->
+                    <%-- /.col-md-9 --%>
 
 
-
-                    </div>
-                    <!-- /.col-md-3 -->
-
+                    <%-- 사이드바 --%>
+                    <c:forEach items="${list}" varStatus="status">
+                      <div class="col-md-3">
+                      <%--  <div class="box" id="order-summary STATICMENU"> --%>
+                          <div class="box" id="STATICMENU">
+                              <div class="box-header">
+                                  <h3>Order summary</h3>
+                              </div>
+                              <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+  
+                              <div class="table-responsive">
+                                  <table class="table">
+                                      <tbody>
+                                          <tr>
+                                              <td>Order subtotal</td>
+                                              <th>${total-2500}</th> 
+                                          </tr>
+                                          <tr>
+                                              <td>Shipping and handling</td>
+                                              <th>2500</th>
+                                          </tr>
+                                          
+                                          <tr class="total">
+                                              <td>Total</td>
+                                              <th>${total}</th>  
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                              
+                              <button type="submit" class="btn btn-template-main">ORDER<i class="fa fa-chevron-right"></i></button>
+                             
+                          </div><%-- /.BOX --%>
+  
+  
+  
+                      </div>
+                      <%-- /.col-md-3 --%>
+                    </c:forEach>
                 </div>
 
             </div>
-            <!-- /.container -->
+            <%-- /.container --%>
         </div>
-        <!-- /#content -->
+        <%-- /#content --%>
         
-        <!-- #### JAVASCRIPT FILES ### -->
+        <%-- #### JAVASCRIPT FILES ### --%>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="/js/jquery-1.11.0.min.js"><\/script>')

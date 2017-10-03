@@ -30,8 +30,7 @@
           <li class="dropdown active"><a href="javascript: void(0)"
             class="dropdown-toggle" data-toggle="dropdown">HOME</a>
           </li>
-          <li class="dropdown use-yamm yamm-fw"><a href="#"
-            class="dropdown-toggle" data-toggle="dropdown">베스트셀러</a>
+           <li><a href="${pageContext.servletContext.contextPath}/book/bestSellerList.do">베스트셀러</a>
           </li>
           <li class="dropdown use-yamm yamm-fw"><a href="#"
             class="dropdown-toggle" data-toggle="dropdown">신간도서</a>

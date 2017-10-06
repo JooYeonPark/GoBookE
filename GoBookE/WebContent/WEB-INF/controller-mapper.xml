@@ -3,6 +3,9 @@
 	<!-- 장바구니 관련 세부컨트롤러  등록 -->
 	<bean name="/cartList" class="kr.or.gobooke.cart.controller.CartListController"></bean>
 	
+	<!-- 주문 관련 세부 컨트롤러 등록 -->
+	<bean name="/order" class="kr.or.gobooke.orders.controller.OrdersController"></bean>
+	
 	<!-- 관리자 관련 세부컨트롤러 등록 -->
 	<bean name="/searchBookname" class="kr.or.gobooke.book.controller.BookNameController" /><!-- 북제목 리스트 -->
 	<bean name="/adminBookOrder" class="kr.or.gobooke.ownerorder.controller.BookOrderController" /><!-- 발주 -->
@@ -15,6 +18,7 @@
 	
 	<!-- 로그인 -->
 	<bean name="/user/certify" class="kr.or.gobooke.users.controller.UserCertifyController"/>
+	
 	<!-- 메인페이지 이동 -->
 	<bean name="/index" class="kr.or.gobooke.main.controller.MainController" />
 	

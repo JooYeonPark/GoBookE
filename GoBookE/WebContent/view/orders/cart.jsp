@@ -61,8 +61,8 @@
     
 <script>
 window.onload = function(){
-	var cartArr = new Array();
-	var arrSize = 0;
+	<%-- 선택상품 주문을 위해 cartNo들을 저장하는 변수 --%>
+	var clickedCartNo = new String;
 	
 	$(btnDelete).click(function(){
 		var sibling = $(this).parent().siblings();
@@ -104,15 +104,20 @@ window.onload = function(){
 		})
 		
 	});
-	
-	$(btnCheckout).click(function(){
-		
-	});
-	
+
 	$(checkBox).click(function(){
 		var cartNo = $(this).siblings().eq(0).val();
-		cartArr[arrSize++] = cartNo;
+		clickedCartNo += cartNo + ",";
+		alert(clickedCartNo);
 	});
+	
+	
+	$(btnCheckout).click(function(){
+	//	request.setParameter("cartNoList", "1,2");
+	//	request.getRequestDispatcher("/cartList.do").forward(request, response);
+	//document.location.href = "/cartList.do?cartNoList=1,2";
+	});
+	
 
 }
 
@@ -129,7 +134,7 @@ window.onload = function(){
                     </div>
                     <div class="col-md-6">
                         <ul class="breadcrumb">
-                            <li><a href="index.html">Home</a>
+                            <li><a href="index.jsp">Home</a>
                             </li>
                             <li>Shopping cart</li>
                         </ul>
@@ -150,9 +155,8 @@ window.onload = function(){
                                        
                                        <%-- 리스트가 존재 할 경우 --%>
                                           <c:if test = "${not empty list}">
-                                           <tbody>
                                               <div class="col-md-12">
-                                                <p class="text-muted lead">You currently have ${pageBuilder.totalRowCount} item(s) in your cart.</p>
+                                                <p class="text-muted lead">You currently have ${rowCount} item(s) in your cart.</p>
                                               </div>
                                                 <thead>
                                                   <tr>
@@ -164,7 +168,7 @@ window.onload = function(){
                                                   </tr>
                                                 </thead>
                                                 <c:forEach items="${list}" varStatus="status">
-                                                  	
+                                                  <tbody>
                                                     <tr>
                                                         <td> <input type="checkbox" id="checkBox">
                                                         <input type="hidden" value="${list[status.index].cartNo}" id="cartNo">
@@ -185,16 +189,15 @@ window.onload = function(){
                                                         <td><i class="fa fa-trash-o" id="btnDelete"></i></td>
                                                     </tr>
                                                   </c:forEach>
-                                         	    </c:if>
-                                               </tbody>
-                                               
-                                               <tfoot>
-                                                  <tr>
-                                                     <th colspan="5">Total</th>
-                                                     <th colspan="2">${total-2500} </th>
-                                                  </tr>
-                                               </tfoot>
-                                                
+                                                 </tbody>
+                                                 
+                                                 <tfoot>
+                                                    <tr>
+                                                       <th colspan="5">Total</th>
+                                                       <th colspan="2">${total-2500} </th>
+                                                    </tr>
+                                                 </tfoot>
+                                               </c:if> 
                                           
                                           <%-- 리스트가 존재 하지 않을 경우 --%>
                                           <c:if test="${empty list}">
@@ -212,8 +215,8 @@ window.onload = function(){
                                         <a href="#" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                                     </div>
                                     <div class="pull-right">
-                                        <button type="submit" class="btn btn-template-main" id="btnCheckout">Proceed to checkout <i class="fa fa-chevron-right"></i>
-                                        </button>
+                                        <button class="btn btn-template-main" id="btnCheckout"> CheckOut <i class="fa fa-chevron-right"></i> </button>
+                                       
                                     </div>
                                 </div>
 
@@ -226,7 +229,7 @@ window.onload = function(){
                     <%-- /.col-md-9 --%>
 
 
-                    <%-- 사이드바 --%>
+                    <%-- SIDE BANNER --%>
                     <c:forEach items="${list}" varStatus="status">
                       <div class="col-md-3">
                       <%--  <div class="box" id="order-summary STATICMENU"> --%>
@@ -257,14 +260,12 @@ window.onload = function(){
                               </div>
                               
                               <button type="submit" class="btn btn-template-main">ORDER<i class="fa fa-chevron-right"></i></button>
-                             
                           </div><%-- /.BOX --%>
-  
-  
   
                       </div>
                       <%-- /.col-md-3 --%>
                     </c:forEach>
+                    <%-- /SIDE BANNER --%>
                 </div>
 
             </div>
@@ -272,7 +273,7 @@ window.onload = function(){
         </div>
         <%-- /#content --%>
         
-        <%-- #### JAVASCRIPT FILES ### --%>
+    <%-- #### JAVASCRIPT FILES ### --%>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="/js/jquery-1.11.0.min.js"><\/script>')

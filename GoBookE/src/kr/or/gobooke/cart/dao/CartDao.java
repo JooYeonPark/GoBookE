@@ -18,15 +18,17 @@ public interface CartDao {
 	public void create(Cart cart);
 	
 	/** 카트리스트 전체 조회 */
-	public List<CartList> listAll(Params params);
+	public List<CartList> listAll(String userId);
+	
+	/** 카트리스트 부분 조회 */
+	public List<CartList> listSome(String userId, int[] cartNoList);
 	
 	/** 카트 수정 */
 	public void update(String userId, String bookTitle, int qty);
 	
 	/** 카트 삭제 */
 	public void deleteCart(String userId, String bookTitle);
-	
-	/** 출력페이지 계산을 위한 {검색유형, 검색값}에 대한 행의 수 반환 */
-	public int pageCount(Params params);
-	
+
+	/** 카트 반환 */
+	public Cart getCart(int cartNo);
 }

@@ -2,9 +2,8 @@ package kr.or.gobooke.cart.domain;
 
 /**
  * 장바구니 데이터 을 위한 JavaBean
- * 변수명은 db에서 테이블명을 제외한 것.
  * 
- * @author 김수진
+ * @author 박주연
  *
  */
 

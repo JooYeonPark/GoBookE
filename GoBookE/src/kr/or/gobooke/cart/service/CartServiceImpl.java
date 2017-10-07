@@ -27,8 +27,14 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public List<CartList> listAll(Params params) {
-		return cartDao.listAll(params);
+	public List<CartList> listAll(String userId) {
+		return cartDao.listAll(userId);
+	}
+
+	@Override
+	/** 카트리스트 부분 조회 */
+	public List<CartList> listSome(String userId, int[] cartNoList){
+		return cartDao.listSome(userId, cartNoList);
 	}
 
 	@Override
@@ -41,12 +47,6 @@ public class CartServiceImpl implements CartService {
 	/** 카트 삭제 */
 	public void deleteCart(String userId,String bookTitle) {
 		cartDao.deleteCart(userId, bookTitle);
-	}
-	
-	@Override
-	/** 출력페이지 계산을 위한 {검색유형, 검색값}에 대한 행의 수 반환 */
-	public int pageCount(Params params) {
-		return cartDao.pageCount(params);
 	}
 	
 

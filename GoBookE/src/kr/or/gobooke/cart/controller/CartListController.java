@@ -28,25 +28,26 @@ public class CartListController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		ModelAndView mav = new ModelAndView();
 		
-		/************ useBean역할, 페이징처리 정보 셋팅 ************/
-		int pageSize = 5;
-		int pageNum = 5;
+		//장바구니에서 클릭된 리스트의 cartNo을 받아옴
+		String clickedCartNo = request.getParameter("cartNoList");
+		String userId = "joo"; //Id 값 임의로 지정
+		List<CartList> cartList;
 		
-		String page = request.getParameter("page");
-		if(page == null) { page= "1"; }
-		int pageCount = Integer.parseInt(page);
-//		String type = request.getParameter("type");
-//		String value = request.getParameter("value");
-		String type = "user_id";
-		String value = "joo";
+		if(clickedCartNo == null) {
+			cartList = cartService.listAll(userId);
+		}
+		else {
+			// "2,3,4" -> 형식의 문자열을 콤마단위로 한 개씩 잘라 형 변환 한 뒤, cartNoList에 저장
+			String[] list = clickedCartNo.split(",");
+			int[] cartNoList = new int[list.length];
+			
+			for (int i=0; i<list.length; i++) {
+				cartNoList[i] = Integer.parseInt(list[i]); 
+			}
+			
+			cartList = cartService.listSome(userId, cartNoList);
+		}
 		
-		Params params = new Params();
-		params.setPage(pageCount);
-		params.setType(type);
-		params.setValue(value);
-		/************************************/
-		
-		List<CartList> cartList = cartService.listAll(params);
 		
 		//cart의 총 주문금액 반환
 		int total = 0;
@@ -57,21 +58,18 @@ public class CartListController implements Controller {
 		//배송비 추가
 		total += 2500;
 		
-		//페이징 계산을 위한 cart안의 책 갯수 반환
-		int rowCount = cartService.pageCount(params);
-		
-		//페이징 계산 유틸리티 생성
-		PageBuilder pageBuilder = new PageBuilder(params, rowCount);
-		
-		//페이징 계산		
-		pageBuilder.build();
-		
 		mav.addObject("list", cartList);
 		mav.addObject("total", total);
-		mav.addObject("rowCount", rowCount);
-		mav.addObject("pageBuilder", pageBuilder);
-		mav.addObject("params", params);
-		mav.setView("/view/orders/cart.jsp");
+		mav.addObject("rowCount", cartList.size());
+		mav.addObject("cartNoList", clickedCartNo);
+		
+		if(clickedCartNo == null) {
+			mav.setView("/view/orders/cart.jsp");
+		}
+		else {
+			mav.setView("/view/orders/order.jsp");
+		}
+		
 		
 		return mav;
 	}

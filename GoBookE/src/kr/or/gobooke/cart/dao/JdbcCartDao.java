@@ -47,7 +47,7 @@ private DataSource dataSource;
 	}
 
 	@Override
-	public List<CartList> listAll(Params params) {
+	public List<CartList> listAll(String userId) {
 		List<CartList> cartList;
 		Connection connection = null;
 		PreparedStatement pstmt = null;
@@ -60,22 +60,9 @@ private DataSource dataSource;
 		sb.append("			cart_book_qty, ");
 		sb.append("			book_price, ");
 		sb.append("			cart_no ");
-		sb.append("FROM   (SELECT CEIL(rownum / ?) 	request_page,  ");
-		sb.append("									book_image,  ");
-		sb.append("									book_title,  ");
-		sb.append("									cart_book_qty,  ");
-		sb.append("									book_price,  ");
-		sb.append("									cart_no ");
-		sb.append("			FROM   (SELECT 	book_image,  ");
-		sb.append("							book_title,  ");
-		sb.append("							cart_book_qty,  ");
-		sb.append("							book_price,  ");
-		sb.append("							cart_no ");
-		sb.append("					FROM book, cart ");
-		sb.append("					WHERE book.book_no = cart.book_no ");
-		sb.append("						  AND user_id = ?) ");
-		sb.append("					)	");
-		sb.append("WHERE  request_page = ?  ");
+		sb.append("FROM book, cart ");
+		sb.append("WHERE book.book_no = cart.book_no ");
+		sb.append("		AND user_id = ?");
 		sb.append("ORDER BY cart_no DESC ");
 		
 		
@@ -83,14 +70,7 @@ private DataSource dataSource;
 			connection = dataSource.getConnection();		
 			pstmt = connection.prepareStatement(sb.toString());
 			
-			String type = params.getType();
-			String value = params.getValue();
-			
-			if(type!=null) {
-				pstmt.setInt(1, params.getPageSize());
-				pstmt.setString(2, value);
-				pstmt.setInt(3, params.getPage());
-			}
+			pstmt.setString(1, userId);
 			
 			rs = pstmt.executeQuery();
 			cartList = new ArrayList<CartList>();
@@ -103,7 +83,7 @@ private DataSource dataSource;
 			}
 				
 		}	catch(Exception e) {
-			throw new RuntimeException("JDBCUserDAO ListAll Error!");
+			throw new RuntimeException("JdbcCartDao.ListAll Error!");
 			
 		}	finally {
 			if(rs != null)
@@ -116,6 +96,64 @@ private DataSource dataSource;
 		
 		return cartList;
 	}
+	
+	
+	
+	
+	@Override
+	/** 카트리스트 부분 조회 */
+	public List<CartList> listSome(String userId, int[] cartNoList){
+		List<CartList> cartList;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT 	book_image, ");
+		sb.append("			book_title, " );
+		sb.append("			cart_book_qty, ");
+		sb.append("			book_price, ");
+		sb.append("			cart_no ");
+		sb.append("FROM book, cart ");
+		sb.append("WHERE book.book_no = cart.book_no  ");
+		sb.append("		 AND cart_no = ?");
+		
+		try {	
+			connection = dataSource.getConnection();		
+			pstmt = connection.prepareStatement(sb.toString());
+			cartList = new ArrayList<CartList>();
+			
+			for (int no : cartNoList) {
+				pstmt.setInt(1, no);
+				
+				rs = pstmt.executeQuery();
+				
+				
+				while(rs.next()) {
+					int totalPrice = rs.getInt("cart_book_qty") * rs.getInt("book_price");
+				
+					cartList.add(new CartList(rs.getInt("cart_no"), rs.getString("book_image"),rs.getString("book_title"),
+							rs.getInt("cart_book_qty"), rs.getInt("book_price"), totalPrice));
+				}
+			}
+			
+				
+		}	catch(Exception e) {
+			throw new RuntimeException("JdbcCartDao.ListSome Error!");
+			
+		}	finally {
+			if(rs != null)
+				try { rs.close(); } catch (SQLException e) {}
+			if(pstmt != null) 	
+				try { pstmt.close(); } catch (SQLException e) {}
+			if(connection != null) 	
+				try { connection.close(); } catch (SQLException e) {}
+		}
+		
+		return cartList;
+	}
+	
 	
 	@Override
 	public void update(String userId, String bookTitle, int qty) {
@@ -192,53 +230,47 @@ private DataSource dataSource;
 		}
 	}
 	
-
 	@Override
-	/** 출력페이지 계산을 위한 {검색유형, 검색값}에 대한 행의 수 반환 */
-	public int pageCount(Params params) {
-		int count = 0;
-		
-		Connection con = null;
+	/** 수량 반환 */
+	public Cart getCart(int cartNo) {
+		Connection connection = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		Cart cart = null;
+		
 		StringBuilder sb = new StringBuilder();
-		sb.append(" SELECT COUNT(cart_no) count  ");
-		sb.append(" FROM   cart  ");
+		sb.append("SELECT	cart_book_qty, " );
+		sb.append("			book_no,  ");
+		sb.append("			user_id  ");
+		sb.append("FROM cart  ");
+		sb.append("WHERE cart_no = ? ");
 		
-		String type = params.getType();
-		String value = params.getValue();
-		
-		if(type != null) {
-			sb.append("WHERE  user_id  = ? ");
-		}
-		
-		try {
-			con = dataSource.getConnection();
-			pstmt = con.prepareStatement(sb.toString());
-
-			if(type != null){
-				pstmt.setString(1, value);
-			}
-
+		try {	
+			connection = dataSource.getConnection();		
+			pstmt = connection.prepareStatement(sb.toString());
+			
+			pstmt.setInt(1, cartNo);
+			
 			rs = pstmt.executeQuery();
 			
-			if (rs.next()) {
-				count = rs.getInt("count");
+			while(rs.next()) {
+				cart = new Cart(cartNo, rs.getInt("cart_book_qty"),rs.getInt("book_no"), rs.getString("user_id"));
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new MallException("JdbcCartDao.pageCount(Params params) 실행 중 예외발생", e);
-		} finally {
-			try {
-				if(rs != null)    rs.close();
-				if(pstmt != null) pstmt.close();
-				if(con != null)   con.close();
-			} catch (Exception e) {}
+				
+		}	catch(Exception e) {
+			throw new RuntimeException("JdbcCartDAO.getCart Error!");
+			
+		}	finally {
+			if(rs != null)
+				try { rs.close(); } catch (SQLException e) {}
+			if(pstmt != null) 	
+				try { pstmt.close(); } catch (SQLException e) {}
+			if(connection != null) 	
+				try { connection.close(); } catch (SQLException e) {}
 		}
-		return count;
+		
+		return cart;
 	}
-	
 	
 	/* 단위테스트 */
 	public static void main(String[] args) {
@@ -264,7 +296,14 @@ private DataSource dataSource;
 	//	cartDao.deleteCart("joo","1st Look(퍼스트 룩)(Vol. 142)");
 		
 		//수정 기능 테스트
-		cartDao.update("joo", "1st Look(퍼스트 룩)(Vol. 142)", 1);
+	//	cartDao.update("joo", "1st Look(퍼스트 룩)(Vol. 142)", 1);
+		
+		//장바구니 조회
+	//	int[] arr = {2};
+	//	System.out.println(cartDao.listSome("joo", arr));
+		
+		//카트반환
+		//System.out.println(cartDao.getCart(1));
 	}
 	
 }

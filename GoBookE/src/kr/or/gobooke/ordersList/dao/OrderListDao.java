@@ -2,6 +2,7 @@ package kr.or.gobooke.ordersList.dao;
 
 import java.util.List;
 
+import kr.or.gobooke.cart.domain.Cart;
 import kr.or.gobooke.ordersList.domain.OrderList;
 
 /**
@@ -13,7 +14,7 @@ import kr.or.gobooke.ordersList.domain.OrderList;
 public interface OrderListDao {
 	
 	/** 주문항목 추가 */
-	public void create(OrderList orderList);
+	public void create(int orderNo, Cart cart, int bookPrice);
 	
 	/** 주문항목 조회 */
 	public List<OrderList> search(int orderNo);

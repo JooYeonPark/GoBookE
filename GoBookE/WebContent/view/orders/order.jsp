@@ -1,4 +1,10 @@
+<%@page import="kr.or.gobooke.cart.service.CartServiceImpl"%>
+<%@page import="kr.or.gobooke.cart.service.CartService"%>
+<%@page import="kr.or.gobooke.cart.domain.Cart"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head> 
@@ -13,26 +19,26 @@
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
-    <!-- Bootstrap and Font Awesome css -->
+    <%-- Bootstrap and Font Awesome css --%>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-    <!-- Css animations  -->
+    <%-- Css animations  --%>
     <link href="/css/animate.css" rel="stylesheet">
 
-    <!-- Theme stylesheet, if possible do not edit this stylesheet -->
+    <%-- Theme stylesheet, if possible do not edit this stylesheet --%>
     <link href="/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
-    <!-- Custom stylesheet - for your changes -->
+    <%-- Custom stylesheet - for your changes --%>
     <link href="/css/custom.css" rel="stylesheet">
 
-    <!-- Responsivity for older IE -->
-    <!--[if lt IE 9]>
+    <%-- Responsivity for older IE --%>
+    <%--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <![endif]--%>
 
-    <!-- Favicon and apple touch icons-->
+    <%-- Favicon and apple touch icons--%>
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
@@ -44,12 +50,53 @@
     <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
     
 
-    <!-- SideBanner -->
+    <%-- SideBanner --%>
     <script src="/js/sidebanner.js"></script>
     <style type="text/css">
     #STATICMENU { margin: 0pt; padding: 0pt;  position: absolute; right: 0px; top: 0px;}
     </style>
-
+    
+    <%-- 주소 API --%>
+   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+  <script>
+      function daumPostcode() {
+          new daum.Postcode({
+              oncomplete: function(data) {
+                  // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+  
+                  // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+                  // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                  var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+                  var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+  
+                  // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                  // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                  if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                      extraRoadAddr += data.bname;
+                  }
+                  // 건물명이 있고, 공동주택일 경우 추가한다.
+                  if(data.buildingName !== '' && data.apartment === 'Y'){
+                     extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                  }
+                  // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                  if(extraRoadAddr !== ''){
+                      extraRoadAddr = ' (' + extraRoadAddr + ')';
+                  }
+                  // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+                  if(fullRoadAddr !== ''){
+                      fullRoadAddr += extraRoadAddr;
+                  }
+  
+                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                  document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
+                  document.getElementById('address').value = fullRoadAddr;
+  					
+                  document.getElementById('guide').innerHTML = '(상세주소 예 : 101동 101호)';
+                  
+              }
+          }).open();
+      }
+	</script>
 </head>
 
 <body>
@@ -57,31 +104,31 @@
     <div id="all">
 
         <header>
-            <!-- *** TOP *** -->
+            <%-- *** TOP *** --%>
             <jsp:include page="/layout/header.jsp"/>
-            <!-- *** TOP END *** -->
-            <!-- *** NAVBAR ***  -->
+            <%-- *** TOP END *** --%>
+            <%-- *** NAVBAR ***  --%>
             <jsp:include page="/layout/nav.jsp"/>
-            <!-- *** NAVBAR END *** -->
+            <%-- *** NAVBAR END *** --%>
         </header>
 
-        <!-- *** LOGIN MODAL *** -->
+        <%-- *** LOGIN MODAL *** --%>
         <jsp:include page="/layout/loginMo.jsp"/>        
-        <!-- *** LOGIN MODAL END *** -->
+        <%-- *** LOGIN MODAL END *** --%>
 
         
-        <!-- *** ORDER *** -->
+        <%-- *** ORDER *** --%>
         <div id="heading-breadcrumbs">
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h1>Checkout - Address</h1>
+                        <h1>Checkout</h1>
                     </div>
                     <div class="col-md-5">
                         <ul class="breadcrumb">
-                            <li><a href="/index.html">Home</a>
+                            <li><a href="/index.jsp">Home</a>
                             </li>
-                            <li>Checkout - Address</li>
+                            <li>Checkout</li>
                         </ul>
 
                     </div>
@@ -97,50 +144,53 @@
                     <div class="col-md-9 clearfix" id="checkout">
 
                         <div class="box">
-                            <form method="post" action="shop-checkout2.html">
-
+                            <form action="/order.do" method="post" >
                                  <div class="content">
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>
-                                                <tr>
-                                                    <th colspan="2">Product</th>
-                                                    <th>Quantity</th>
-                                                    <th>Unit price</th>
-                                                    <th>Discount</th>
-                                                    <th>Total</th>
-                                                </tr>
+                                                  <tr>
+                                                     <th></th>
+                                                      <th colspan="2">Product</th>
+                                                      <th>Quantity</th>
+                                                      <th>Unit price</th>
+                                                      <th colspan="2">Total</th>
+                                                  </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                               <c:forEach items="${list}" varStatus="status">
+                                                 <tr>
                                                     <td>
-                                                        <a href="#">
-                                                            <img src="/img/detailsquare.jpg" alt="White Blouse Armani">
-                                                        </a>
+                                                      <input type="hidden" value="${list[status.index].cartNo}" id="cartNo">
                                                     </td>
-                                                    <td><a href="#">White Blouse Armani</a>
-                                                    </td>
-                                                    <td>2</td>
-                                                    <td>$123.00</td>
-                                                    <td>$0.00</td>
-                                                    <td>$246.00</td>
-                                                </tr>
+                                                    <td>
+                                                       <a href="#">
+                                                          <img src="/img/books/${list[status.index].bookImage}">
+                                                       </a>
+                                                     </td>
+                                                     <td><p id="bookTitle">${list[status.index].bookTitle}</p></td>
+                                                     <td>
+                                                       <input type="number" value="${list[status.index].cartBookQty}" class="form-control" id="qty">
+                                                     </td>
+                                                     <td>${list[status.index].bookPrice}</td>
+                                                     <td>${list[status.index].bookTotalPrice}</td>
+                                                 </tr>
+                                               </c:forEach>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th colspan="5">Total</th>
-                                                    <th>$446.00</th>
+                                                   <th colspan="5">Total</th>
+                                                   <th colspan="2">${total-2500} </th>
                                                 </tr>
                                             </tfoot>
                                         </table>
 
                                     </div>
-                                    <!-- /.table-responsive -->
-                                </div> <!-- /.content -->
+                                    <%-- /.table-responsive --%>
+                                </div> <%-- /.content --%>
                                 
                                 
-                              <!-- 주문자 정보는 기존의 user정보를 디비에서 불러와 찍어줌 -->
-                                
+                              <%-- 주문자 정보는 기존의 user정보를 디비에서 불러와 찍어줌 --%>
                               <fieldset>
                                 <legend>주문정보</legend>
                                      <div class="content">
@@ -151,7 +201,7 @@
                                                     <input type="text" class="form-control" id="order-name">
                                                 </div>
                                             </div>
-                                      </div>  <!-- /.row -->
+                                      </div>  <%-- /.row --%>
                                       
                                       
                                       
@@ -177,7 +227,7 @@
                                                         <option value="063">063</option>
                                                         <option value="064">064</option>
                                                       </select>
-                                                </div><!-- ./col-sm-2 -->
+                                                </div><%-- ./col-sm-2 --%>
                                                 
                                                 <div class="col-sm-2 form-group">
                                                    <input type="text" class="form-control" id="tel2">
@@ -185,13 +235,18 @@
                                                 <div class="col-sm-2 form-group">
                                                     <input type="text" class="form-control" id="tel3">
                                                 </div>
-                                      </div><!-- /.row -->
+                                      </div><%-- /.row --%>
                                      
                                       
-                                   </div><!-- /.content -->
+                                   </div><%-- /.content --%>
                                 </fieldset>
                                 
                                 <fieldset>
+                                
+                             
+                                 
+                               
+                                
                                   <legend>배송지 정보</legend>
                                   <div class="content">
                                       <div class="row">
@@ -204,40 +259,41 @@
                                           <div class="col-sm-3 form-group">
                                               <div class="form-group">
                                                   <label for="order-name">주문자</label>
-                                                  <input type="text" class="form-control" id="order-name">
+                                                  <input type="text" class="form-control" id="order-name" name="order-name" required>
                                               </div>
                                           </div>
                                       </div>
-                                      <!-- /.row -->
+                                      <%-- /.row --%>
                                       
                                        <label for="street">주소</label>
                                        <div class="row">
                                          
                                               <div class="col-sm-4 form-group">
-                                                     <input type="text" class="form-control" id="address">
+                                                     <input type="text" class="form-control" id="postcode" name="postcode" required>
                                               </div>
                                               <div class="col-sm-2 form-group">
-                                                     <a href="#" class="btn btn-template-main"></i>우편번호찾기</a>
-                                                 <!-- <input type="button" value="우편번호찾기" id="findCodeBtn" class="btn"> -->
+                                                     <input type="button" onclick="daumPostcode()" value="우편번호 찾기" class="btn btn-template-main"><br>
+                                                 <%-- <input type="button" value="우편번호찾기" id="findCodeBtn" class="btn"> --%>
                                               </div>
                                           
-                                       </div><!-- /.row -->
+                                       </div><%-- /.row --%>
                                        
                                         
                                        <div class="row">
                                           <div class="col-sm-6 form-group">
-                                                 <input type="text" class="form-control" id="address">
+                                                 <input type="text" class="form-control" id="address" name="address" required>
                                           </div>
                                           <div class="col-sm-6 form-group">
-                                                 <input type="text" class="form-control" id="addressDetail">
+                                                 <input type="text" class="form-control" id="addressDetail" name="addressDetail" required>
+                                                 <span id="guide" style="color:#999"></span>
                                           </div>
-                                        </div><!-- /.row -->
+                                        </div><%-- /.row --%>
                                       
                                        <label for="telephone">휴대폰번호</label>
                                        <div class="row">
                                          <div class="form-group">
                                               <div class="col-sm-2 form-group">
-                                                      <select class="form-control" style="width:100%; ">
+                                                      <select class="form-control" style="width:100%;" id="order-tel1" name="order-tel1">
                                                         <option value="010">010</option>
                                                         <option value="02">02</option>
                                                         <option value="031">031</option>
@@ -256,25 +312,25 @@
                                                         <option value="063">063</option>
                                                         <option value="064">064</option>
                                                       </select>
-                                                </div><!-- ./col-sm-2 -->
+                                                </div><%-- ./col-sm-2 --%>
                                                 
                                                 <div class="col-sm-2 form-group">
-                                                   <input type="text" class="form-control" id="tel2">
+                                                   <input type="text" class="form-control" id="order-tel2" name="order-tel2" required>
                                                 </div>
                                                 <div class="col-sm-2 form-group">
-                                                    <input type="text" class="form-control" id="tel3">
+                                                    <input type="text" class="form-control" id="order-tel3" name="order-tel3" required>
                                                 </div>
-                                        </div><!-- /.form-group -->
-                                      </div><!-- /.row -->
+                                        </div><%-- /.form-group --%>
+                                      </div><%-- /.row --%>
                                       
                                       <label for="order-name">배송메세지</label>
                                       <div class="row">
                                           <div class="col-sm-12 form-group">
-                                               <textarea rows="2" cols="100%"></textarea>
+                                               <textarea rows="2" cols="100%" id="deliveryMsg" name="deliveryMsg" required></textarea>
                                           </div>
-                                      </div> <!-- /.row -->
+                                      </div> <%-- /.row --%>
                                         
-                                  </div><!-- /.content -->
+                                  </div><%-- /.content --%>
                                 </fieldset>
                                 
                                 <fieldset>
@@ -282,31 +338,35 @@
                                   <label for="cardNum">카드번호</label>
                                        <div class="row">
                                               <div class="col-sm-3 form-group">
-                                                   <input type="text" class="form-control" id="card1">
+                                                   <input type="text" class="form-control" id="card1" name="card1" required>
                                                 </div>
                                                 <div class="col-sm-3 form-group">
-                                                   <input type="text" class="form-control" id="card2">
+                                                   <input type="text" class="form-control" id="card2" name="card2" required>
                                                 </div>
                                                 <div class="col-sm-3 form-group">
-                                                    <input type="text" class="form-control" id="card3">
+                                                    <input type="text" class="form-control" id="card3" name="card3" required>
                                                 </div>
                                                 <div class="col-sm-3 form-group">
-                                                    <input type="text" class="form-control" id="card4">
+                                                    <input type="text" class="form-control" id="card4" name="card4" required>
                                                 </div>
-                                      </div><!-- /.row -->
+                                      </div><%-- /.row --%>
                                       
                                    <label for="cvc">CVC</label>
                                        <div class="row">
                                                 <div class="col-sm-1">
-                                                   <input type="text" class="form-control" id="card1">
+                                                   <input type="text" class="form-control" id="cvc1" name="cvc1" required>
                                                 </div>
                                                 <div class="col-sm-1">
-                                                   <input type="text" class="form-control" id="card2">
+                                                   <input type="text" class="form-control" id="cvc2" name="cvc2" required>
                                                 </div>
                                                 <div class="col-sm-1">
-                                                    <input type="text" class="form-control" id="card3">
+                                                    <input type="text" class="form-control" id="cvc3" name="cvc3" required>
                                                 </div>
-                                      </div><!-- /.row -->
+                                      
+                                        <input type="hidden" value="${total}" name="totalPrice">
+                                        <input type="hidden" value="${cartNoList}" name="cartNoList">
+                                      
+                                      </div><%-- /.row --%>
                                 </fieldset>
                                 
                                 
@@ -315,72 +375,73 @@
                                         <a href="shop-basket.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to basket</a>
                                     </div>
                                     <div class="pull-right">
-                                        <button type="submit" class="btn btn-template-main">Continue to Delivery Method<i class="fa fa-chevron-right"></i>
+                                        <button type="submit" class="btn btn-template-main">Submit<i class="fa fa-chevron-right"></i>
                                         </button>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <!-- /.box -->
+                        <%-- /.box --%>
 
 
                     </div>
-                    <!-- /.col-md-9 -->
+                    <%-- /.col-md-9 --%>
 
-                    <div class="col-md-3">
-
-                        <div class="box" id="STATICMENU"> 
-                            <div class="box-header">
-                                <h3>Order summary</h3>
-                            </div>
-                            <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>Order subtotal</td>
-                                            <th>$446.00</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Shipping and handling</td>
-                                            <th>$10.00</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Tax</td>
-                                            <th>$0.00</th>
-                                        </tr>
-                                        <tr class="total">
-                                            <td>Total</td>
-                                            <th>$456.00</th>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                                <button type="submit" class="btn btn-template-main">ORDER<i class="fa fa-chevron-right"></i></button>
-                           
-                        </div><!-- /.box -->
-
-                    </div>
-                    <!-- /.col-md-3 -->
+                     <%-- SIDE BANNER --%>
+                    <c:forEach items="${list}" varStatus="status">
+                      <div class="col-md-3">
+                      <%--  <div class="box" id="order-summary STATICMENU"> --%>
+                          <div class="box" id="STATICMENU">
+                              <div class="box-header">
+                                  <h3>Order summary</h3>
+                              </div>
+                              <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+  
+                              <div class="table-responsive">
+                                  <table class="table">
+                                      <tbody>
+                                          <tr>
+                                              <td>Order subtotal</td>
+                                              <th>${total-2500}</th> 
+                                          </tr>
+                                          <tr>
+                                              <td>Shipping and handling</td>
+                                              <th>2500</th>
+                                          </tr>
+                                          
+                                          <tr class="total">
+                                              <td>Total</td>
+                                              <th>${total}</th>  
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                              
+                              <button type="submit" class="btn btn-template-main">ORDER<i class="fa fa-chevron-right"></i></button>
+                          </div><%-- /.BOX --%>
+  
+                      </div>
+                      <%-- /.col-md-3 --%>
+                    </c:forEach>
+                    <%-- /SIDE BANNER --%>
 
                 </div>
-                <!-- /.row -->
+                <%-- /.row --%>
 
             </div>
-            <!-- /.container -->
+            <%-- /.container --%>
         </div>
-        <!-- /#content -->
+        <%-- /#content --%>
         
 
-        <!-- *** COPYRIGHT ***-->
+        <%-- *** COPYRIGHT ***--%>
 
     </div>
-    <!-- /#all -->
-    <!-- *** ORDER END *** -->
+    <%-- /#all --%>
+    <%-- *** ORDER END *** --%>
 
 
-    <!-- #### JAVASCRIPT FILES ### -->
+    <%-- #### JAVASCRIPT FILES ### --%>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="/js/jquery-1.11.0.min.js"><\/script>')

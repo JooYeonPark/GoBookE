@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -14,26 +15,26 @@
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
-    <!-- Bootstrap and Font Awesome css -->
+    <%-- Bootstrap and Font Awesome css --%>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-    <!-- Css animations  -->
+    <%-- Css animations  --%>
     <link href="/css/animate.css" rel="stylesheet">
 
-    <!-- Theme stylesheet, if possible do not edit this stylesheet -->
+    <%-- Theme stylesheet, if possible do not edit this stylesheet --%>
     <link href="/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
-    <!-- Custom stylesheet - for your changes -->
+    <%-- Custom stylesheet - for your changes --%>
     <link href="/css/custom.css" rel="stylesheet">
 
-    <!-- Responsivity for older IE -->
-    <!--[if lt IE 9]>
+    <%-- Responsivity for older IE --%>
+    <%--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]--%>
 
-    <!-- Favicon and apple touch icons-->
+    <%-- Favicon and apple touch icons--%>
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
@@ -46,38 +47,32 @@
     
 </head>
 <body>
-
-
-    <div id="all">
-
         <header>
-            <!-- *** TOP *** -->
+            <%-- *** TOP *** --%>
             <jsp:include page="/layout/header.jsp"/>
-            <!-- *** TOP END *** -->
-            <!-- *** NAVBAR ***  -->
+            <%-- *** TOP END *** --%>
+            <%-- *** NAVBAR ***  --%>
             <jsp:include page="/layout/nav.jsp"/>
-            <!-- *** NAVBAR END *** -->
+            <%-- *** NAVBAR END *** --%>
         </header>
 
-        <!-- *** LOGIN MODAL *** -->
+        <%-- *** LOGIN MODAL *** --%>
         <jsp:include page="/layout/loginMo.jsp"/>        
-        <!-- *** LOGIN MODAL END *** -->
+        <%-- *** LOGIN MODAL END *** --%>
         
-        <!-- *** ORDER RESULT *** -->
+        <%-- *** ORDER RESULT *** --%>
        <div id="heading-breadcrumbs">
                   <div class="container">
                       <div class="row">
                           <div class="col-md-7">
-                              <h1>Order # 1735</h1>
+                              <h1>Order # ${orderNo}</h1>
                           </div>
                           <div class="col-md-5">
                               <ul class="breadcrumb">
       
-                                  <li><a href="index.html">Home</a>
+                                  <li><a href="/index.jsp">Home</a>
                                   </li>
-                                  <li><a href="customer-orders.html">My orders</a>
-                                  </li>
-                                  <li>Order # 1735</li>
+                                  <li>Order </li>
                               </ul>
                           </div>
                       </div>
@@ -92,108 +87,84 @@
       
                           <div id="customer-order">
       
-                              <p class="lead">Order #1735 was placed on <strong>22/06/2013</strong> and is currently <strong>Being prepared</strong>.</p>
-                              <p class="lead text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                              <p class="lead"> <strong>userId,</strong> 님 항상 저희 쇼핑몰을 이용해주셔서 감사합니다.</p>
+                              <p class="lead text-muted">[주문번호  ${orderNo}] 결제가 안전하게 처리되었습니다.</p>
       
                               <div class="box">
                                   <div class="table-responsive">
                                       <table class="table">
                                           <thead>
                                               <tr>
+                                                  <th></th>
                                                   <th colspan="2">Product</th>
                                                   <th>Quantity</th>
                                                   <th>Unit price</th>
-                                                  <th>Discount</th>
-                                                  <th>Total</th>
+                                                  <th colspan="2">Total</th>
                                               </tr>
                                           </thead>
-                                          <tbody>
-                                              <tr>
-                                                  <td>
-                                                      <a href="#">
-                                                          <img src="img/detailsquare.jpg" alt="White Blouse Armani">
-                                                      </a>
-                                                  </td>
-                                                  <td><a href="#">White Blouse Armani</a>
-                                                  </td>
-                                                  <td>2</td>
-                                                  <td>$123.00</td>
-                                                  <td>$0.00</td>
-                                                  <td>$246.00</td>
-                                              </tr>
-                                              <tr>
-                                                  <td>
-                                                      <a href="#">
-                                                          <img src="img/basketsquare.jpg" alt="Black Blouse Armani">
-                                                      </a>
-                                                  </td>
-                                                  <td><a href="#">Black Blouse Armani</a>
-                                                  </td>
-                                                  <td>1</td>
-                                                  <td>$200.00</td>
-                                                  <td>$0.00</td>
-                                                  <td>$200.00</td>
-                                              </tr>
-                                          </tbody>
-                                          <tfoot>
-                                              <tr>
-                                                  <th colspan="5" class="text-right">Order subtotal</th>
-                                                  <th>$446.00</th>
-                                              </tr>
-                                              <tr>
-                                                  <th colspan="5" class="text-right">Shipping and handling</th>
-                                                  <th>$10.00</th>
-                                              </tr>
-                                              <tr>
-                                                  <th colspan="5" class="text-right">Tax</th>
-                                                  <th>$0.00</th>
-                                              </tr>
-                                              <tr>
-                                                  <th colspan="5" class="text-right">Total</th>
-                                                  <th>$456.00</th>
-                                              </tr>
-                                          </tfoot>
+                                           <tbody>
+                                               <c:forEach items="${list}" varStatus="status">
+                                                 <tr>
+                                                    <td>
+                                                      <input type="hidden" value="${list[status.index].cartNo}" id="cartNo">
+                                                    </td>
+                                                    <td>
+                                                       <a href="#">
+                                                          <img src="/img/books/${list[status.index].bookImage}">
+                                                       </a>
+                                                     </td>
+                                                     <td><p id="bookTitle">${list[status.index].bookTitle}</p></td>
+                                                     <td>
+                                                       <input type="number" value="${list[status.index].cartBookQty}" class="form-control" id="qty">
+                                                     </td>
+                                                     <td>${list[status.index].bookPrice}</td>
+                                                     <td>${list[status.index].bookTotalPrice}</td>
+                                                 </tr>
+                                               </c:forEach>
+                                            </tbody>
+                                           <tfoot>
+                                                <tr>
+                                                   <th colspan="5">Total</th>
+                                                   <th colspan="2">${total-2500} </th>
+                                                </tr>
+                                            </tfoot>
                                       </table>
       
                                   </div>
-                                  <!-- /.table-responsive -->
+                                  <%-- /.table-responsive --%>
       
                                   <div class="row addresses">
-                                      <div class="col-sm-6">
-                                          <h3 class="text-uppercase">Invoice address</h3>
-                                          <p>John Brown
-                                              <br>13/25 New Avenue
-                                              <br>New Heaven
-                                              <br>45Y 73J
-                                              <br>England
-                                              <br>Great Britain</p>
+                                      <div class="col-sm-6  pull-right">
+                                          <h3 class="text-uppercase">Invoice</h3>
+                                          <p>${name}
+                                              <br>${postcode}
+                                              <br>${address}
+                                              <br>${addressDetail}
+                                              <br>${telephone}
+                                              <br>${deliveryMsg}
+                                              <br>${total}
                                       </div>
-                                      <div class="col-sm-6">
-                                          <h3 class="text-uppercase">Shipping address</h3>
-                                          <p>John Brown
-                                              <br>13/25 New Avenue
-                                              <br>New Heaven
-                                              <br>45Y 73J
-                                              <br>England
-                                              <br>Great Britain</p>
-                                      </div>
-                                  </div>
-                                  <!-- /.addresses -->
+                                      
+                                  </div> 
+                                  <%-- /.addresses --%>
       
                               </div>
-                              <!-- /.box -->
+                              <%-- /.box --%>
+                              
+                            </div>
+                            <%-- /.customer-order --%>
                       </div>
-                      <!-- /.row -->
+                      <%-- /.row --%>
       
                   </div>
-                  <!-- /.container -->
+                  <%-- /.container --%>
               </div>
-              <!-- /#content -->
+              <%-- /#content --%>
               
-          <!-- *** ORDER RESULT END *** -->
+          <%-- *** ORDER RESULT END *** --%>
           
           
-    <!-- #### JAVASCRIPT FILES ### -->
+    <%-- #### JAVASCRIPT FILES ### --%>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="/js/jquery-1.11.0.min.js"><\/script>')

@@ -21,7 +21,6 @@ public class Orders {
 	
 	
 	/** 생성자 */
-	
 	public Orders() {
 		this(0,0,null,null,null,null,null,null,null);
 	}
@@ -47,7 +46,6 @@ public class Orders {
 	
 
 	/** Getter, Setter */
-
 	public int getNo() {
 		return no;
 	}

@@ -10,6 +10,9 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import kr.or.gobooke.book.domain.Book;
+import kr.or.gobooke.cart.dao.CartDao;
+import kr.or.gobooke.cart.dao.JdbcCartDao;
+import kr.or.gobooke.cart.domain.Cart;
 import kr.or.gobooke.common.db.DaoFactory;
 import kr.or.gobooke.common.exception.MallException;
 import kr.or.gobooke.common.web.BookParams;
@@ -61,6 +64,7 @@ public class JdbcBookDao implements BookDao {
 			pstmt.setInt(2, book.getNo());
 			
 			pstmt.executeUpdate();
+			System.out.println("Book Update Complated");
 			
 			con.commit();
 
@@ -180,7 +184,7 @@ public class JdbcBookDao implements BookDao {
 
 	@Override
 	public List<Book> getBookListByParams(BookParams params) {
-List<Book> list = null;		
+		List<Book> list = null;		
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -462,5 +466,47 @@ List<Book> list = null;
 		}
 		return book;
 	}
+	
+	@Override
+	/** 도서 가격 반환 */
+	public int getBookPrice(int bookNo) {
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int bookPrice = 0;
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT	book_price " );
+		sb.append("FROM book  ");
+		sb.append("WHERE book_no = ? ");
+		
+		try {	
+			connection = dataSource.getConnection();		
+			pstmt = connection.prepareStatement(sb.toString());
+			
+			pstmt.setInt(1, bookNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				bookPrice = rs.getInt("book_price");
+			}
+				
+		}	catch(Exception e) {
+			throw new RuntimeException("JdbcBookDAO.getBookPrice Error!");
+			
+		}	finally {
+			if(rs != null)
+				try { rs.close(); } catch (SQLException e) {}
+			if(pstmt != null) 	
+				try { pstmt.close(); } catch (SQLException e) {}
+			if(connection != null) 	
+				try { connection.close(); } catch (SQLException e) {}
+		}
+		
+		return bookPrice;
+	}
+	
 
 }
+

@@ -33,4 +33,7 @@ public interface BookDao {
 
 	public Book getBookByTitle(String title);
 	
+	/** 도서 가격 반환 */
+	public int getBookPrice(int bookNo);
+	
 }

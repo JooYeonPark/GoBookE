@@ -31,7 +31,6 @@ public class BookNameController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)	throws ServletException {
 		
-		System.out.println("BookName 컨트롤러 입장");
 		String publisher = request.getParameter("publisher");
 		List<Book> books = bookService.search("publisher", publisher);
 		

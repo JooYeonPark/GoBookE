@@ -71,7 +71,7 @@
             <c:otherwise>
               <c:forEach items="${list}" var="ownerOrder" varStatus="status">
                <tr>
-               <td>${status.count}</td>
+               <td>${rowCount - ((params.page-1)*10) - status.index}</td>
                <td>${ownerOrder.bookName}</td>
                <td>${ownerOrder.publisher}</td>
                <td>${ownerOrder.qty}</td>
@@ -85,15 +85,17 @@
           </table>
         </div>
         <!-- /.table-responsive -->
-
+        
+       
+        
+        <!-- 페이징 -->
         <div style="text-align: center;">
           <ul class="pagination" style="margin: auto;">
             <c:if test="${pageBuilder.showFirst }">
               <li><a href="${pageBuilder.getQueryString(1)}">«</a></li>
             </c:if>
             <c:if test="${pageBuilder.showPrevious }">
-              <li class="prev"><a
-                href="${pageBuilder.getQueryString(pageBuilder.previousStartPage)}">＜</a></li>
+              <li class="prev"><a href="${pageBuilder.getQueryString(pageBuilder.previousStartPage)}">＜</a></li>
             </c:if>
 
             <c:forEach var="i" begin="${pageBuilder.currentStartPage}"

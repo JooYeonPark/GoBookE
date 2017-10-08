@@ -26,5 +26,5 @@ public interface OwnerOrderDao {
 	
 	/**  전체 발주 수 */
 	public int pageCount(Params params);
-	
+
 }

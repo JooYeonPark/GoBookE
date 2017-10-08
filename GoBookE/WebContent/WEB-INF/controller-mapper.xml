@@ -17,6 +17,11 @@
 	<bean name="/book/bestSellerList" class="kr.or.gobooke.book.controller.BookBestSellerController"/>
 	<bean name="/book/bestSellerDetail" class="kr.or.gobooke.book.controller.BookBestSellerDetailController"/>
 	
+	<!-- 리뷰 관련 컨트롤러 등록 -->
+	<bean name="/review/bookreview" class="kr.or.gobooke.review.controller.BookReviewController"/>
+	<bean name="/review/reviewWrite" class="kr.or.gobooke.review.controller.BookReviewWriteController"/>
+	<bean name="/review/reviewDelete" class="kr.or.gobooke.review.controller.BookReviewDeleteController"/>
+	
 	<!-- 로그인 -->
 	<bean name="/user/certify" class="kr.or.gobooke.users.controller.UserCertifyController"/>
 	

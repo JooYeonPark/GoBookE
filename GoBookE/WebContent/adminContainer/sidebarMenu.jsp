@@ -13,7 +13,7 @@
       <li class="active"><a href="/view/admin/bookregist.jsp"> 도서 등록 </a></li>
       <li ><a href="/view/admin/adminstock.jsp"> 도서재고 현황</a></li>
       <li ><a href="/view/admin/adminorder.jsp"> 도서 발주</a></li>
-      <li ><a href="/view/admin/orderslist.jsp"> 발주 현황</a></li>
+      <li ><a href="/adminBookOrderList.do"> 발주 현황</a></li>
       
     </ul>
 

@@ -1,7 +1,10 @@
 package kr.or.gobooke.ownerorder.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
+import kr.or.gobooke.common.web.Params;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 
 /**
@@ -16,7 +19,12 @@ public interface OwnerOrderDao {
 	/** 신규 등록 */
 	public void create(OwnerOrder ownerOrder);
 	
-	/** 상세 정보 조회 */
-	public OwnerOrder search(int no);
+	/** 발주 리스트 조회 */
+	public List<OwnerOrder> listByParams(Params params);
+	
+	public OwnerOrder createOwnerOrder(ResultSet rs) throws SQLException;
+	
+	/**  전체 발주 수 */
+	public int pageCount(Params params);
 	
 }

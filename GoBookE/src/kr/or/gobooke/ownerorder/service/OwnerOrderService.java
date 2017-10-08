@@ -2,8 +2,8 @@ package kr.or.gobooke.ownerorder.service;
 
 import java.util.List;
 
+import kr.or.gobooke.common.web.Params;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
-import kr.or.gobooke.users.domain.Users;
 
 /**
  * Domain(업무영역)별 고객의 요구사항을 반영하는 비즈니스 메소드 선언
@@ -19,4 +19,10 @@ public interface OwnerOrderService {
 	
 	/** 상세 정보 조회 */
 	public OwnerOrder search(int no);
+	
+	/** 발주 전체 리스트 */
+	public List<OwnerOrder> listByParams(Params params);
+	
+	/** 전체 발주 수 */
+	public int pageCount(Params params);
 }

@@ -10,10 +10,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import kr.or.gobooke.book.domain.Book;
-import kr.or.gobooke.cart.dao.CartDao;
-import kr.or.gobooke.cart.dao.JdbcCartDao;
-import kr.or.gobooke.cart.domain.Cart;
-import kr.or.gobooke.common.db.DaoFactory;
 import kr.or.gobooke.common.exception.MallException;
 import kr.or.gobooke.common.web.BookParams;
 
@@ -129,7 +125,6 @@ public class JdbcBookDao implements BookDao {
 			
 			while (rs.next()) {
 				book = createBook(rs);
-				System.out.println("search 안 : "+book.toString());
 				books.add(book);
 			}
 
@@ -172,8 +167,20 @@ public class JdbcBookDao implements BookDao {
 			 int categoryBigNo = rs.getInt("category_big_no");
 			 double grade = rs.getDouble("book_grade");
 			 
-			 book = new Book(no, title, author, publisher, detail, price, image, regdate, qty, categoryBigNo, categoryNo, grade);
+			 book = new Book();
 			 
+			 book.setNo(no);
+			 book.setTitle(title);
+			 book.setAuthor(author);
+			 book.setPublisher(publisher);
+			 book.setDetail(detail);
+			 book.setPrice(price);
+			 book.setImage(image);
+			 book.setRegdate(regdate);
+			 book.setQty(qty);
+			 book.setCategoryNo(categoryNo);
+			 book.setCategoryBigNo(categoryBigNo);
+			 book.setGrade(grade);
 			 
 		}catch (Exception e) {
 			e.printStackTrace();

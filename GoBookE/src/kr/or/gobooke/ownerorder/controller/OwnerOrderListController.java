@@ -6,11 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.gobooke.book.domain.Book;
-import kr.or.gobooke.book.service.BookService2;
-import kr.or.gobooke.book.service.BookServiceImpl2;
 import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
+import kr.or.gobooke.common.web.PageBuilder;
+import kr.or.gobooke.common.web.Params;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 import kr.or.gobooke.ownerorder.service.OwnerOrderService;
 import kr.or.gobooke.ownerorder.service.OwnerOrderServiceImpl;
@@ -25,35 +24,79 @@ import kr.or.gobooke.ownerorder.service.OwnerOrderServiceImpl;
 public class OwnerOrderListController implements Controller {
 	
 	private OwnerOrderService orderService = new OwnerOrderServiceImpl();
-	private BookServiceImpl2 bookService = new BookService2();
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)	throws ServletException {
-		String bookNo = request.getParameter("bookNo");
+		ModelAndView mav = new ModelAndView();
 		
-		String str = request.getParameter("qty");
-		int qty = Integer.parseInt(str);
+		Params params = new Params();
 		
-		str = request.getParameter("totalprice");
-		int totalprice = Integer.parseInt(str);
+		int page;
+		String type;
+		String value;
+		String str = "<table class='table table-hover'> " + 
+					 "        <thead> " + 
+					 "          <tr> " + 
+					 "            <th>Order</th> " + 
+					 "            <th>BookName</th> " + 
+					 "            <th>Publisher</th> " + 
+					 "            <th>QTY</th> " + 
+					 "            <th>Price</th> " + 
+					 "            <th>Order Date</th> " + 
+					 "          </tr> " + 
+					 "        </thead> " + 
+					 "        <tbody> "; 
 		
-		List<Book> books = bookService.search("no", bookNo);
-		Book book = books.get(0);
-		System.out.println("dkv : "+book.getQty());
-		int bookQty = book.getQty();
-		bookQty += qty;
-		book.setQty(bookQty);
-		System.out.println("후 : "+book.getQty());
 		
-		//발주 리스트에 추가.
-		//나중에 user_id 로그인에서 받아오기.
-		OwnerOrder ownerOrder = new OwnerOrder(book.getPublisher(), qty, book.getTitle(), totalprice, "bangry11");
-		orderService.create(ownerOrder);
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			params.setPage(page);
+		}
 		
-		//book update - book_qty에 수량 추가
-		bookService.update(book);
+		if(request.getParameter("type") != null) {
+			type = request.getParameter("type");
+			params.setType(type);
+		}
 		
-		return null;
+		if(request.getParameter("value") != null) {
+			value = request.getParameter("value");
+			params.setValue(value);
+		}
+		
+		List<OwnerOrder> list = orderService.listByParams(params);
+		int rowCount = orderService.pageCount(params);
+		
+		PageBuilder pageBuilder = new PageBuilder(params, rowCount);
+		pageBuilder.build();
+		
+		if(list.size() == 0) {
+			str += "<tr><td colspan='6'>검색된 결과가 없습니다.</td></tr>";
+		}else {
+			for (OwnerOrder order : list) {
+				String s = "<tr>"+
+						   "<td>"+order.getNo()+"</td>" +
+						   "<td>"+order.getBookName()+"</td>" +
+						   "<td>"+order.getPublisher()+"</td>" +
+						   "<td>"+order.getQty()+"</td>" +
+						   "<td>"+order.getTotalPrice()+"</td>" +
+						   "<td>"+order.getDate()+"</td> </tr>";
+				str += s;
+			}
+		}
+		
+		str += "        </tbody> " + 
+			   "      </table> ";
+		
+		System.out.println(str);
+		
+		mav.addObject("str", str);
+		mav.addObject("list", list);
+		mav.addObject("params", params);
+		mav.addObject("pageBuilder", pageBuilder);
+		
+		mav.setView("/view/admin/orderslist.jsp");
+		
+		return mav;
 	}
 
 }

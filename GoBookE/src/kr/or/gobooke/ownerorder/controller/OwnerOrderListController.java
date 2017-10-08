@@ -34,19 +34,6 @@ public class OwnerOrderListController implements Controller {
 		int page;
 		String type;
 		String value;
-		String str = "<table class='table table-hover'> " + 
-					 "        <thead> " + 
-					 "          <tr> " + 
-					 "            <th>Order</th> " + 
-					 "            <th>BookName</th> " + 
-					 "            <th>Publisher</th> " + 
-					 "            <th>QTY</th> " + 
-					 "            <th>Price</th> " + 
-					 "            <th>Order Date</th> " + 
-					 "          </tr> " + 
-					 "        </thead> " + 
-					 "        <tbody> "; 
-		
 		
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -69,27 +56,7 @@ public class OwnerOrderListController implements Controller {
 		PageBuilder pageBuilder = new PageBuilder(params, rowCount);
 		pageBuilder.build();
 		
-		if(list.size() == 0) {
-			str += "<tr><td colspan='6'>검색된 결과가 없습니다.</td></tr>";
-		}else {
-			for (OwnerOrder order : list) {
-				String s = "<tr>"+
-						   "<td>"+order.getNo()+"</td>" +
-						   "<td>"+order.getBookName()+"</td>" +
-						   "<td>"+order.getPublisher()+"</td>" +
-						   "<td>"+order.getQty()+"</td>" +
-						   "<td>"+order.getTotalPrice()+"</td>" +
-						   "<td>"+order.getDate()+"</td> </tr>";
-				str += s;
-			}
-		}
-		
-		str += "        </tbody> " + 
-			   "      </table> ";
-		
-		System.out.println(str);
-		
-		mav.addObject("str", str);
+		mav.addObject("rowCount", rowCount);
 		mav.addObject("list", list);
 		mav.addObject("params", params);
 		mav.addObject("pageBuilder", pageBuilder);

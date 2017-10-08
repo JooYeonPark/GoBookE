@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import kr.or.gobooke.book.domain.Book;
 import kr.or.gobooke.common.exception.MallException;
 import kr.or.gobooke.common.web.Params;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
@@ -46,7 +45,8 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 		String sql = " INSERT INTO owner_order " + "            (owner_order_no, "
 				+ "             owner_order_publisher, " + "             owner_order_bookname,  "
 				+ "             owner_order_qty,  " + "             owner_order_totalprice,  "
-				+ "             user_id)  " + " VALUES     (owner_order_no_seq.nextval,  " + "            ?,  " + // 출판사
+				+ "             user_id)  " + " VALUES     (owner_order_no_seq.nextval,  " + 
+				"            ?,  " + // 출판사
 				"            ?, " + // 책제목
 				"            ?,  " + // 수량
 				"            ?,  " + // 총가격

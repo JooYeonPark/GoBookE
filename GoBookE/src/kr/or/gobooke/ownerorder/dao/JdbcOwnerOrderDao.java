@@ -123,14 +123,14 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 		if (type != null) {
 			switch (params.getType()) {
 			case "title":
-				sb.append(" AND  OWNER_ORDER_BOOKNAME LIKE ?");
+				sb.append(" WHERE  OWNER_ORDER_BOOKNAME LIKE ?");
 				value = "%" + value + "%";
 				break;
 			case "userID":
-				sb.append(" AND  USER_ID = ?");
+				sb.append(" WHERE  USER_ID = ?");
 				break;
 			case "publisher":
-				sb.append(" AND  OWNER_ORDER_PUBLISHER = ?");
+				sb.append(" WHERE  OWNER_ORDER_PUBLISHER = ?");
 				break;
 			}
 		}
@@ -209,14 +209,14 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 		if (type != null) {
 			switch (params.getType()) {
 			case "title":
-				sb.append(" AND  OWNER_ORDER_BOOKNAME LIKE ?");
+				sb.append(" WHERE  OWNER_ORDER_BOOKNAME LIKE ?");
 				value = "%" + value + "%";
 				break;
 			case "userID":
-				sb.append(" AND  USER_ID = ?");
+				sb.append(" WHERE  USER_ID = ?");
 				break;
 			case "publisher":
-				sb.append(" AND  OWNER_ORDER_PUBLISHER = ?");
+				sb.append(" WHERE  OWNER_ORDER_PUBLISHER = ?");
 				break;
 			}
 		}

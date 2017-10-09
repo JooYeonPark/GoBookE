@@ -10,6 +10,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import kr.or.gobooke.common.exception.MallException;
+import kr.or.gobooke.common.web.OwnerOrderParams;
 import kr.or.gobooke.common.web.Params;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 
@@ -85,7 +86,7 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 	}
 
 	@Override
-	public List<OwnerOrder> listByParams(Params params) {
+	public List<OwnerOrder> listByParams(OwnerOrderParams params) {
 		List<OwnerOrder> list = null;
 
 		Connection con = null;
@@ -122,15 +123,8 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 		String value = params.getValue();
 		if (type != null) {
 			switch (params.getType()) {
-			case "title":
-				sb.append(" WHERE  OWNER_ORDER_BOOKNAME LIKE ?");
-				value = "%" + value + "%";
-				break;
-			case "userID":
-				sb.append(" WHERE  USER_ID = ?");
-				break;
-			case "publisher":
-				sb.append(" WHERE  OWNER_ORDER_PUBLISHER = ?");
+			case "date":
+				sb.append(" WHERE OWNER_ORDER_DATE BETWEEN ? AND ? ");
 				break;
 			}
 		}
@@ -144,8 +138,9 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 
 			// 전체검색이 아닌경우 경우
 			if (type != null) {
-				pstmt.setString(2, value);
-				pstmt.setInt(3, params.getPage());
+				pstmt.setString(2, params.getDateStart());
+				pstmt.setString(3, params.getDateEnd());
+				pstmt.setInt(4, params.getPage());
 			} else {// 전체검색인 경우
 				pstmt.setInt(2, params.getPage());
 			}
@@ -160,7 +155,7 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new MallException("JdbcOwnerOrder.listByParams(Params params) 실행 중 예외발생", e);
+			throw new MallException("JdbcOwnerOrder.listByParams(OwnerOrderParams params) 실행 중 예외발생", e);
 		} finally {
 			try {
 				if (rs != null)
@@ -192,7 +187,7 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 	}
 
 	@Override
-	public int pageCount(Params params) {
+	public int pageCount(OwnerOrderParams params) {
 		int count = 0;
 
 		Connection con = null;
@@ -208,15 +203,8 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 		String value = params.getValue();
 		if (type != null) {
 			switch (params.getType()) {
-			case "title":
-				sb.append(" WHERE  OWNER_ORDER_BOOKNAME LIKE ?");
-				value = "%" + value + "%";
-				break;
-			case "userID":
-				sb.append(" WHERE  USER_ID = ?");
-				break;
-			case "publisher":
-				sb.append(" WHERE  OWNER_ORDER_PUBLISHER = ?");
+			case "date":
+				sb.append(" WHERE OWNER_ORDER_DATE BETWEEN ? AND ? ");
 				break;
 			}
 		}
@@ -225,7 +213,12 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 			pstmt = con.prepareStatement(sb.toString());
 			// 전체검색이 아닌경우 경우
 			if (type != null) {
-				pstmt.setString(1, value);
+				if(type.equals("date")) {
+					pstmt.setString(1, params.getDateStart());
+					pstmt.setString(2, params.getDateEnd());
+				}else {
+					pstmt.setString(1, value);
+				}
 			}
 
 			rs = pstmt.executeQuery();
@@ -235,7 +228,7 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new MallException("JdbcOwnerOrder.pageCount(Params params) 실행 중 예외발생", e);
+			throw new MallException("JdbcOwnerOrder.pageCount(OwnerOrderParams params) 실행 중 예외발생", e);
 		} finally {
 			try {
 				if (rs != null)

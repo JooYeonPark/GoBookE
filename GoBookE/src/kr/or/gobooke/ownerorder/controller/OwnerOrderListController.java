@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
+import kr.or.gobooke.common.web.OwnerOrderPageBuilder;
+import kr.or.gobooke.common.web.OwnerOrderParams;
 import kr.or.gobooke.common.web.PageBuilder;
 import kr.or.gobooke.common.web.Params;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
@@ -29,9 +31,10 @@ public class OwnerOrderListController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)	throws ServletException {
 		ModelAndView mav = new ModelAndView();
 		
-		Params params = new Params();
+		OwnerOrderParams params = new OwnerOrderParams();
 		
 		int page;
+		String type;
 		String value;
 		
 		if(request.getParameter("page") != null) {
@@ -39,9 +42,25 @@ public class OwnerOrderListController implements Controller {
 			params.setPage(page);
 		}
 		
+		if(request.getParameter("type") != null) {
+			type = request.getParameter("type");
+			System.out.println("type  :" + type);
+			params.setType(type);
+		}
+		
 		if(request.getParameter("value") != null) {
 			value = request.getParameter("value");
 			params.setValue(value);
+		}
+		
+		if(request.getParameter("dateStart") != null) {
+			value = request.getParameter("dateStart");
+			params.setDateStart(value);
+		}
+		
+		if(request.getParameter("dateEnd") != null) {
+			value = request.getParameter("dateEnd");
+			params.setDateEnd(value);
 		}
 		
 		//관리자 id받아오기 - 로그인시
@@ -52,7 +71,7 @@ public class OwnerOrderListController implements Controller {
 		List<OwnerOrder> list = orderService.listByParams(params);
 		int rowCount = orderService.pageCount(params);
 		
-		PageBuilder pageBuilder = new PageBuilder(params, rowCount);
+		OwnerOrderPageBuilder pageBuilder = new OwnerOrderPageBuilder(params, rowCount);
 		pageBuilder.build();
 		
 		mav.addObject("rowCount", rowCount);

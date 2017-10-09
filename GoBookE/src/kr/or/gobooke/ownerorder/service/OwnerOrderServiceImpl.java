@@ -2,10 +2,8 @@ package kr.or.gobooke.ownerorder.service;
 
 import java.util.List;
 
-import org.apache.jasper.tagplugins.jstl.core.Param;
-
 import kr.or.gobooke.common.db.DaoFactory;
-import kr.or.gobooke.common.web.Params;
+import kr.or.gobooke.common.web.OwnerOrderParams;
 import kr.or.gobooke.ownerorder.dao.JdbcOwnerOrderDao;
 import kr.or.gobooke.ownerorder.dao.OwnerOrderDao;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
@@ -33,12 +31,12 @@ public class OwnerOrderServiceImpl implements OwnerOrderService {
 	}
 
 	@Override
-	public List<OwnerOrder> listByParams(Params params) {
+	public List<OwnerOrder> listByParams(OwnerOrderParams params) {
 		return dao.listByParams(params);
 	}
 
 	@Override
-	public int pageCount(Params params) {
+	public int pageCount(OwnerOrderParams params) {
 		return dao.pageCount(params);
 	}
 

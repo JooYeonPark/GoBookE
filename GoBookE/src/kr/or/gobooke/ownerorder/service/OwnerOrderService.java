@@ -2,7 +2,7 @@ package kr.or.gobooke.ownerorder.service;
 
 import java.util.List;
 
-import kr.or.gobooke.common.web.Params;
+import kr.or.gobooke.common.web.OwnerOrderParams;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 
 /**
@@ -21,9 +21,9 @@ public interface OwnerOrderService {
 	public OwnerOrder search(int no);
 	
 	/** 발주 전체 리스트 */
-	public List<OwnerOrder> listByParams(Params params);
+	public List<OwnerOrder> listByParams(OwnerOrderParams params);
 	
 	/** 전체 발주 수 */
-	public int pageCount(Params params);
+	public int pageCount(OwnerOrderParams params);
 
 }

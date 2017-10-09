@@ -15,17 +15,45 @@ $(function(){
 	var year = date.getFullYear();
 	var month = date.getMonth()+1;
 	var day = date.getDate();
-	var dateStr = year+"-"+month+"-"+day;
+	if(day <10){
+		day = "0"+day;
+	}
+	if(month < 10){
+		month ="0"+month;
+	}
+	var dateStr = year+"/"+month+"/"+day;
+	
 	$("#fromDate1").val(dateStr);
 	$("#fromDate2").val(dateStr);
-	/* var formDate1 = $("#fromDate1");
-	var formDate2 = $("#formDate2");
-	formDate1.val(dateStr);
-	formDate2.val(dateStr); */
 	
 	$("fieldset a").click(function() {
 		var daysAttr = $(this).attr("days");
+		dateCal(daysAttr);
 		
+	});
+	
+	$("form").submit(function(){
+		var dateStart = $("#fromDate1").val();
+		var dateEnd = $("#fromDate2").val();
+		
+		console.log(dateStart);
+		console.log(dateEnd);
+		var data = {
+			type : "date",
+			dateStart : dateStart,
+			dateEnd : dateEnd
+		}
+		
+		var params = $.param(data);
+		
+		$.ajax({
+			url : "/adminBookOrderList.do",
+			data : params
+		}); 
+	});
+	
+	function dateCal(daysAttr){
+		date = new Date();
 		if (daysAttr <30) {
 			date.setDate(date.getDate()-daysAttr);
 		}else{
@@ -35,18 +63,19 @@ $(function(){
 		year = date.getFullYear();
 		month = date.getMonth()+1;
 		day = date.getDate();
-		dateStr = year +"-"+month+"-"+day;
+		if(day <10){
+			day = "0"+day;
+		}
+		if(month < 10){
+			month ="0"+month;
+		}
+		dateStr = year +"/"+month+"/"+day;
 		
-		formDate1.val(dateStr);
-	});
+		$("#fromDate1").val(dateStr);
+	}
 });
 
-$('#fromDate').datetimepicker({ 
-	language : 'ko', // 화면에 출력될 언어를 한국어로 설정한다.
-	pickTime : false, // 사용자로부터 시간 선택을 허용하려면 true를 설정하거나 pickTime 옵션을 생략한다. 
-	defalutDate : new Date(), // 기본값으로 오늘 날짜를 입력한다. 기본값을 해제하려면 defaultDate 옵션을 생략한다. 
-	size: "100"
-});
+
 
 </script>
 
@@ -56,6 +85,7 @@ $('#fromDate').datetimepicker({
     <h3>발주현황</h3>
 
     <div class="xans-element- xans-myshop xans-myshop-orderhistoryhead ">
+    <form>
       <fieldset>
         <div
           class="xans-element- xans-myshop xans-myshop-orderhistoryhead ">
@@ -95,6 +125,7 @@ $('#fromDate').datetimepicker({
         <input id="mode" name="mode" value="" type="hidden"> <input
           id="term" name="term" value="" type="hidden">
       </fieldset>
+      </form>
     </div>
 
     <br>

@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import kr.or.gobooke.common.web.OwnerOrderParams;
 import kr.or.gobooke.common.web.Params;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 
@@ -20,11 +21,11 @@ public interface OwnerOrderDao {
 	public void create(OwnerOrder ownerOrder);
 	
 	/** 발주 리스트 조회 */
-	public List<OwnerOrder> listByParams(Params params);
+	public List<OwnerOrder> listByParams(OwnerOrderParams params);
 	
 	public OwnerOrder createOwnerOrder(ResultSet rs) throws SQLException;
 	
 	/**  전체 발주 수 */
-	public int pageCount(Params params);
+	public int pageCount(OwnerOrderParams params);
 
 }

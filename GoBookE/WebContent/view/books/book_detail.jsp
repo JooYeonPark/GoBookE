@@ -75,11 +75,11 @@
 		});
 		
 		var defaultCount=1;
-		$("#directBuy").attr("href","/cart/add.do?bookNo="+${book.no}+"&cartBookQty="+defaultCount+"&view=cart");
+		$("#inCart").attr("href","/cart/add.do?bookNo="+${book.no}+"&cartBookQty="+defaultCount);
 		
 		$('#count').change(function(){
 			var count=$("#count option:selected").text();
-			$("#directBuy").attr("href","/cart/add.do?bookNo="+${book.no}+"&cartBookQty="+count+"&view=cart");
+			$("#inCart").attr("href","/cart/add.do?bookNo="+${book.no}+"&cartBookQty="+count);
 		});
 		
 		function getContextPath() {

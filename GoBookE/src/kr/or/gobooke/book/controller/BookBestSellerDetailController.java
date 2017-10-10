@@ -18,12 +18,13 @@ public class BookBestSellerDetailController implements Controller {
 			throws ServletException {
 		ModelAndView mav=new ModelAndView();
 		String title=request.getParameter("title");
+		String categoryId=request.getParameter("categoryId");
 		Book book=null;
-		System.out.println(title);
 		book=bookService.getBookByTitle(title);
 		
 		if(book==null) {
 			mav.addObject("title", title);
+			mav.addObject("categoryId", categoryId);
 			mav.setView("/view/books/book_detail_bestSeller.jsp");
 		}else {
 			mav.addObject("book", book);

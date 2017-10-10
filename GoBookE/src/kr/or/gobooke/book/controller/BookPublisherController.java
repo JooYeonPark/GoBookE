@@ -2,6 +2,7 @@ package kr.or.gobooke.book.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -18,49 +19,41 @@ import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
 
 /**
- * 출판사명으로 책이름 가져오는 처리
+ * 출판사가져오는 처리
  * 
  * /searchBookname 요청에 대한 세부 컨트롤러
  * @author 김수진
  *
  */
-public class BookNameController implements Controller {
+public class BookPublisherController implements Controller {
 	
 	private BookServiceImpl2 bookService = new BookService2();
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)	throws ServletException {
 		
-		String publisher = request.getParameter("publisher");
-		List<Book> books = bookService.search("publisher", publisher);
+		ModelAndView mav = new ModelAndView();
 		
-		JSONObject bookOb;
-		JSONArray booksArray = new JSONArray();
-		for (Book book : books) {
-			bookOb = new JSONObject();
+		String no = request.getParameter("no");
+		Book book = null;
+		List<String> publisherList = null;
+		
+		if(no != null) {
+			List<Book> bookList = bookService.search("no", no);
+			book = bookList.get(0);
 			
-			bookOb.put("no", book.getNo());
-			bookOb.put("title", book.getTitle());
-			bookOb.put("price", book.getPrice());
-			bookOb.put("publisher", book.getPublisher());
-			
-			booksArray.add(bookOb);
+			publisherList = new ArrayList<String>();
+			publisherList.add(book.getPublisher());
+		}else {
+			publisherList = bookService.getPublisher();
 		}
 		
-		String str = booksArray.toJSONString();
+		mav.addObject("publisherList", publisherList);
+		mav.addObject("book", book);
 		
-		response.setContentType("text/plain; charset=utf-8");
+		mav.setView("/view/admin/adminorder.jsp");
 		
-		try {
-			PrintWriter out = response.getWriter();
-			out.println(str);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return null;
+		return mav;
 	}
 
 }

@@ -20,8 +20,7 @@ public class BookService2 implements BookServiceImpl2 {
 
 	@Override
 	public void update(Book book) {
-		// TODO Auto-generated method stub
-
+		bookDao.update(book);
 	}
 
 	@Override
@@ -63,6 +62,21 @@ public class BookService2 implements BookServiceImpl2 {
 	@Override
 	public String getCategoryTitle(int category_big_no, int category_no) {
 		return bookDao.getCategoryTitle(category_big_no, category_no);
+	}
+
+	@Override
+	public List<Book> listStock(BookParams params) {
+		return bookDao.getlistStock(params);
+	}
+
+	@Override
+	public int stockpageCount(BookParams params) {
+		return bookDao.stockpageCount(params);
+	}
+
+	@Override
+	public List<String> getPublisher() {
+		return bookDao.getPublisher();
 	}
 
 }

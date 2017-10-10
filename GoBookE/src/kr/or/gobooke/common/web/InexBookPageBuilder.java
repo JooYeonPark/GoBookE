@@ -2,7 +2,7 @@ package kr.or.gobooke.common.web;
 
 public class InexBookPageBuilder {
 	
-private BookParams bookParams;            /** 요청 파라메터 */
+	private BookParams bookParams;            /** 요청 파라메터 */
 	
 	private int totalRowCount;        /** 테이블로부터 검색된 행의 수 */
 	private int totalPageCount;       /** 연산에 따른 전체페이지 수 */

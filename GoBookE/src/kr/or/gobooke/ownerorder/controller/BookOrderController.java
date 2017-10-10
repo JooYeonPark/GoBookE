@@ -19,7 +19,7 @@ import kr.or.gobooke.ownerorder.service.OwnerOrderServiceImpl;
  * 출판사명으로 책이름 가져오는 처리
  * 
  * /adminBookOrder 요청에 대한 세부 컨트롤러
- * @author 김기정
+ * @author 김수진
  *
  */
 public class BookOrderController implements Controller {
@@ -29,6 +29,8 @@ public class BookOrderController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)	throws ServletException {
+		ModelAndView mav = new ModelAndView();
+		
 		String bookNo = request.getParameter("bookNo");
 		
 		String str = request.getParameter("qty");
@@ -39,11 +41,9 @@ public class BookOrderController implements Controller {
 		
 		List<Book> books = bookService.search("no", bookNo);
 		Book book = books.get(0);
-		System.out.println("dkv : "+book.getQty());
 		int bookQty = book.getQty();
 		bookQty += qty;
 		book.setQty(bookQty);
-		System.out.println("후 : "+book.getQty());
 		
 		//발주 리스트에 추가.
 		//나중에 user_id 로그인에서 받아오기.
@@ -53,7 +53,9 @@ public class BookOrderController implements Controller {
 		//book update - book_qty에 수량 추가
 		bookService.update(book);
 		
-		return null;
+		mav.setView("/admin/adminbookorderlist.do");
+		
+		return mav;
 	}
 
 }

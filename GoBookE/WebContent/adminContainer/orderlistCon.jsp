@@ -45,8 +45,6 @@ $(function(){
 		var params = $.param(data);
 		
 		var url = "/admin/adminbookorderlist.do?"+params;
-		
-		console.log(url);
 		window.location.replace(url);
 		
 		return false;
@@ -136,7 +134,7 @@ $(function(){
           <thead> 
             <tr> 
             <th>Order</th> 
-            <th>BookName</th>
+            <th>BookTitle</th>
             <th>Publisher</th> 
             <th>QTY</th> 
             <th>Price</th> 

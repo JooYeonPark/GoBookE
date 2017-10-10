@@ -87,9 +87,6 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 
 	@Override
 	public List<OwnerOrder> listByParams(OwnerOrderParams params) {
-		System.out.println("DAO parmas[start] : " + params.getDateStart());
-		System.out.println("DAO parmas[end] : " + params.getDateEnd());
-		
 		List<OwnerOrder> list = null;
 
 		Connection con = null;
@@ -135,7 +132,6 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 		sb.append("                ORDER  BY OWNER_ORDER_DATE DESC))");
 		sb.append("WHERE  request_page = ?");
 
-		System.out.println("sql : " + sb.toString());
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sb.toString());

@@ -2,6 +2,7 @@
 <%@page import="kr.or.gobooke.common.db.DaoFactory"%>
 <%@page import="kr.or.gobooke.book.dao.BookDao"%>
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
 
@@ -78,21 +79,26 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
-            <label>출판사</label> <select id="publisher"
-              class="form-control">
-              <option value="말글터">말글터</option>
-              <option value="아울북">아울북</option>
-              <option value="민음사">민음사</option>
-              <option value="덴스토리">덴스토리</option>
-              <option value="문학동네">문학동네</option>
+            <label>출판사</label> 
+            <select id="publisher" class="form-control">
+            <c:choose>
+            <c:when test="${publisherList != null}">
+              <c:forEach items="${publisherList}" var="string" varStatus="status">
+                <option value="${string}">${string}</option>
+              </c:forEach>
+            </c:when>
+            </c:choose>
             </select>
           </div>
         </div>
 
         <div class="col-sm-6">
           <div class="form-group">
-            <label for="lastname">책제목</label> <select
-              class="form-control" id="bookname">
+            <label for="lastname">책제목</label> 
+            <select class="form-control" id="bookname">
+            <c:if test="${book != null }">
+              <option value="${book.no}" class="${book.price}">${book.title}</option>
+            </c:if>
             </select>
           </div>
         </div>

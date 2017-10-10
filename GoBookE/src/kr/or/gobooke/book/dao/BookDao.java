@@ -26,8 +26,10 @@ public interface BookDao {
 	public Book createBook(ResultSet set);
 
 	public List<Book> getBookListByParams(BookParams params);
+	public List<Book> getlistStock(BookParams params);
 
 	public int pageCount(BookParams params);
+	public int stockpageCount(BookParams params);
 
 	public Book getBookDetail(int book_no);
 
@@ -41,5 +43,8 @@ public interface BookDao {
 	public List<Book> getExBookList();
 
 	public String getCategoryTitle(int category_big_no, int category_no);
+	
+	/** 출판사 종류 가져오기 */
+	public List<String> getPublisher();
 	
 }

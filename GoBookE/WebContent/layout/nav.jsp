@@ -32,9 +32,7 @@
           </li>
            <li><a href="${pageContext.servletContext.contextPath}/book/bestSellerList.do">베스트셀러</a>
           </li>
-          <li class="dropdown use-yamm yamm-fw"><a href="#"
-            class="dropdown-toggle" data-toggle="dropdown">신간도서</a>
-          </li>
+          <li><a href="${pageContext.servletContext.contextPath}/book/newBookList.do">신간도서</a>
           <li class="dropdown"><a href="javascript: void(0)"
             class="dropdown-toggle" data-toggle="dropdown">국내도서 <b
               class="caret"></b></a>

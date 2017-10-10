@@ -21,4 +21,8 @@ public interface BookServiceImpl2 {
 	public Book getBookDetail(int book_no);
 
 	public Book getBookByTitle(String title);
+
+	public List<Book> getInBookList();
+
+	public List<Book> getExBookList();
 }

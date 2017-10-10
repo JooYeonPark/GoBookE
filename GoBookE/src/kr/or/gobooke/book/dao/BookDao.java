@@ -35,5 +35,9 @@ public interface BookDao {
 	
 	/** 도서 가격 반환 */
 	public int getBookPrice(int bookNo);
+
+	public List<Book> getInBookList();
+
+	public List<Book> getExBookList();
 	
 }

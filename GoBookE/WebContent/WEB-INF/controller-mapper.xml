@@ -18,6 +18,7 @@
 	<bean name="/book/bookDetail" class="kr.or.gobooke.book.controller.BookDetailController"/>
 	<bean name="/book/bestSellerList" class="kr.or.gobooke.book.controller.BookBestSellerController"/>
 	<bean name="/book/bestSellerDetail" class="kr.or.gobooke.book.controller.BookBestSellerDetailController"/>
+	<bean name="/book/newBookList" class="kr.or.gobooke.book.controller.NewBookController"/>
 	
 	<!-- 리뷰 관련 컨트롤러 등록 -->
 	<bean name="/review/bookreview" class="kr.or.gobooke.review.controller.BookReviewController"/>

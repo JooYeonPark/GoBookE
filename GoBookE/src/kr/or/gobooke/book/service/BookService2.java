@@ -50,4 +50,14 @@ public class BookService2 implements BookServiceImpl2 {
 		return bookDao.getBookByTitle(title);
 	}
 
+	@Override
+	public List<Book> getInBookList() {
+		return bookDao.getInBookList();
+	}
+
+	@Override
+	public List<Book> getExBookList() {
+		return bookDao.getExBookList();
+	}
+
 }

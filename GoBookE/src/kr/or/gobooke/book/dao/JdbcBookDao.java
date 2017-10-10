@@ -513,6 +513,72 @@ public class JdbcBookDao implements BookDao {
 		
 		return bookPrice;
 	}
+
+	@Override
+	public List<Book> getInBookList() {
+		List<Book> inList = null;		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql="select * from book where category_big_no=1 order by book_regdate";
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			inList = new ArrayList<Book>();
+			while(rs.next()){
+				Book book = createBook(rs);
+				inList.add(book);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcUserDao.listByParams(Params params) 실행 중 예외발생", e);
+		} finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			} catch (Exception e) {}
+		}
+		
+		
+		return inList;
+	}
+
+	@Override
+	public List<Book> getExBookList() {
+		List<Book> exList = null;		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql="select * from book where category_big_no=2 order by book_regdate";
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			exList = new ArrayList<Book>();
+			while(rs.next()){
+				Book book = createBook(rs);
+				exList.add(book);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcUserDao.listByParams(Params params) 실행 중 예외발생", e);
+		} finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			} catch (Exception e) {}
+		}
+		
+		
+		return exList;
+	}
 	
 
 }

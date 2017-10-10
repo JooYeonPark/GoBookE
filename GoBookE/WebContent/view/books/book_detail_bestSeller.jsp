@@ -87,7 +87,13 @@
     		      var output = "";
     		      $(xmlDoc).find("item").each(function(index){
     		        if(title==$(this).find("title").text()){
-    		        	alert($(this).find("priceSales").text());
+    		        	$("#bookTitle").text($(this).find("title").text());
+    		        	$("#bookAuthor").text("저자 : "+$(this).find("author").text());
+    		        	$("#publisher").text("출판사 : "+$(this).find("publisher").text());
+    		        	$("#regdate").text("출판일 : "+$(this).find("pubDate").text());
+    		        	$("#bookPrice").text("가격 : "+$(this).find("priceStandard").text());
+    		        	$("#bookDetail").text($(this).find("description").text());
+    		        	$("#bookImg").attr("src",$(this).find("coverLargeUrl").text());
     		        }
     		      });
     		      /* $("#internal").html(output);
@@ -149,7 +155,7 @@
                         <input type="hidden" id="title" value="${title}"/>
                             <div class="col-sm-6">
                                 <div id="mainImage">
-                                    <img src="../../img/books/${book.image }" alt="" class="img-responsive">
+                                    <img id="bookImg" style="width: 450px; height: 678px;"alt="" class="img-responsive">
                                 </div>
 
                                 <div class="ribbon sale">
@@ -171,20 +177,17 @@
                                     <form>
                                         <div class="sizes">
 
-                                            <h3>${book.title}</h3>
-                                            <h5>저자:${book.author}</h5>
-                                            <h5>출판사:${book.publisher}</h5>
-                                            <h5>출판일:${book.regdate}</h5>
-                                            <h5>재고량:${book.qty }</h5>
-                                            <h5>평점 : ${book.grade}</h5>
+                                            <h3 id="bookTitle"></h3>
+                                            <h5 id="bookAuthor"></h5>
+                                            <h5 id="publisher"></h5>
+                                            <h5 id="regdate"></h5>
 
                                         </div>
 
-                                        <p class="price">가격 : ${book.price} 원</p>
+                                        <p class="price" id="bookPrice"></p>
 
                                         <p class="text-center">
-                                            <button type="submit" class="btn btn-template-main"><i class="fa fa-won"></i>바로 구매하기</button>
-                                            <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>장바구니에 담기</button>
+                                            제고 준비중입니다.
                                             
                                         </p>
 
@@ -212,86 +215,14 @@
 
                                 <blockquote>
                                 <h4>책 소개</h4>
-                                    <p><em>${book.detail}</em>
+                                    <p><em id="bookDetail">${book.detail}</em>
                                     </p>
                                 </blockquote>
                         </div>
-                        <div id="comment-form">
-                        <form>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label for="comment">Comment <span class="required">*</span>
-                                            </label>
-                                            <textarea class="form-control" id="comment" rows="4"></textarea>
-                                            평가해주세요~!<div class="star"></div>
-                                 <input type="text" id="starRating" disabled/>점
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-12 text-right">
-                                        <button class="btn btn-template-main"><i class="fa fa-comment-o"></i> Post comment</button>
-                                    </div>
-                                </div>
-                        </form> 
-                        </div>
-                        <div style="margin-top: 5em;">
-                        <table class="table">
-                          <tr>
-                            <th>글쓴이</th>
-                            <th>내용</th>
-                            <th>등록일자</th>
-                            <th>평점</th>
-                          </tr>
-                          <tr>
-                            <td>bangry</td>
-                            <td>정말재미있습니다.</td>
-                            <td>2017.09.28</td>
-                            <td><div class="star"></div></td>
-                          </tr>
-                          <tr>
-                            <td>sugnjoon</td>
-                            <td>정말재미있습니다.</td>
-                            <td>2017.09.28</td>
-                            <td><div class="star"></div></td>
-                          </tr>
-                          <tr>
-                            <td>bangry</td>
-                            <td>정말재미있습니다.</td>
-                            <td>2017.09.28</td>
-                            <td><div class="star"></div></td>
-                          </tr>
-                          <tr>
-                            <td>bangry</td>
-                            <td>정말재미있습니다.</td>
-                            <td>2017.09.28</td>
-                            <td><div class="star"></div></td>
-                          </tr>
-                        </table>
-                         <div class="pages">
-                        <ul class="pagination">
-                                <li><a href="#">&laquo;</a>
-                                </li>
-                                <li class="active"><a href="#">1</a>
-                                </li>
-                                <li><a href="#">2</a>
-                                </li>
-                                <li><a href="#">3</a>
-                                </li>
-                                <li><a href="#">4</a>
-                                </li>
-                                <li><a href="#">5</a>
-                                </li>
-                                <li><a href="#">&raquo;</a>
-                                </li>
-                            </ul>
-                       </div>
-                        </div>
-                        <div class="pages">
+                      
                         
-                        </div>
+               
+                       
                     </div>
                     
                     

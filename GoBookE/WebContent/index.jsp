@@ -45,6 +45,73 @@
 
     <link href="css/owl.carousel.css" rel="stylesheet">
     <link href="css/owl.theme.css" rel="stylesheet">
+    
+    <!-- #### JAVASCRIPT FILES ### -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')
+    </script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/jquery.parallax-1.1.3.js"></script>
+    <script src="js/front.js"></script>
+
+    <!-- owl carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+    
+    <script type="text/javascript" src="js/jquery.xdomainajax.js"></script>
+    <script>
+  $(function(){
+    $.ajax({
+        url : "http://book.interpark.com/api/bestSeller.api?key=AD05009D9D975D46B742B91DF4D0F5663FEC24E72F5BFCA7A16ED288A972F90C&categoryId=100",
+        dataType : "xml",
+        type: 'GET',
+        success : function(res) {
+          var myXML = res.responseText;
+          xmlDoc=$.parseXML(myXML);
+          var output = "";
+          $(xmlDoc).find("item").each(function(index){
+            output += "<div class=\"col-md-3 col-sm-6\">";
+            output += "<div class=\"box-image-text blog\">";
+              output += "<div class=\"top\">";
+              output += "<div class=\"image\">";
+              output += " <img  style=\"height: 280px; display: unset;\" class=\"img-responsive image1\" align=\"center\" src="+$(this).find("coverLargeUrl").text()+">";
+              output += "</div>";
+              output += "<div class=\"bg\"></div>";
+              output += "<div class=\"text\">";
+              output += "<p class=\"buttons\">";
+              output += "<a href=\"book/bestSellerDetail.do?title="+$(this).find("title").text()+"\" class=\"btn btn-template-transparent-primary\"><i class=\"fa fa-link\"></i>자세히 보기</a>";
+              output += "</p>";
+              output += "</div></div>";
+              output += "<div class=\"content\">";
+              output += "<h4>";
+              output += "<a href=\"/book/bestSellerDetail.do?title="+$(this).find("title").text()+"\">"+$(this).find("title").text()+"</a>";
+              output += "</h4>";
+              output += "<p class=\"author-category\">";
+              output += "By <a href=\"#\">"+$(this).find("author").text()+"</a>";
+              output += "</p>";
+              output += "<p class=\"intro\"></p>";
+              output += "<p class=\"read-more\">";
+              output += "<a href=\"book/bestSellerDetail.do?title="+$(this).find("title").text()+"\" class=\"btn btn-template-main\">상세보기</a>";
+              output += "</p>";
+              output += "</div>";
+              output += "</div>";
+              output += "</div>";
+              if(index==3){
+                return false;
+              }
+          });
+          $("#internal").html(output);
+          $(".image").css("height",280);
+        }
+      });
+    
+  });
+</script>
 </head>
 
 <body>
@@ -88,23 +155,6 @@
 
     </div>
     <!-- /#all -->
-
-    <!-- #### JAVASCRIPT FILES ### -->
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')
-    </script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-    <script src="js/jquery.cookie.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/jquery.parallax-1.1.3.js"></script>
-    <script src="js/front.js"></script>
-
-    <!-- owl carousel -->
-    <script src="js/owl.carousel.min.js"></script>
 
 
 </body>

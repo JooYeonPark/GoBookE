@@ -39,5 +39,7 @@ public interface BookDao {
 	public List<Book> getInBookList();
 
 	public List<Book> getExBookList();
+
+	public String getCategoryTitle(int category_big_no, int category_no);
 	
 }

@@ -579,6 +579,39 @@ public class JdbcBookDao implements BookDao {
 		
 		return exList;
 	}
+
+	@Override
+	public String getCategoryTitle(int category_big_no, int category_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String title=null;
+		
+		String sql="select category_big_name, category_name from book_category where category_big_no=? and category_no=?";
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, category_big_no);
+			pstmt.setInt(2, category_no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String bigName=rs.getString("category_big_name");
+				String smallName=rs.getString("category_name");
+				title=bigName+"("+smallName+")";
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		return title;
+	}
 	
 
 }

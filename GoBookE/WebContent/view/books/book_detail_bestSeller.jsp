@@ -244,37 +244,25 @@
                                 <h3 class="panel-title">Categories</h3>
                             </div>
 
-                            <div class="panel-body">
-                                <ul class="nav nav-pills nav-stacked category-menu">
-                                    <li>
-                                        <a href="shop-category.html">국내도서</a>
-                                        <ul>
-                                            <li><a href="shop-category.html">소설</a>
-                                            </li>
-                                            <li><a href="shop-category.html">참고서</a>
-                                            </li>
-                                            <li><a href="shop-category.html">만화</a>
-                                            </li>
-                                            <li><a href="shop-category.html">잡지</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="active">
-                                        <a href="shop-category.html">외국도서</a>
-                                        <ul>
-                                            <li><a href="shop-category.html">영미도서</a>
-                                            </li>
-                                            <li><a href="shop-category.html">일본도서</a>
-                                            </li>
-                                            <li><a href="shop-category.html">프랑스도서</a>
-                                            </li>
-                                            <li><a href="shop-category.html">중국도서</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                            div class="panel-body">
+                <ul class="nav nav-pills nav-stacked category-menu">
+                  <li><a href="shop-category.html">국내도서</a>
+                    <ul>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=1">소설</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=2">참고서</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=3">만화</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=4">잡지</a></li>
+                    </ul></li>
+                  <li class="active"><a href="shop-category.html">외국도서</a>
+                    <ul>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=1">영미도서</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=2">일본도서</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=3">프랑스도서</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=4">중국도서</a></li>
+                    </ul></li>
+                </ul>
 
-                            </div>
+              </div>
                         </div>
 
                       

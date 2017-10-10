@@ -82,6 +82,11 @@
         });
         update();
     });
+    
+    var userId=$.cookie('user');
+    if(userId==null){
+    	$('#comment').attr("disabled","disabled");
+    }
   
   
   });
@@ -119,9 +124,15 @@
                       <input type="text" id="starRating" readonly="readonly" name="grade"/>점
                       <input type="hidden" name="book_no" value="${bookNo}"/>
                       <div class="text-right">
-                    <button type="submit" class="btn btn-template-main">
+                      <c:choose>
+                      <c:when test="${empty cookie.user}">
+                      </c:when>
+                      <c:otherwise>
+                      <button type="submit" class="btn btn-template-main">
                       <i class="fa fa-comment-o"></i> 등록
                     </button>
+                      </c:otherwise>
+                    </c:choose>
                   </div>
                     </div>
                   </div>

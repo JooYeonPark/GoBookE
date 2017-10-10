@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>	
 	<!-- 장바구니 관련 세부컨트롤러  등록 -->
-	<bean name="/cart/cartList" class="kr.or.gobooke.cart.controller.CartListController"></bean>
+	<bean name="/cart/list" class="kr.or.gobooke.cart.controller.CartListController"></bean>
+	<bean name="/cart/add" class="kr.or.gobooke.cart.controller.AddCartController"></bean>
 	
 	<!-- 주문 관련 세부 컨트롤러 등록 -->
 	<bean name="/order" class="kr.or.gobooke.orders.controller.OrdersController"></bean>

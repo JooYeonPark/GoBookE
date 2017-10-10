@@ -7,7 +7,7 @@
     <div class="container">
       <div class="navbar-header">
 
-        <a class="navbar-brand home" href="index.html"> <img
+        <a class="navbar-brand home" href="/index.do"> <img
           src="../img/logo.png" alt="Universal logo"
           class="hidden-xs hidden-sm"> <img
           src="../img/logo-small.png" alt="Universal logo"
@@ -27,8 +27,7 @@
       <div class="navbar-collapse collapse" id="navigation">
 
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown active"><a href="javascript: void(0)"
-            class="dropdown-toggle" data-toggle="dropdown">HOME</a>
+          <li class="dropdown active"><a href="/index.do">HOME</a>
           </li>
            <li><a href="${pageContext.servletContext.contextPath}/book/bestSellerList.do">베스트셀러</a>
           </li>

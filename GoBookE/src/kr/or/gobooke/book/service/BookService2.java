@@ -60,4 +60,9 @@ public class BookService2 implements BookServiceImpl2 {
 		return bookDao.getExBookList();
 	}
 
+	@Override
+	public String getCategoryTitle(int category_big_no, int category_no) {
+		return bookDao.getCategoryTitle(category_big_no, category_no);
+	}
+
 }

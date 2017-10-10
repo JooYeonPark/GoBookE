@@ -23,6 +23,7 @@ public class InexBookListController implements Controller {
 		ModelAndView mav = new ModelAndView();
 		int category_no = Integer.parseInt(request.getParameter("category_no"));
 		int category_big_no = Integer.parseInt(request.getParameter("category_big_no"));
+		String title=null;
 
 		int pageSize = 10;
 		int pageNum = 10;
@@ -43,7 +44,6 @@ public class InexBookListController implements Controller {
 		params.setCategory_big_no(category_big_no);
 		params.setCategory_no(category_no);
 		
-
 		// 페이징 및 검색처리
 		List<Book> list = bookService.listByParams(params);
 		int rowCount = bookService.pageCount(params);
@@ -52,7 +52,9 @@ public class InexBookListController implements Controller {
 		InexBookPageBuilder pageBuilder = new InexBookPageBuilder(params, rowCount);
 		pageBuilder.build();
 		
+		title=bookService.getCategoryTitle(category_big_no, category_no);
 		
+		mav.addObject("title", title);
 		mav.addObject("category_no", category_no);
 		mav.addObject("category_big_no", category_big_no);
 		mav.addObject("list", list);

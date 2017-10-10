@@ -23,6 +23,10 @@ $(function() {
         output +="<p class=\"buttons\"><a href=\"shop-detail.html\" class=\"btn btn-default\">View detail</a><a href=\"shop-basket.html\" class=\"btn btn-template-main\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a></p>";
         output +="</div>";
         output += "</div></div>";
+        
+        if(index==27){
+        	return false;
+        }
       });
       $("#internal").html(output);
       $(".image").css("height",280);
@@ -53,6 +57,9 @@ $(function() {
 	        output +="<p class=\"buttons\"><a href=\"shop-detail.html\" class=\"btn btn-default\">View detail</a><a href=\"shop-basket.html\" class=\"btn btn-template-main\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a></p>";
 	        output +="</div>";
 	        output += "</div></div>";
+	        if(index==27){
+	        	return false;
+	        }
 	      });
 	      $("#external").html(output);
 	      $(".image").css("height",280);

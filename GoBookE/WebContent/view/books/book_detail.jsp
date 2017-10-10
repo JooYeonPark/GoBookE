@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -72,6 +73,19 @@
 				$("#displayStarRating").html(score);
 			}
 		});
+		
+		var defaultCount=1;
+		$("#directBuy").attr("href","/cart/add.do?bookNo="+${book.no}+"&cartBookQty="+defaultCount+"&view=cart");
+		
+		$('#count').change(function(){
+			var count=$("#count option:selected").text();
+			$("#directBuy").attr("href","/cart/add.do?bookNo="+${book.no}+"&cartBookQty="+count+"&view=cart");
+		});
+		
+		function getContextPath() {
+			var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+			return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+		};
 	});
 </script>
 </head>
@@ -154,14 +168,25 @@
                     </div>
 
                     <p class="price">가격 : ${book.price} 원</p>
-
+                    <div style="text-align: center; margin-bottom: 50px;">
+                    <c:if test="${book.qty<=0}">
+                    
+                    재고 준비중입니다.
+                    </c:if>
+                    주문부수 :
+                    <select id="count">
+                      <c:forEach var="i" begin="1" end="10" step="1">
+                        <option>${i}</option>
+                      </c:forEach>
+                    </select>
+                    </div>
                     <p class="text-center">
-                      <button type="submit" class="btn btn-template-main">
+                      <a class="btn btn-template-main" id="directBuy">
                         <i class="fa fa-won"></i>바로 구매하기
-                      </button>
-                      <button type="submit" class="btn btn-template-main">
+                      </a>
+                      <a class="btn btn-template-main" id="inCart">
                         <i class="fa fa-shopping-cart"></i>장바구니에 담기
-                      </button>
+                      </a>
 
                     </p>
 
@@ -222,19 +247,19 @@
 
               <div class="panel-body">
                 <ul class="nav nav-pills nav-stacked category-menu">
-                  <li><a href="shop-category.html">국내도서</a>
+                  <li>국내도서
                     <ul>
-                      <li><a href="shop-category.html">소설</a></li>
-                      <li><a href="shop-category.html">참고서</a></li>
-                      <li><a href="shop-category.html">만화</a></li>
-                      <li><a href="shop-category.html">잡지</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=1">소설</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=2">참고서</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=3">만화</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=4">잡지</a></li>
                     </ul></li>
-                  <li class="active"><a href="shop-category.html">외국도서</a>
+                  <li>외국도서
                     <ul>
-                      <li><a href="shop-category.html">영미도서</a></li>
-                      <li><a href="shop-category.html">일본도서</a></li>
-                      <li><a href="shop-category.html">프랑스도서</a></li>
-                      <li><a href="shop-category.html">중국도서</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=1">영미도서</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=2">일본도서</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=3">프랑스도서</a></li>
+                      <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=4">중국도서</a></li>
                     </ul></li>
                 </ul>
 

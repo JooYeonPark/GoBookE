@@ -34,9 +34,11 @@ public class Users {
 	 * @param adressDetail
 	 * @param adminFlag
 	 */
+	
+	
 	public Users(String id, String name, String password, String email, String telephone, String adress,
-			String adressDetail, char adminFlag) {
-		this(id, name, password, email, telephone, adress, adressDetail, adminFlag, null);
+			String adressDetail) {
+		this(id, name, password, email, telephone, adress, adressDetail, 'N', null);
 	}
 
 	/**

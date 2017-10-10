@@ -20,8 +20,7 @@ public class UserServiceImpl implements UsersService {
 	
 	@Override
 	public void create(Users user) {
-		// TODO Auto-generated method stub
-		
+		userDao.create(user);
 	}
 
 	@Override

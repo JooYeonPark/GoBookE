@@ -41,49 +41,45 @@ public class JdbcUsersDao implements UsersDao {
 
 	@Override
 	public void create(Users user) {
-//		System.out.println("create진입");
-//		
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//
-//		String sql = "insert into users(id, name, passwd, email, telephone, job, message, regdate) " 
-//		+ "values(?, ?, ?, ?, ?, ?, ?, sysdate)";
-//
-//		try {
-//			con = dataSource.getConnection();
-//			con.setAutoCommit(false);
-//
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setString(1, user.getId());
-//			pstmt.setString(2, user.getName());
-//			pstmt.setString(3, user.getPassword());
-//			pstmt.setString(4, user.getEmail());
-//			pstmt.setString(5, user.getTelephone());
-//			pstmt.setString(6, user.getAdress());
-//			pstmt.setString(7, user.getAdressDetail());
-//			pstmt.setDate(8, user.getRegdate());
-//			pstmt.executeUpdate();
-//
-//			con.commit();
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			try {
-//				con.rollback();
-//			} catch (SQLException e1) {
-//			}
-//
-//			throw new BlogException("JdbcUserDao.create(Users) 실행중 예외 발생", e);
-//
-//		} finally {
-//			try {
-//				if (pstmt != null)
-//					pstmt.close();
-//				if (con != null)
-//					con.close();
-//			} catch (SQLException e) {
-//			}
-//		}
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(" INSERT INTO users(user_id,    ");
+		sb.append(" 				 user_name,    ");
+		sb.append(" 				 user_telephone,    ");
+		sb.append(" 				 user_email,    ");
+		sb.append(" 				 user_address,    ");
+		sb.append(" 				 user_address_detail,    ");
+		sb.append(" 				 user_password,    ");
+		sb.append(" 				 user_admin_flag    ");
+		sb.append(" 				 user_regdate    ");
+		sb.append("VALUES(?, ?, ?, ?, ?, ?, 'N', sysdate)");
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, user.getId());
+			pstmt.setString(2, user.getName());
+			pstmt.setString(3, user.getTelephone());
+			pstmt.setString(4, user.getEmail());
+			pstmt.setString(5, user.getAdress());
+			pstmt.setString(6, user.getAdressDetail());
+			pstmt.setString(7, user.getPassword());
+			
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcUsersDao.create 실행 중 예외발생", e);
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			} catch (Exception e) {}
+		}
 
 	}
 

@@ -12,11 +12,6 @@ import kr.or.gobooke.users.domain.Users;
  *
  */
 public interface UsersService {
-	/** 등록은 create 수정은 update 삭제는 delete 조회는 read */
-	
-	/** 기능은 따로 구현하시구 이변수명들은 변경하지 말아주세요.
-	 *  필요 기능은 추가해주시면 됩니다.
-	 */
 	
 	/** 신규 사용자 등록 */
 	public void create(Users user);

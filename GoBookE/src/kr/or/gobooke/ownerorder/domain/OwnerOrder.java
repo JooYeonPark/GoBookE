@@ -118,5 +118,4 @@ public class OwnerOrder {
 				+ ", totalPrice=" + totalPrice + ", date=" + date + ", user_id=" + user_id + "]";
 	}
 
-	
 }

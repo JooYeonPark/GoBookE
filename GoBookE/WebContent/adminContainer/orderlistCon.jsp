@@ -21,10 +21,10 @@ $(function(){
 	if(month < 10){
 		month ="0"+month;
 	}
-	var dateStr = year+"/"+month+"/"+day;
+	var dateStr = year+"-"+month+"-"+day;
 	
-	$("#fromDate1").val(dateStr);
-	$("#fromDate2").val(dateStr);
+	/* $("#fromDate1").val(dateStr);
+	$("#fromDate2").val(dateStr); */
 	
 	$("fieldset a").click(function() {
 		var daysAttr = $(this).attr("days");
@@ -36,8 +36,6 @@ $(function(){
 		var dateStart = $("#fromDate1").val();
 		var dateEnd = $("#fromDate2").val();
 		
-		console.log(dateStart);
-		console.log(dateEnd);
 		var data = {
 			type : "date",
 			dateStart : dateStart,
@@ -46,10 +44,13 @@ $(function(){
 		
 		var params = $.param(data);
 		
-		$.ajax({
-			url : "/adminBookOrderList.do",
-			data : params
-		}); 
+		var url = "/admin/adminbookorderlist.do?"+params;
+		
+		console.log(url);
+		window.location.replace(url);
+		
+		return false;
+		
 	});
 	
 	function dateCal(daysAttr){
@@ -69,7 +70,7 @@ $(function(){
 		if(month < 10){
 			month ="0"+month;
 		}
-		dateStr = year +"/"+month+"/"+day;
+		dateStr = year +"-"+month+"-"+day;
 		
 		$("#fromDate1").val(dateStr);
 	}
@@ -117,13 +118,11 @@ $(function(){
                 alt="6개월"></a>
                 
             </span>
-            <input id="fromDate1" type="date" class="input-date" value="2017-10-09">~<input id="fromDate2" type="date" class="input-date" value="2017-10-09">
+            <input id="fromDate1" type="date" class="input-date" value="${params.dateStart }">~<input id="fromDate2" type="date" class="input-date" value="${params.dateEnd }">
             <input type="submit" value="검색">
           </fieldset>
         </div>
         
-        <input id="mode" name="mode" value="" type="hidden"> <input
-          id="term" name="term" value="" type="hidden">
       </fieldset>
       </form>
     </div>

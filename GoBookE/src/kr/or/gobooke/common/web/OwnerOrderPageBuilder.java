@@ -161,10 +161,16 @@ public class OwnerOrderPageBuilder {
 		String queryString = "?page=" + page;
 		// 조건검색이 있는 경우
 		String type = params.getType();
-		if(type.equals("date")) {
-			queryString += params.getType() != null ? "&type=" + params.getType() + "&dateStart=" + params.getDateStart() + "&dateEnd=" + params.getDateEnd()  :  "";
-		}else {
-			queryString += params.getType() != null ? "&type=" + params.getType() + "&value=" + params.getValue()  :  "";
+		if(type != null) {
+			switch(type) {
+			case "date":
+				queryString += params.getType() != null ? "&type=" + params.getType() + "&dateStart=" + params.getDateStart() + "&dateEnd=" + params.getDateEnd()  :  "";
+				break;
+			case "userID":
+				queryString += params.getType() != null ? "&type=" + params.getType() + "&value=" + params.getValue()  :  "";
+				break;
+			}
+			
 		}
 		
 		return queryString;

@@ -14,6 +14,7 @@
 	
 	<!-- 책관련 리스트 -->
 	<bean name="/book/searchbookname" class="kr.or.gobooke.book.controller.BookNameController" /><!-- 북제목 리스트 -->
+	<bean name="/book/bookimgupload" class="kr.or.gobooke.book.controller.BookNameController" /><!-- 북제목 리스트 -->
 	<bean name="/book/inexBookList" class="kr.or.gobooke.book.controller.InexBookListController"/>
 	<bean name="/book/bookDetail" class="kr.or.gobooke.book.controller.BookDetailController"/>
 	<bean name="/book/bestSellerList" class="kr.or.gobooke.book.controller.BookBestSellerController"/>

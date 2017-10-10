@@ -3,22 +3,21 @@ package kr.or.gobooke.users.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.sql.DataSource;
 
+import kr.or.gobooke.cart.dao.CartDao;
+import kr.or.gobooke.cart.dao.JdbcCartDao;
+import kr.or.gobooke.cart.domain.CartList;
+import kr.or.gobooke.common.db.DaoFactory;
 import kr.or.gobooke.common.exception.MallException;
+import kr.or.gobooke.users.domain.OrderUser;
 import kr.or.gobooke.users.domain.Users;
 
 public class JdbcUsersDao implements UsersDao {
 
-	// private ConnerctionFactory factory;
 	private DataSource dataSource;
 	private String[] keys = null;
 
@@ -305,5 +304,52 @@ public class JdbcUsersDao implements UsersDao {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	@Override
+	/** 회원 정보 반환 */
+	public OrderUser getOrderUser(String userId) {
+		OrderUser orderUser = null;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("SELECT 	user_name, ");
+		sb.append("			user_telephone, " );
+		sb.append("			user_address, ");
+		sb.append("			user_address_detail ");
+		sb.append("FROM users ");
+		sb.append("WHERE user_id = ? ");
+		
+		
+		try {	
+			connection = dataSource.getConnection();		
+			pstmt = connection.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, userId);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				orderUser = new OrderUser(rs.getString("user_name"), rs.getString("user_telephone"),
+						rs.getString("user_address"),rs.getString("user_address_detail"));
+			}
+				
+		}	catch(Exception e) {
+			throw new RuntimeException("JdbcUsersDao.getUser Error!");
+			
+		}	finally {
+			if(rs != null)
+				try { rs.close(); } catch (SQLException e) {}
+			if(pstmt != null) 	
+				try { pstmt.close(); } catch (SQLException e) {}
+			if(connection != null) 	
+				try { connection.close(); } catch (SQLException e) {}
+		}
+		
+		return orderUser;
+	}
+	
 }

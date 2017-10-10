@@ -13,6 +13,7 @@ import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
 import kr.or.gobooke.common.web.PageBuilder;
 import kr.or.gobooke.common.web.Params;
+import kr.or.gobooke.common.web.UserId;
 
 /**
  * 장바구니 리스트를 보여주기 위한 컨트롤러
@@ -27,9 +28,9 @@ public class CartListController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
+		
 		ModelAndView mav = new ModelAndView();
-
-		String userId = "joo"; // Id 값 임의로 지정
+		String userId = new UserId().getUserId(request);
 		List<CartList> cartList;
 
 		cartList = cartService.listAll(userId);

@@ -1,5 +1,6 @@
 package kr.or.gobooke.users.dao;
 
+import kr.or.gobooke.users.domain.OrderUser;
 import kr.or.gobooke.users.domain.Users;
 
 /**
@@ -9,8 +10,6 @@ import kr.or.gobooke.users.domain.Users;
  */
 
 public interface UsersDao {
-	/** 등록은 create 수정은 update 삭제는 delete 조회는 read */
-	/** 기능은 따로 구현하시구 이변수명들은 변경하지 말아주세요.*/
 	
 	/** 신규 사용자 등록 */
 	public void create(Users user);
@@ -23,5 +22,8 @@ public interface UsersDao {
 	
 	/** 회원 여부 반환 */
 	public Users isMember(String id, String passwd);
+	
+	/** 회원 정보 반환 */
+	public OrderUser getOrderUser(String userId);
 	
 }

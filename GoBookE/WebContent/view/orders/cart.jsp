@@ -63,27 +63,26 @@
 window.onload = function(){
 	<%-- 선택상품 주문을 위해 cartNo들을 저장하는 변수 --%>
 	var clickedCartNo = new String;
-	console.log(clickedCartNo);
-	//var clickedCartNo = null;
 	
 	//항목 삭제
 	$(btnDelete).click(function(){
 		var sibling = $(this).parent().siblings();
 		var bookTitle = sibling.eq(2).text();
+		var tr = $(this).parent().parent();
 		
 		$.ajax({
 			url : "/func/deleteCartList.jsp",
-			data : "userId="+"joo"+"&bookTitle="+bookTitle,
+			data : "userId=${cookie.user.value}"+"&bookTitle="+bookTitle,
 			success : function(data){
 				alert("삭제 완료");
-				var tr = $(this).parent().parent();
+				
 				tr.remove();
 			},
 			error : function(xhr, statusText){
 				console.log("("+xhr.status+", "+statusText+")");
 			}
-		
 		})
+		
 	});
 	
 	//수량 수정
@@ -96,7 +95,7 @@ window.onload = function(){
 		
 		$.ajax({
 			url : "/func/updateCart.jsp",
-			data : "userId="+"joo"+"&qty="+qty+"&bookTitle="+bookTitle,
+			data : "userId=${cookie.user.value}"+"&qty="+qty+"&bookTitle="+bookTitle,
 			success : function(data){
 				alert("수정완료");
 				sibling.eq(0).val(qty);
@@ -135,7 +134,23 @@ window.onload = function(){
 </script>
 </head>
 <body>
+  <div id="all">
+  
+        <header>
+           <!-- *** TOP *** -->
+           <jsp:include page="/layout/header.jsp"/>
+           <!-- *** TOP END *** -->
+           
+           <!-- *** NAVBAR ***  -->
+           <jsp:include page="/layout/nav.jsp"/>
+           <!-- *** NAVBAR END *** -->
+        </header>
 
+        <!-- *** LOGIN MODAL *** -->
+        <jsp:include page="/layout/loginMo.jsp"/>        
+        <!-- *** LOGIN MODAL END *** -->
+        
+        
         <div id="heading-breadcrumbs">
             <div class="container">
                 <div class="row">
@@ -223,7 +238,7 @@ window.onload = function(){
 
                                 <div class="box-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                                     <!--    <a href="#" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a> --> 
                                     </div>
                                     <div class="pull-right">
                                          <button class="btn btn-template-main" id="btnAllCheckout"> 전체상품구매 <i class="fa fa-chevron-right"></i> </button>  
@@ -283,6 +298,14 @@ window.onload = function(){
         </div>
         <%-- /#content --%>
         
+      <!-- *** FOOTER *** -->
+      <jsp:include page="/layout/footer.jsp"/>
+      <!-- /#footer -->
+
+        <!-- *** FOOTER END *** -->
+    </div>
+    <!-- /#all -->
+        
     <%-- #### JAVASCRIPT FILES ### --%>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
@@ -295,6 +318,6 @@ window.onload = function(){
     <script src="/js/jquery.counterup.min.js"></script>
     <script src="/js/jquery.parallax-1.1.3.js"></script>
     <script src="/js/front.js"></script>
-
+  
 </body>
 </html>

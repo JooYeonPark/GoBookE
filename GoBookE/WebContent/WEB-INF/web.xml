@@ -44,7 +44,8 @@
 
   <filter-mapping>
     <filter-name>LoginCheckFilter</filter-name>
-    <url-pattern></url-pattern>
+    <url-pattern>/cart/list.do</url-pattern>
+    <url-pattern>/order/list.do</url-pattern>
   </filter-mapping>
   
   <!-- 웹브라우저 모든 요청에 대한 단일 진입점 역할의 Front Controller Servlet(메인서블릿) 등록 -->

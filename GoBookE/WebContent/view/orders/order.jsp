@@ -56,9 +56,53 @@
     #STATICMENU { margin: 0pt; padding: 0pt;  position: absolute; right: 0px; top: 0px;}
     </style>
     
-    <%-- 주소 API --%>
    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+  
   <script>
+  
+  window.onload = function(){
+	  getOrderUser();
+	
+	$(same).click(function(){
+		getOrderUser();
+	});
+	
+	$(different).click(function(){
+		orderUserRemove();
+	});
+  }
+  
+  function getOrderUser(){
+	  $("#order-name").val("${name}");
+		$("#receiver-name").val("${name}");
+		
+		$("#tel1 option:selected").text("${tel1}");
+		$("#tel2").val("${tel2}");
+		$("#tel3").val("${tel3}");
+		$("#order-tel1 option:selected").text("${tel1}");
+		$("#order-tel2").val("${tel2}");
+		$("#order-tel3").val("${tel3}");
+		
+		$("#address").val("${address}");
+		$("#addressDetail").val("${addressDetail}");
+  }
+  
+  function orderUserRemove(){
+	  $("#order-name").val("");
+		$("#receiver-name").val("");
+		
+		$("#tel1 option:selected").text("");
+		$("#tel2").val("");
+		$("#tel3").val("");
+		$("#order-tel1 option:selected").text("");
+		$("#order-tel2").val("");
+		$("#order-tel3").val("");
+		
+		$("#address").val("");
+		$("#addressDetail").val("");
+  }
+  
+  <%-- 주소 API --%>
       function daumPostcode() {
           new daum.Postcode({
               oncomplete: function(data) {
@@ -198,7 +242,7 @@
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label for="order-name">주문자</label>
-                                                    <input type="text" class="form-control" id="order-name">
+                                                    <input type="text" class="form-control" id="order-name" value="">
                                                 </div>
                                             </div>
                                       </div>  <%-- /.row --%>
@@ -230,10 +274,10 @@
                                                 </div><%-- ./col-sm-2 --%>
                                                 
                                                 <div class="col-sm-2 form-group">
-                                                   <input type="text" class="form-control" id="tel2">
+                                                   <input type="text" class="form-control" id="tel2" value="">
                                                 </div>
                                                 <div class="col-sm-2 form-group">
-                                                    <input type="text" class="form-control" id="tel3">
+                                                    <input type="text" class="form-control" id="tel3" value="">
                                                 </div>
                                       </div><%-- /.row --%>
                                      
@@ -251,15 +295,15 @@
                                   <div class="content">
                                       <div class="row">
                                           <div class="col-sm-6 form-group">
-                                            <label><input type="radio" name="same" value="same">주문자 정보와 동일</label>
-                                            <label><input type="radio" name="different" value="different" checked>새로운 배송지 정보</label>
+                                            <label><input type="radio" name="radio" id="same" value="same" checked>기존 배송지 정보와 동일</label>
+                                            <label><input type="radio" name="radio" id="different" value="different">새로운 배송지 정보</label>
                                           </div>
                                       </div>
                                       <div class="row">
                                           <div class="col-sm-3 form-group">
                                               <div class="form-group">
-                                                  <label for="order-name">주문자</label>
-                                                  <input type="text" class="form-control" id="order-name" name="order-name" required>
+                                                  <label for="order-name">수취인</label>
+                                                  <input type="text" class="form-control" id="order-name" name="receiver-name" value="" required >
                                               </div>
                                           </div>
                                       </div>
@@ -281,10 +325,10 @@
                                         
                                        <div class="row">
                                           <div class="col-sm-6 form-group">
-                                                 <input type="text" class="form-control" id="address" name="address" required>
+                                                 <input type="text" class="form-control" id="address" name="address" value="" required>
                                           </div>
                                           <div class="col-sm-6 form-group">
-                                                 <input type="text" class="form-control" id="addressDetail" name="addressDetail" required>
+                                                 <input type="text" class="form-control" id="addressDetail" name="addressDetail" value="" required>
                                                  <span id="guide" style="color:#999"></span>
                                           </div>
                                         </div><%-- /.row --%>
@@ -315,10 +359,10 @@
                                                 </div><%-- ./col-sm-2 --%>
                                                 
                                                 <div class="col-sm-2 form-group">
-                                                   <input type="text" class="form-control" id="order-tel2" name="order-tel2" required>
+                                                   <input type="text" class="form-control" id="order-tel2" name="order-tel2" value="" required>
                                                 </div>
                                                 <div class="col-sm-2 form-group">
-                                                    <input type="text" class="form-control" id="order-tel3" name="order-tel3" required>
+                                                    <input type="text" class="form-control" id="order-tel3" name="order-tel3" value="" required>
                                                 </div>
                                         </div><%-- /.form-group --%>
                                       </div><%-- /.row --%>
@@ -372,7 +416,7 @@
                                 
                                 <div class="box-footer">
                                     <div class="pull-left">
-                                        <a href="shop-basket.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to basket</a>
+                                      <a href="/cart/list.do" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to basket</a> 
                                     </div>
                                     <div class="pull-right">
                                         <button type="submit" class="btn btn-template-main">Submit<i class="fa fa-chevron-right"></i>
@@ -417,7 +461,6 @@
                                   </table>
                               </div>
                               
-                              <button type="submit" class="btn btn-template-main">ORDER<i class="fa fa-chevron-right"></i></button>
                           </div><%-- /.BOX --%>
   
                       </div>

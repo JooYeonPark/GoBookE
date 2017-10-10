@@ -206,8 +206,6 @@ private DataSource dataSource;
 			pstmt.setString(2, userId);
 			pstmt.setString(3, bookTitle);
 			
-			System.out.println("qty:"+qty+",userId:"+userId+",title:"+bookTitle);
-			
 			pstmt.executeUpdate();
 			System.out.println("Cart Update Complated");
 			

@@ -11,6 +11,7 @@ import kr.or.gobooke.cart.service.CartService;
 import kr.or.gobooke.cart.service.CartServiceImpl;
 import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
+import kr.or.gobooke.common.web.UserId;
 import kr.or.gobooke.orders.domain.Orders;
 import kr.or.gobooke.orders.service.OrdersService;
 import kr.or.gobooke.orders.service.OrdersServiceImpl;
@@ -26,8 +27,8 @@ public class OrdersController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 		ModelAndView mav = new ModelAndView();
-
-		String userId = "joo";
+		
+		String userId = new UserId().getUserId(request);
 		String name = request.getParameter("order-name");
 		String postcode = request.getParameter("postcode");
 		String address = request.getParameter("address");

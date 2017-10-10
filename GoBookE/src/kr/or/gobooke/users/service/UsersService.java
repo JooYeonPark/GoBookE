@@ -2,6 +2,7 @@ package kr.or.gobooke.users.service;
 
 import java.util.List;
 
+import kr.or.gobooke.users.domain.OrderUser;
 import kr.or.gobooke.users.domain.Users;
 
 /**
@@ -28,5 +29,8 @@ public interface UsersService {
 	
 	/** 회원 여부 반환 */
 	public Users isMember(String id, String passwd);
+	
+	/** 회원 정보 반환 */
+	public OrderUser getOrderUser(String userId);
 	
 }

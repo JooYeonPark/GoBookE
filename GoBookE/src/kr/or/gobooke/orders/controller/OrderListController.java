@@ -11,19 +11,23 @@ import kr.or.gobooke.cart.service.CartService;
 import kr.or.gobooke.cart.service.CartServiceImpl;
 import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
+import kr.or.gobooke.common.web.UserId;
+import kr.or.gobooke.users.domain.OrderUser;
+import kr.or.gobooke.users.service.UserServiceImpl;
+import kr.or.gobooke.users.service.UsersService;
 
 public class OrderListController implements Controller {
 	private CartService cartService = new CartServiceImpl();
-
+	private UsersService userService = new UserServiceImpl();
+	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 
 		ModelAndView mav = new ModelAndView();
-
+		String userId = new UserId().getUserId(request);
 		// 장바구니에서 클릭된 리스트의 cartNo을 받아옴
 		String clickedCartNo = request.getParameter("cartNoList");
-		String userId = "joo"; // Id 값 임의로 지정
 		List<CartList> cartList;
 
 		//전체 상품 구매
@@ -42,8 +46,6 @@ public class OrderListController implements Controller {
 			cartList = cartService.listSome(userId, cartNoList);
 		}
 
-		
-
 		// cart의 총 주문금액 반환
 		int total = 0;
 		for (CartList cart : cartList) {
@@ -53,11 +55,30 @@ public class OrderListController implements Controller {
 
 		// 배송비 추가
 		total += 2500;
+		
+		//회원 이름, 핸드폰, 주소 값 반환
+		OrderUser orderUser = userService.getOrderUser(userId);
+		String name = orderUser.getName();
+		String telephone = orderUser.getTelephone();
+		String address = orderUser.getaddress();
+		String addressDetail = orderUser.getaddressDetail();
+		
+		String[] sTel = telephone.split("-");
+		int[] tel = new int[sTel.length];
+
+		for (int i = 0; i < tel.length; i++) {
+			tel[i] = Integer.parseInt(sTel[i]);
+		}
 
 		mav.addObject("list", cartList);
 		mav.addObject("total", total);
 		mav.addObject("rowCount", cartList.size());
-		mav.addObject("cartNoList", clickedCartNo);
+		mav.addObject("name", name);
+		mav.addObject("tel1", tel[0]);
+		mav.addObject("tel2", tel[1]);
+		mav.addObject("tel3", tel[2]);
+		mav.addObject("address", address);
+		mav.addObject("addressDetail", addressDetail);
 		mav.setView("/view/orders/order.jsp");
 
 		return mav;

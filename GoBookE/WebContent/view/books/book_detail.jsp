@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -72,6 +73,19 @@
 				$("#displayStarRating").html(score);
 			}
 		});
+		
+		var defaultCount=1;
+		$("#directBuy").attr("href","/cart/add.do?bookNo="+${book.no}+"&cartBookQty="+defaultCount+"&view=cart");
+		
+		$('#count').change(function(){
+			var count=$("#count option:selected").text();
+			$("#directBuy").attr("href","/cart/add.do?bookNo="+${book.no}+"&cartBookQty="+count+"&view=cart");
+		});
+		
+		function getContextPath() {
+			var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+			return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+		};
 	});
 </script>
 </head>
@@ -154,14 +168,21 @@
                     </div>
 
                     <p class="price">가격 : ${book.price} 원</p>
-
+                    <div style="text-align: center; margin-bottom: 50px;">
+                    주문부수 :
+                    <select id="count">
+                      <c:forEach var="i" begin="1" end="10" step="1">
+                        <option>${i}</option>
+                      </c:forEach>
+                    </select>
+                    </div>
                     <p class="text-center">
-                      <button type="submit" class="btn btn-template-main">
+                      <a class="btn btn-template-main" id="directBuy">
                         <i class="fa fa-won"></i>바로 구매하기
-                      </button>
-                      <button type="submit" class="btn btn-template-main">
+                      </a>
+                      <a class="btn btn-template-main" id="inCart">
                         <i class="fa fa-shopping-cart"></i>장바구니에 담기
-                      </button>
+                      </a>
 
                     </p>
 

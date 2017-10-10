@@ -44,7 +44,7 @@ public class UserCertifyController implements Controller {
 			    if(referer != null)  { location = referer; }
 			    else { location = "/index.do"; }
 			}else{
-			  location = "/user/login.do";
+			  location = "/view/users/login.jsp";
 			}
 		}else {// 로그아웃
 			String user = null;

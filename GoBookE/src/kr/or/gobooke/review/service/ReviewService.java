@@ -32,5 +32,6 @@ public interface ReviewService {
 	public int reviewWrite(Review review);
 
 	public int deleteReview(int review_no);
-	
+
+
 }

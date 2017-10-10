@@ -63,11 +63,6 @@ public class OwnerOrderListController implements Controller {
 			params.setDateEnd(value);
 		}
 		
-		//관리자 id받아오기 - 로그인시
-		String userID = "bangry";
-		params.setType("userID");
-		params.setValue(userID);
-		
 		List<OwnerOrder> list = orderService.listByParams(params);
 		int rowCount = orderService.pageCount(params);
 		

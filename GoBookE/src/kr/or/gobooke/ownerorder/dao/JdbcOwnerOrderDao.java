@@ -87,6 +87,9 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 
 	@Override
 	public List<OwnerOrder> listByParams(OwnerOrderParams params) {
+		System.out.println("DAO parmas[start] : " + params.getDateStart());
+		System.out.println("DAO parmas[end] : " + params.getDateEnd());
+		
 		List<OwnerOrder> list = null;
 
 		Connection con = null;
@@ -108,21 +111,22 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 		sb.append("               OWNER_ORDER_QTY, ");
 		sb.append("               OWNER_ORDER_TOTALPRICE, ");
 		sb.append("               USER_ID, ");
-		sb.append("               OWNER_ORDER_DATE ");
+		sb.append("               To_char(OWNER_ORDER_DATE, 'YYYY/MM/DD') OWNER_ORDER_DATE ");
 		sb.append("        FROM   (SELECT OWNER_ORDER_NO, ");
 		sb.append("                       OWNER_ORDER_PUBLISHER, ");
 		sb.append("                       OWNER_ORDER_BOOKNAME, ");
 		sb.append("                       OWNER_ORDER_QTY, ");
 		sb.append("                       OWNER_ORDER_TOTALPRICE, ");
 		sb.append("                       USER_ID, ");
-		sb.append("                       To_char(OWNER_ORDER_DATE, 'YYYY/MM/DD') OWNER_ORDER_DATE ");
+		sb.append("                       OWNER_ORDER_DATE ");
 		sb.append("                FROM   OWNER_ORDER  ");
 
 		// 검색 유형별 WHERE 절 동적 추가
 		String type = params.getType();
 		String value = params.getValue();
+		
 		if (type != null) {
-			switch (params.getType()) {
+			switch (type) {
 			case "date":
 				sb.append(" WHERE OWNER_ORDER_DATE BETWEEN ? AND ? ");
 				break;
@@ -131,6 +135,7 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 		sb.append("                ORDER  BY OWNER_ORDER_DATE DESC))");
 		sb.append("WHERE  request_page = ?");
 
+		System.out.println("sql : " + sb.toString());
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sb.toString());
@@ -138,9 +143,14 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 
 			// 전체검색이 아닌경우 경우
 			if (type != null) {
-				pstmt.setString(2, params.getDateStart());
-				pstmt.setString(3, params.getDateEnd());
-				pstmt.setInt(4, params.getPage());
+				switch(type) {
+				case "date":
+					pstmt.setString(2, params.getDateStart());
+					pstmt.setString(3, params.getDateEnd());
+					pstmt.setInt(4, params.getPage());
+					break;
+				}
+				
 			} else {// 전체검색인 경우
 				pstmt.setInt(2, params.getPage());
 			}
@@ -213,11 +223,11 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 			pstmt = con.prepareStatement(sb.toString());
 			// 전체검색이 아닌경우 경우
 			if (type != null) {
-				if(type.equals("date")) {
+				switch(type) {
+				case "date":
 					pstmt.setString(1, params.getDateStart());
 					pstmt.setString(2, params.getDateEnd());
-				}else {
-					pstmt.setString(1, value);
+					break;
 				}
 			}
 

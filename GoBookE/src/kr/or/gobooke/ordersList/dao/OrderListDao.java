@@ -18,4 +18,5 @@ public interface OrderListDao {
 	
 	/** 주문항목 조회 */
 	public List<OrderList> search(int orderNo);
+
 }

@@ -117,5 +117,6 @@ public class OwnerOrder {
 		return "OwnerOrder [no=" + no + ", publisher=" + publisher + ", qty=" + qty + ", bookName=" + bookName
 				+ ", totalPrice=" + totalPrice + ", date=" + date + ", user_id=" + user_id + "]";
 	}
+
 	
 }

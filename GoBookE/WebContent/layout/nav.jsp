@@ -8,9 +8,9 @@
       <div class="navbar-header">
 
         <a class="navbar-brand home" href="index.html"> <img
-          src="img/logo.png" alt="Universal logo"
+          src="../img/logo.png" alt="Universal logo"
           class="hidden-xs hidden-sm"> <img
-          src="img/logo-small.png" alt="Universal logo"
+          src="../img/logo-small.png" alt="Universal logo"
           class="visible-xs visible-sm"><span class="sr-only">Universal
             - go to homepage</span>
         </a>

@@ -2,6 +2,7 @@ package kr.or.gobooke.review.service;
 
 import java.util.List;
 
+import kr.or.gobooke.common.web.Params;
 import kr.or.gobooke.review.domain.Review;
 import kr.or.gobooke.users.domain.Users;
 
@@ -23,5 +24,13 @@ public interface ReviewService {
 	
 	/** 리뷰 수정 */
 	public void update(Review review);
+	
+	public List<Review> getReviewList(Params params);
+
+	public int pageCount(Params params);
+
+	public int reviewWrite(Review review);
+
+	public int deleteReview(int review_no);
 	
 }

@@ -156,5 +156,5 @@ public class Book {
 				+ detail + ", price=" + price + ", image=" + image + ", regdate=" + regdate + ", qty=" + qty
 				+ ", categoryBigNo=" + categoryBigNo + ", categoryNo=" + categoryNo + ", grade=" + grade + "]";
 	}
-	
+
 }

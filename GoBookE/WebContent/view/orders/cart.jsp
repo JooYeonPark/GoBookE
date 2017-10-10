@@ -63,7 +63,10 @@
 window.onload = function(){
 	<%-- 선택상품 주문을 위해 cartNo들을 저장하는 변수 --%>
 	var clickedCartNo = new String;
+	console.log(clickedCartNo);
+	//var clickedCartNo = null;
 	
+	//항목 삭제
 	$(btnDelete).click(function(){
 		var sibling = $(this).parent().siblings();
 		var bookTitle = sibling.eq(2).text();
@@ -83,6 +86,7 @@ window.onload = function(){
 		})
 	});
 	
+	//수량 수정
 	$(btnEdit).click(function(){
 		var sibling = $(this).parent().siblings();
 		var bookTitle = sibling.eq(2).text();
@@ -110,14 +114,20 @@ window.onload = function(){
 		clickedCartNo += cartNo + ",";
 	});
 	
-	
-	$(btnCheckout).click(function(){
-		alert(clickedCartNo);
-		if(clickedCartNo!=null){
-			$(location).attr('href','/cart/list.do?cartNoList='+clickedCartNo);
-		}
+	//전체상품구매
+	$(btnAllCheckout).click(function(){
+		$(location).attr('href','/order/list.do');
 	});
 	
+	//선택상품구매
+	$(btnSomeCheckout).click(function(){
+		if(clickedCartNo == ""){ 
+			alert("선택 상품이 없습니다."); 
+		}
+		else{
+			$(location).attr('href','/order/list.do?cartNoList='+clickedCartNo+'&view=order');
+		}
+	});
 
 }
 
@@ -172,6 +182,7 @@ window.onload = function(){
                                                     <tr>
                                                         <td> <input type="checkbox" id="checkBox">
                                                         <input type="hidden" value="${list[status.index].cartNo}" id="cartNo">
+                                                        <input type="hidden" value="${list[status.index].cartNo}" id="cartNoList">
                                                         </td>
                                                         <td>
                                                             <a href="#">
@@ -215,7 +226,8 @@ window.onload = function(){
                                         <a href="#" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                                     </div>
                                     <div class="pull-right">
-                                         <button class="btn btn-template-main" id="btnCheckout"> CheckOut <i class="fa fa-chevron-right"></i> </button>  
+                                         <button class="btn btn-template-main" id="btnAllCheckout"> 전체상품구매 <i class="fa fa-chevron-right"></i> </button>  
+                                         <button class="btn btn-template-main" id="btnSomeCheckout"> 선택상품구매 <i class="fa fa-chevron-right"></i> </button>  
                                     </div>
                                 </div>
 
@@ -257,7 +269,7 @@ window.onload = function(){
                                   </table>
                               </div>
                               
-                               <button class="btn btn-template-main" id="btnCheckout"> CheckOut <i class="fa fa-chevron-right"></i> </button> 
+                             <!--  <button class="btn btn-template-main" id="btnCheckout"> CheckOut <i class="fa fa-chevron-right"></i> </button> --> 
                           </div><%-- /.BOX --%>
   
                       </div>

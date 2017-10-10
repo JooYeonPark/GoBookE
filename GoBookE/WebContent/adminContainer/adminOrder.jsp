@@ -38,7 +38,7 @@
 				};
 			var params = $.param(data);
 			$.ajax({
-				url : "/adminBookOrder.do",
+				url : "/admin/adminbookorder.do",
 				data : params,
 				success : function(data){
 					location.href = "/view/admin/orderslist.jsp";
@@ -54,7 +54,7 @@
 		var param = $.param(data);
 		//ajax요청...!
 		$.ajax({
-			url : "/searchBookname.do",
+			url : "/book/searchbookname.do",
 			data : param,
 			dataType : "json",
 			success : function(data) {

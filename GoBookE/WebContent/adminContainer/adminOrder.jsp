@@ -38,13 +38,12 @@
 					totalprice : total
 				};
 			var params = $.param(data);
-			$.ajax({
-				url : "/admin/adminbookorder.do",
-				data : params,
-				success : function(data){
-					location.href = "/view/admin/orderslist.jsp";
-				}
-			}); 
+			
+			var url = "/admin/adminbookorder.do?"+params;
+			window.location.replace(url);
+			
+			return false;
+			
 		});
 	});
 

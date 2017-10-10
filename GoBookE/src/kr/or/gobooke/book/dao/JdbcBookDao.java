@@ -60,7 +60,6 @@ public class JdbcBookDao implements BookDao {
 			pstmt.setInt(2, book.getNo());
 			
 			pstmt.executeUpdate();
-			System.out.println("Book Update Complated");
 			
 			con.commit();
 

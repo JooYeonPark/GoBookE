@@ -36,14 +36,15 @@ public class UserCertifyController implements Controller {
 				try {
 					userInfo = URLEncoder.encode(user.getId(), "utf-8");
 				} catch (UnsupportedEncodingException e) {
-					throw new ServletException("UserAuthController.handleRequest() 실행중 예외 발생", e);
+					throw new ServletException("UserCertifyController.handleRequest() 실행중 예외 발생", e);
 				}
 				Cookie loginCookie = new Cookie("user", userInfo);
 				loginCookie.setPath("/");
 				response.addCookie(loginCookie);
-			    if(referer != null)  location = referer;
+			    if(referer != null)  { location = referer; }
+			    else { location = "/index.do"; }
 			}else{
-			  location = "/user/login.mall";
+			  location = "/user/login.do";
 			}
 		}else {// 로그아웃
 			String user = null;

@@ -22,8 +22,7 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public void create(Cart cart) {
-		// TODO Auto-generated method stub
-		
+		cartDao.create(cart);
 	}
 
 	@Override

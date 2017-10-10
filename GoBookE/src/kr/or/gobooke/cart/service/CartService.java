@@ -13,7 +13,6 @@ import kr.or.gobooke.common.web.Params;
  *
  */
 public interface CartService {
-/** 기능은 따로 구현하시구 이변수명들은 변경하지 말아주세요.*/
 	
 	/** 카트 신규 등록 */
 	public void create(Cart cart);

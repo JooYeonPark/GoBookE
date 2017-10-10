@@ -42,8 +42,36 @@ private DataSource dataSource;
 	
 	@Override
 	public void create(Cart cart) {
-		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		StringBuilder sb = new StringBuilder();
 		
+		sb.append(" INSERT INTO cart(cart_no,    ");
+		sb.append(" 				 cart_book_qty,  ");
+		sb.append(" 				 user_id,  ");
+		sb.append(" 				 book_no)  ");
+		sb.append(" VALUES(cart_no_seq.nextval, ?, ?, ?)");
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			
+			pstmt.setInt(1, cart.getCartBookQty());
+			pstmt.setString(2, cart.getUserId());
+			pstmt.setInt(3, cart.getBookNo());
+			
+			pstmt.executeUpdate();
+			System.out.println("Cart Create Complated");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcCartDao.create 실행 중 예외발생", e);
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			} catch (Exception e) {}
+		}
 	}
 
 	@Override
@@ -304,6 +332,9 @@ private DataSource dataSource;
 		
 		//카트반환
 		//System.out.println(cartDao.getCart(1));
+		
+		//카트생성
+		cartDao.create(new Cart(4, 1, "joo"));
 	}
 	
 }

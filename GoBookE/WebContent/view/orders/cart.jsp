@@ -108,14 +108,14 @@ window.onload = function(){
 	$(checkBox).click(function(){
 		var cartNo = $(this).siblings().eq(0).val();
 		clickedCartNo += cartNo + ",";
-		alert(clickedCartNo);
 	});
 	
 	
 	$(btnCheckout).click(function(){
-	//	request.setParameter("cartNoList", "1,2");
-	//	request.getRequestDispatcher("/cartList.do").forward(request, response);
-	//document.location.href = "/cartList.do?cartNoList=1,2";
+		alert(clickedCartNo);
+		if(clickedCartNo!=null){
+			$(location).attr('href','/cart/list.do?cartNoList='+clickedCartNo);
+		}
 	});
 	
 
@@ -149,7 +149,7 @@ window.onload = function(){
                 <div class="row">
                     <div class="col-md-9 clearfix" id="basket">
                     	<div class="box"> 
-                            <form method="post" action="#">
+                            
                                 <div class="table-responsive">
                                     <table class="table">
                                        
@@ -215,13 +215,11 @@ window.onload = function(){
                                         <a href="#" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                                     </div>
                                     <div class="pull-right">
-                                        <button class="btn btn-template-main" id="btnCheckout"> CheckOut <i class="fa fa-chevron-right"></i> </button>
-                                       
+                                         <button class="btn btn-template-main" id="btnCheckout"> CheckOut <i class="fa fa-chevron-right"></i> </button>  
                                     </div>
                                 </div>
 
-                            </form>
-
+                            
                         </div>
                         <%-- /.box --%>
 
@@ -259,7 +257,7 @@ window.onload = function(){
                                   </table>
                               </div>
                               
-                              <button type="submit" class="btn btn-template-main">ORDER<i class="fa fa-chevron-right"></i></button>
+                               <button class="btn btn-template-main" id="btnCheckout"> CheckOut <i class="fa fa-chevron-right"></i> </button> 
                           </div><%-- /.BOX --%>
   
                       </div>

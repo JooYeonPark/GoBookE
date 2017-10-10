@@ -31,8 +31,10 @@ public class CartListController implements Controller {
 		//장바구니에서 클릭된 리스트의 cartNo을 받아옴
 		String clickedCartNo = request.getParameter("cartNoList");
 		String userId = "joo"; //Id 값 임의로 지정
+		String view = request.getParameter("view");
 		List<CartList> cartList;
 		
+		System.out.println("cartlistcontroller clickedCartNo:"+clickedCartNo);
 		if(clickedCartNo == null) {
 			cartList = cartService.listAll(userId);
 		}
@@ -63,10 +65,10 @@ public class CartListController implements Controller {
 		mav.addObject("rowCount", cartList.size());
 		mav.addObject("cartNoList", clickedCartNo);
 		
-		if(clickedCartNo == null) {
+		if(view.equals("cart")) {
 			mav.setView("/view/orders/cart.jsp");
 		}
-		else {
+		else if(view.equals("order")){
 			mav.setView("/view/orders/order.jsp");
 		}
 		

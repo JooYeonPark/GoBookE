@@ -18,6 +18,15 @@
 
 
       </div>
+      
+      <div class="row" id="external">
+        
+        
+        
+
+
+
+      </div>
       <!-- /.row -->
 
       <!-- *** BLOG HOMEPAGE END *** -->

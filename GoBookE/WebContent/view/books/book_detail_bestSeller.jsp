@@ -244,7 +244,7 @@
                                 <h3 class="panel-title">Categories</h3>
                             </div>
 
-                            div class="panel-body">
+                            <div class="panel-body">
                 <ul class="nav nav-pills nav-stacked category-menu">
                   <li><a href="shop-category.html">국내도서</a>
                     <ul>

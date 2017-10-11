@@ -65,6 +65,9 @@
     
     <script type="text/javascript" src="js/jquery.xdomainajax.js"></script>
     <script>
+    String.prototype.replaceAll = function(org, dest) {
+        return this.split(org).join(dest);
+    }
   $(function(){
     $.ajax({
         url : "http://book.interpark.com/api/bestSeller.api?key=AD05009D9D975D46B742B91DF4D0F5663FEC24E72F5BFCA7A16ED288A972F90C&categoryId=100",
@@ -75,6 +78,8 @@
           xmlDoc=$.parseXML(myXML);
           var output = "";
           $(xmlDoc).find("item").each(function(index){
+        	  var test=$(this).find("title").text();
+        	  var title=test.replaceAll("&","%26").replaceAll("+","%2B");
             output += "<div class=\"col-md-3 col-sm-6\">";
             output += "<div class=\"box-image-text blog\">";
               output += "<div class=\"top\">";
@@ -84,19 +89,19 @@
               output += "<div class=\"bg\"></div>";
               output += "<div class=\"text\">";
               output += "<p class=\"buttons\">";
-              output += "<a href=\"book/bestSellerDetail.do?categoryId=100&title="+$(this).find("title").text()+"\" class=\"btn btn-template-transparent-primary\"><i class=\"fa fa-link\"></i>자세히 보기</a>";
+              output += "<a href=\"book/bestSellerDetail.do?categoryId=100&title="+title+"\" class=\"btn btn-template-transparent-primary\"><i class=\"fa fa-link\"></i>자세히 보기</a>";
               output += "</p>";
               output += "</div></div>";
               output += "<div class=\"content\">";
               output += "<h4>";
-              output += "<a href=\"/book/bestSellerDetail.do?categoryId=100&title="+$(this).find("title").text()+"\">"+$(this).find("title").text()+"</a>";
+              output += "<a href=\"/book/bestSellerDetail.do?categoryId=100&title="+title+"\">"+$(this).find("title").text()+"</a>";
               output += "</h4>";
               output += "<p class=\"author-category\">";
               output += "By <a href=\"#\">"+$(this).find("author").text()+"</a>";
               output += "</p>";
               output += "<p class=\"intro\"></p>";
               output += "<p class=\"read-more\">";
-              output += "<a href=\"book/bestSellerDetail.do?categoryId=100&title="+$(this).find("title").text()+"\" class=\"btn btn-template-main\">상세보기</a>";
+              output += "<a href=\"book/bestSellerDetail.do?categoryId=100&title="+title+"\" class=\"btn btn-template-main\">상세보기</a>";
               output += "</p>";
               output += "</div>";
               output += "</div>";
@@ -119,6 +124,8 @@
           xmlDoc=$.parseXML(myXML);
           var output = "";
           $(xmlDoc).find("item").each(function(index){
+        	  var test=$(this).find("title").text();
+        	  var title=test.replaceAll("&","%26").replaceAll("+","%2B");
             output += "<div class=\"col-md-3 col-sm-6\">";
             output += "<div class=\"box-image-text blog\">";
               output += "<div class=\"top\">";
@@ -128,19 +135,19 @@
               output += "<div class=\"bg\"></div>";
               output += "<div class=\"text\">";
               output += "<p class=\"buttons\">";
-              output += "<a href=\"book/bestSellerDetail.do?categoryId=200&title="+$(this).find("title").text()+"\" class=\"btn btn-template-transparent-primary\"><i class=\"fa fa-link\"></i>자세히 보기</a>";
+              output += "<a href=\"book/bestSellerDetail.do?categoryId=200&title="+title+"\" class=\"btn btn-template-transparent-primary\"><i class=\"fa fa-link\"></i>자세히 보기</a>";
               output += "</p>";
               output += "</div></div>";
               output += "<div class=\"content\">";
               output += "<h4>";
-              output += "<a href=\"/book/bestSellerDetail.do?categoryId=200&title="+$(this).find("title").text()+"\">"+$(this).find("title").text()+"</a>";
+              output += "<a href=\"/book/bestSellerDetail.do?categoryId=200&title="+title+"\">"+$(this).find("title").text()+"</a>";
               output += "</h4>";
               output += "<p class=\"author-category\">";
               output += "By <a href=\"#\">"+$(this).find("author").text()+"</a>";
               output += "</p>";
               output += "<p class=\"intro\"></p>";
               output += "<p class=\"read-more\">";
-              output += "<a href=\"book/bestSellerDetail.do?categoryId=200&title="+$(this).find("title").text()+"\" class=\"btn btn-template-main\">상세보기</a>";
+              output += "<a href=\"book/bestSellerDetail.do?categoryId=200&title="+title+"\" class=\"btn btn-template-main\">상세보기</a>";
               output += "</p>";
               output += "</div>";
               output += "</div>";

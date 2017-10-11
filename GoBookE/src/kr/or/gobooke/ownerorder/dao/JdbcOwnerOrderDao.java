@@ -125,7 +125,7 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 		if (type != null) {
 			switch (type) {
 			case "date":
-				sb.append(" WHERE OWNER_ORDER_DATE BETWEEN ? AND ? ");
+				sb.append(" where OWNER_ORDER_DATE  >= to_date( ? , 'YY/MM/DD') and OWNER_ORDER_DATE  <= to_date( ? , 'YY/MM/DD HH24:MI:SS')");
 				break;
 			}
 		}
@@ -142,7 +142,8 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 				switch(type) {
 				case "date":
 					pstmt.setString(2, params.getDateStart());
-					pstmt.setString(3, params.getDateEnd());
+					String end = params.getDateEnd() + " 23:59:59";
+					pstmt.setString(3, end);
 					pstmt.setInt(4, params.getPage());
 					break;
 				}
@@ -210,7 +211,7 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 		if (type != null) {
 			switch (params.getType()) {
 			case "date":
-				sb.append(" WHERE OWNER_ORDER_DATE BETWEEN ? AND ? ");
+				sb.append(" where OWNER_ORDER_DATE  >= to_date( ? , 'YY/MM/DD') and OWNER_ORDER_DATE  <= to_date( ? , 'YY/MM/DD HH24:MI:SS')");
 				break;
 			}
 		}
@@ -222,7 +223,8 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 				switch(type) {
 				case "date":
 					pstmt.setString(1, params.getDateStart());
-					pstmt.setString(2, params.getDateEnd());
+					String end = params.getDateEnd() + " 23:59:59";
+					pstmt.setString(2, end);
 					break;
 				}
 			}

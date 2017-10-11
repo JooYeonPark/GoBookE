@@ -158,7 +158,7 @@ $(function(){
             <c:otherwise>
               <c:forEach items="${list}" var="ownerOrder" varStatus="status">
                <tr>
-               <td>${rowCount - ((params.page-1)*10) - status.index+1}</td>
+               <td>${rowCount - ((params.page-1)*10) - status.index}</td>
                <td>${ownerOrder.bookName}</td>
                <td>${ownerOrder.publisher}</td>
                <td>${ownerOrder.qty}</td>

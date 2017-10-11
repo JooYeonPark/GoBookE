@@ -150,18 +150,6 @@
                     <div class="col-md-7">
                         <h1>책 상세정보</h1>
                     </div>
-                    <div class="col-md-5">
-                        <ul class="breadcrumb">
-                            <li><a href="index.html">Home</a>
-                            </li>
-                            <li><a href="shop-category.html">Ladies</a>
-                            </li>
-                            <li><a href="shop-category.html">Tops</a>
-                            </li>
-                            <li>상세정보</li>
-                        </ul>
-
-                    </div>
                 </div>
             </div>
         </div>

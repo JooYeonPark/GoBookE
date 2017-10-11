@@ -93,12 +93,17 @@ window.onload = function(){
 		sibling = $(this).siblings();
 		var qty = sibling.eq(0).val();
 		
+		var price = $(this).parent().siblings().eq(3).text();
+		var Booktotal = price * qty;
+		
 		$.ajax({
 			url : "/func/updateCart.jsp",
 			data : "userId=${cookie.user.value}"+"&qty="+qty+"&bookTitle="+bookTitle,
 			success : function(data){
 				alert("수정완료");
 				sibling.eq(0).val(qty);
+				$("#total").text(${total});
+				$("#bookTotalPrice").text(Booktotal);
 			},
 			error : function(xhr, statusText){
 				console.log("("+xhr.status+", "+statusText+")");
@@ -211,16 +216,17 @@ window.onload = function(){
                                                             <button class="btn btn-default btn-sm" id="btnEdit">EDIT</button>
                                                         </td>
                                                         <td>${list[status.index].bookPrice}</td>
-                                                        <td>${list[status.index].bookTotalPrice}</td>
+                                                        <td id="bookTotalPrice">${list[status.index].bookTotalPrice}</td>
                                                         <td><i class="fa fa-trash-o" id="btnDelete"></i></td>
                                                     </tr>
+                                                    </tbody>
                                                   </c:forEach>
-                                                 </tbody>
+                                                 
                                                  
                                                  <tfoot>
                                                     <tr>
                                                        <th colspan="5">Total</th>
-                                                       <th colspan="2">${total-2500} </th>
+                                                       <th colspan="2" id="total">${total-2500}</th>
                                                     </tr>
                                                  </tfoot>
                                                </c:if> 

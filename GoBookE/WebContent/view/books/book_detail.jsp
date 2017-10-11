@@ -162,9 +162,17 @@
                     </c:if>
                     주문부수 :
                     <select id="count">
-                      <c:forEach var="i" begin="1" end="10" step="1">
+                      <c:if test="${book.qty < 10}">
+                       <c:forEach var="i" begin="1" end="${book.qty-1}" step="1">
                         <option>${i}</option>
                       </c:forEach>
+                      </c:if>
+                      <c:if test="${book.qty >= 10}">
+                       <c:forEach var="i" begin="1" end="10" step="1">
+                        <option>${i}</option>
+                      </c:forEach>
+                      </c:if>
+                      
                     </select>
                     </div>
                     <p class="text-center">

@@ -31,8 +31,6 @@
           <a href="/cart/list.do"><i class="fa fa-shopping-cart"></i><span class="hidden-xs text-uppercase">Cart</span></a>
           </c:otherwise>
         </c:choose>
-          <a href="/cart/list.do"><i class="fa fa-shopping-cart"></i>
-            <span class="hidden-xs text-uppercase">Cart</span></a>
         </div>
 
       </div>

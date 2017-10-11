@@ -565,7 +565,7 @@ public class JdbcBookDao implements BookDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql="select * from book where category_big_no=1 order by book_regdate";
+		String sql="select * from book where category_big_no=1 order by book_regdate DESC";
 		
 		try {
 			con = dataSource.getConnection();
@@ -598,7 +598,7 @@ public class JdbcBookDao implements BookDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql="select * from book where category_big_no=2 order by book_regdate";
+		String sql="select * from book where category_big_no=2 order by book_regdate DESC";
 		
 		try {
 			con = dataSource.getConnection();

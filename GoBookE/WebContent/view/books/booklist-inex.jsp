@@ -82,7 +82,7 @@
                       <div class="col-md-4">
                         <div class="image">
                           <a href="${pageContext.servletContext.contextPath}/book/bookDetail.do?book_no=${book.no}"> 
-                          <img src="/img/books/${u:decode(book.image)}" class="img-responsive" alt="${book.image}">
+                          <img src="/img/books/${u:decode(book.image)}" class="img-responsive" alt="${book.image} 사진 준비중">
                           </a>
                         </div>
                       </div>

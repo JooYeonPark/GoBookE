@@ -25,12 +25,3 @@
 
 </div>
 
-<!-- banner -->
-<div class="banner">
-  <a href="shop-category.html"> <img src="img/banner.jpg"
-    alt="welcome admin" class="img-responsive">
-  </a>
-</div>
-
-
-<!-- /.banner -->

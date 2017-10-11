@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="u" uri="/WEB-INF/util-functions.tld" %>
+<%@page import="java.net.URLDecoder"%>
+
 <!DOCTYPE>
 <html>
 <head>
@@ -179,18 +182,6 @@
                                 <div id="mainImage">
                                     <img id="bookImg" style="width: 450px; height: 678px;"alt="" class="img-responsive">
                                 </div>
-
-                                <div class="ribbon sale">
-                                    <div class="theribbon">SALE</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon -->
-
-                                <div class="ribbon new">
-                                    <div class="theribbon">NEW</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon -->
 
                             </div>
                             <div class="col-sm-6">

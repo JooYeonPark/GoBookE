@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="u" uri="/WEB-INF/util-functions.tld" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -11,7 +12,7 @@
 <meta name="googlebot" content="index,follow,snippet,archive">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Universal - All In 1 Template</title>
+<title>GoBook-E 도서 상세보기</title>
 
 <meta name="keywords" content="">
 
@@ -136,35 +137,21 @@
             <div class="row" id="productMain">
               <div class="col-sm-6">
                 <div id="mainImage">
-                  <img src="../../img/books/${book.image }" alt="" class="img-responsive">
+                  <img src="/img/books/${u:decode(book.image)}" alt="${book.image} 사진 준비중" class="img-responsive">
                 </div>
-
-                <div class="ribbon sale">
-                  <div class="theribbon">SALE</div>
-                  <div class="ribbon-background"></div>
-                </div>
-                <!-- /.ribbon -->
-
-                <div class="ribbon new">
-                  <div class="theribbon">NEW</div>
-                  <div class="ribbon-background"></div>
-                </div>
-                <!-- /.ribbon -->
-
               </div>
+              
               <div class="col-sm-6">
                 <div class="box">
 
                   <form>
                     <div class="sizes">
-
                       <h3>${book.title}</h3>
                       <h5>저자:${book.author}</h5>
                       <h5>출판사:${book.publisher}</h5>
                       <h5>출판일:${book.regdate}</h5>
                       <h5>재고량:${book.qty }</h5>
                       <h5>평점 : <fmt:formatNumber value="${book.grade}" pattern=".0"/></h5>
-
                     </div>
 
                     <p class="price">가격 : ${book.price} 원</p>

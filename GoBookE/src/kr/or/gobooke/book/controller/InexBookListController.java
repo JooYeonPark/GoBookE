@@ -61,7 +61,6 @@ public class InexBookListController implements Controller {
 		mav.addObject("params", params);
 		mav.addObject("pageBuilder", pageBuilder);
 
-		// mav.setView("/user/list_v1.jsp");
 		mav.setView("/view/books/booklist-inex.jsp");
 
 		return mav;

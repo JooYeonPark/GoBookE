@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="u" uri="/WEB-INF/util-functions.tld" %>
+<%@page import="java.net.URLDecoder"%>
+
 <!DOCTYPE>
 <html>
 <head>
@@ -10,7 +13,7 @@
 <meta name="googlebot" content="index,follow,snippet,archive">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Universal - All In 1 Template</title>
+<title>GoBook-E 도서</title>
 
 <meta name="keywords" content="">
 
@@ -78,7 +81,8 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="image">
-                          <a href="${pageContext.servletContext.contextPath}/book/bookDetail.do?book_no=${book.no}"> <img src="../../img/books/${book.image}" class="img-responsive" alt="Example blog post alt">
+                          <a href="${pageContext.servletContext.contextPath}/book/bookDetail.do?book_no=${book.no}"> 
+                          <img src="/img/books/${u:decode(book.image)}" class="img-responsive" alt="${book.image}">
                           </a>
                         </div>
                       </div>

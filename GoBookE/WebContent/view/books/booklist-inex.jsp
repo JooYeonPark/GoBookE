@@ -97,7 +97,7 @@
                         <p class="intro">${book.detail}</p>
 
                         <p class="read-more">
-                          <a href="blog-post.html" class="btn btn-template-main"><i class="fa fa-won"></i>바로구매하기</a> <a href="blog-post.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>장바구니에담기</a>
+                          <a href="blog-post.html" class="btn btn-template-main"><i class="fa fa-won"></i>바로구매하기</a> <a href="${pageContext.servletContext.contextPath}/cart/add.do?bookNo=${book.no}&cartBookQty=1" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>장바구니에담기</a>
                         </p>
 
                       </div>

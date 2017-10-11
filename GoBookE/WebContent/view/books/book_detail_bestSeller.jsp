@@ -262,20 +262,20 @@
  _________________________________________________________ -->
                         <div class="panel panel-default sidebar-menu">
 
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Categories</h3>
-                            </div>
+              <div class="panel-heading">
+                <h3 class="panel-title">Categories</h3>
+              </div>
 
-                            <div class="panel-body">
+              <div class="panel-body">
                 <ul class="nav nav-pills nav-stacked category-menu">
-                  <li><a href="shop-category.html">국내도서</a>
+                  <li>국내도서
                     <ul>
                       <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=1">소설</a></li>
                       <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=2">참고서</a></li>
                       <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=3">만화</a></li>
                       <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=1&category_no=4">잡지</a></li>
                     </ul></li>
-                  <li class="active"><a href="shop-category.html">외국도서</a>
+                  <li>외국도서
                     <ul>
                       <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=1">영미도서</a></li>
                       <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=2">일본도서</a></li>
@@ -285,7 +285,7 @@
                 </ul>
 
               </div>
-                        </div>
+            </div>
 
                       
 

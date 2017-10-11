@@ -198,12 +198,14 @@ public class JdbcOrdersDao implements OrdersDao {
 			}
 			
 			if(startDate != null && endDate != null) {
-				sb.append(" AND ORDER_DATE BETWEEN ? AND ? ");
+				sb.append(" AND OWNER_ORDER_DATE  >= to_date( ? , 'YY/MM/DD') and OWNER_ORDER_DATE  <= to_date( ? , 'YY/MM/DD HH24:MI:SS')");
+				
 			}
 			
 		}else {
 			if(startDate != null && endDate != null) {
-				sb.append(" WHERE ORDER_DATE BETWEEN ? AND ? ");
+				sb.append(" where OWNER_ORDER_DATE  >= to_date( ? , 'YY/MM/DD') and OWNER_ORDER_DATE  <= to_date( ? , 'YY/MM/DD HH24:MI:SS')");
+				
 			}
 		}
 		
@@ -221,7 +223,8 @@ public class JdbcOrdersDao implements OrdersDao {
 				
 				if(startDate != null && endDate != null) {
 					pstmt.setString(3, params.getDateStart());
-					pstmt.setString(4, params.getDateEnd());
+					String end = params.getDateEnd() + " 23:59:59";
+					pstmt.setString(4, end);
 					pstmt.setInt(5, params.getPage());
 				}else {
 					pstmt.setInt(3, params.getPage());
@@ -229,7 +232,8 @@ public class JdbcOrdersDao implements OrdersDao {
 			}else {
 				if(startDate != null && endDate != null) {
 					pstmt.setString(2, params.getDateStart());
-					pstmt.setString(3, params.getDateEnd());
+					String end = params.getDateEnd() + " 23:59:59";
+					pstmt.setString(3, end);
 					pstmt.setInt(4, params.getPage());
 				}else {
 					pstmt.setInt(2, params.getPage());

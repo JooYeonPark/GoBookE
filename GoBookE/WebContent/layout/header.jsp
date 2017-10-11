@@ -27,10 +27,11 @@
           <c:otherwise>
           <a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase"><strong>${u:decode(cookie.user.value) }</strong>님 환영합니다.</span></a> 
           <a class="glyphicon glyphicon-log-out" href="${pageContext.servletContext.contextPath}/user/certify.do">LOGOUT</a> 
+          <a href="/user/info.do"><i class="glyphicon glyphicon-user"></i><span class="hidden-xs text-uppercase">MyPage</span></a>
+          <a href="/order/list.do"><i class="fa fa-shopping-cart"></i><span class="hidden-xs text-uppercase">Cart</span></a>
           </c:otherwise>
         </c:choose>
-          <a href="/order/list.do"><i class="fa fa-shopping-cart"></i>
-            <span class="hidden-xs text-uppercase">Cart</span></a>
+          
         </div>
 
       </div>

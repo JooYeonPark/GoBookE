@@ -27,7 +27,6 @@ import kr.or.gobooke.ordersList.service.OrderListServiceImpl;
 public class UserOrderListController implements Controller {
 	
 	private OrdersService orderService = new OrdersServiceImpl();
-	private OrderListService orderListService = new OrderListServiceImpl();
 	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)	throws ServletException {

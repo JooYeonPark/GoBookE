@@ -115,10 +115,6 @@
     <script src="js/jquery.parallax-1.1.3.js"></script>
     <script src="js/front.js"></script>
 
-    
-
-
-
 </body>
 
 </html>

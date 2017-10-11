@@ -28,11 +28,6 @@ $(function(){
 
   <h3>도서 재고</h3>
   
-  <!-- 검색..?조건들 나열 -->
-  <fieldset>
-    
-  </fieldset>
-
   <fieldset>
   <div class="box">
     <div class="table-responsive" id="bookStock">

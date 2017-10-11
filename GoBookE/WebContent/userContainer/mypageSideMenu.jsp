@@ -9,7 +9,7 @@
   <div class="panel-body" id="sideNav">
     <ul class="nav nav-pills nav-stacked category-menu">
       <li class="active"><a href=""> 정보 수정 </a></li>
-      <li class=""><a href=""> 주문내역 조회</a></li>
+      <li class=""><a href="/order/userorderlist.do"> 주문내역 조회</a></li>
     </ul>
   </div>
 

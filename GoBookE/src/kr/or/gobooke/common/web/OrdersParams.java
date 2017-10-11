@@ -4,9 +4,9 @@ package kr.or.gobooke.common.web;
  * 여러개의 요청파라메터들을 저장(포장)하기 위한 JavaBean
  * {사용자 선택페이지, 검색유형, 검색값, 한페이지에 출력하는 행의 갯수, 페이지 번호 등}
  *  
- * @author 김기정
+ * @author 김수진
  */
-public class OwnerOrderParams {
+public class OrdersParams {
 	private int page;         /** 사용자 요청 페이지 */
 	private String type;      /** 사용자 검색 유형 */
 	private String value;     /** 사용자 검색 값 */
@@ -15,11 +15,11 @@ public class OwnerOrderParams {
 	private String dateStart;
 	private String dateEnd;
 	
-	public OwnerOrderParams() {
+	public OrdersParams() {
 		this(1, null, null, 10, 10, null, null);
 	}
 	
-	public OwnerOrderParams(int page, String type, String value, int pageSize, int pageNum, String dateStart, String dateEnd) {
+	public OrdersParams(int page, String type, String value, int pageSize, int pageNum, String dateStart, String dateEnd) {
 		this.page = page;
 		this.type = type;
 		this.value = value;

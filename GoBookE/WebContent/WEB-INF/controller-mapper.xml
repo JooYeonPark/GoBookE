@@ -7,10 +7,11 @@
 	<!-- 주문 관련 세부 컨트롤러 등록 -->
 	<bean name="/order" class="kr.or.gobooke.orders.controller.OrdersController"></bean>
 	<bean name="/order/list" class="kr.or.gobooke.orders.controller.OrderListController"></bean> 
+	<bean name="/order/userorderlist" class="kr.or.gobooke.orders.controller.UserOrderListController"></bean> 
 	
 	<!-- 관리자 관련 세부컨트롤러 등록 -->
 	<bean name="/admin/adminbookorder" class="kr.or.gobooke.ownerorder.controller.BookOrderController" /><!-- 발주 -->
-	<bean name="/admin/adminbookorderlist" class="kr.or.gobooke.ownerorder.controller.OwnerOrderListController" /><!-- 발주 -->
+	<bean name="/admin/adminbookorderlist" class="kr.or.gobooke.ownerorder.controller.OwnerOrderListController" /><!-- 발주 리스트 -->
 	
 	<!-- 책관련 리스트 -->
 	<bean name="/book/searchbookname" class="kr.or.gobooke.book.controller.BookNameController" /><!-- 북제목 리스트 -->

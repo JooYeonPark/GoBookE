@@ -11,6 +11,7 @@ import kr.or.gobooke.book.service.BookService2;
 import kr.or.gobooke.book.service.BookServiceImpl2;
 import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
+import kr.or.gobooke.common.web.UserId;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 import kr.or.gobooke.ownerorder.service.OwnerOrderService;
 import kr.or.gobooke.ownerorder.service.OwnerOrderServiceImpl;
@@ -47,7 +48,8 @@ public class BookOrderController implements Controller {
 		
 		//발주 리스트에 추가.
 		//나중에 user_id 로그인에서 받아오기.
-		OwnerOrder ownerOrder = new OwnerOrder(book.getPublisher(), qty, book.getTitle(), totalprice, "bangry11");
+		String userid = new UserId().getUserId(request);
+		OwnerOrder ownerOrder = new OwnerOrder(book.getPublisher(), qty, book.getTitle(), totalprice, userid);
 		orderService.create(ownerOrder);
 		
 		//book update - book_qty에 수량 추가

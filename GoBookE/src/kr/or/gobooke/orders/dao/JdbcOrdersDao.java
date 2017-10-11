@@ -14,7 +14,9 @@ import kr.or.gobooke.cart.dao.JdbcCartDao;
 import kr.or.gobooke.cart.domain.CartList;
 import kr.or.gobooke.common.db.DaoFactory;
 import kr.or.gobooke.common.exception.MallException;
+import kr.or.gobooke.common.web.OrdersParams;
 import kr.or.gobooke.orders.domain.Orders;
+import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 
 /**
  * 주문 데이터베이스 처리 인터페이스
@@ -97,12 +99,6 @@ public class JdbcOrdersDao implements OrdersDao {
 	}
 
 	@Override
-	/** 주문조회 */
-	public Orders search(Orders no) {
-		return null;
-	}
-
-	@Override
 	/** 주문번호 조회 */
 	public int searchOrderNo(Orders order) {
 		Connection connection = null;
@@ -147,11 +143,217 @@ public class JdbcOrdersDao implements OrdersDao {
 
 		return orderNo;
 	}
-
+	
+	
 	@Override
-	/** 주문 기간별 조회 */
-	public List<Orders> search(String userId, String startDate, String endDate) {
-		return null;
+	public List<Orders> listByParams(OrdersParams params) {
+		List<Orders> list = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT ORDER_NO, ");
+		sb.append("       ORDER_TOTALPRICE ,");
+		sb.append("       ORDER_USER_NAME, ");
+		sb.append("       ORDER_ADDRESS, ");
+		sb.append("       ORDER_ADDRESS_DETAIL, ");
+		sb.append("       ORDER_MESSAGE, ");
+		sb.append("       ORDER_TELEPHONE, ");
+		sb.append("       USER_ID, ");
+		sb.append("       ORDER_DATE ");
+		sb.append("FROM   (SELECT Ceil(rownum / ?) request_page, ");
+		sb.append("               ORDER_NO, ");
+		sb.append("               ORDER_TOTALPRICE, ");
+		sb.append("               ORDER_USER_NAME, ");
+		sb.append("               ORDER_ADDRESS, ");
+		sb.append("               ORDER_ADDRESS_DETAIL, ");
+		sb.append("               ORDER_MESSAGE, ");
+		sb.append("               ORDER_TELEPHONE, ");
+		sb.append("               USER_ID, ");
+		sb.append("               To_char(ORDER_DATE, 'YYYY-MM-DD') ORDER_DATE ");
+		sb.append("        FROM   (SELECT ORDER_NO, ");
+		sb.append("                       ORDER_TOTALPRICE, ");
+		sb.append("                       ORDER_USER_NAME, ");
+		sb.append("                       ORDER_ADDRESS, ");
+		sb.append("                       ORDER_ADDRESS_DETAIL, ");
+		sb.append("                       ORDER_MESSAGE, ");
+		sb.append("                       ORDER_TELEPHONE, ");
+		sb.append("                       USER_ID, ");
+		sb.append("                       ORDER_DATE ");
+		sb.append("                FROM   ORDERS  ");
+
+		// 검색 유형별 WHERE 절 동적 추가
+		String type = params.getType();
+		String value = params.getValue();
+		String startDate = params.getDateStart();
+		String endDate = params.getDateEnd();
+		
+		if (type != null) {
+			switch (type) {
+			case "userID":
+				sb.append(" WHERE USER_ID = ? ");
+				break;
+			}
+			
+			if(startDate != null && endDate != null) {
+				sb.append(" AND ORDER_DATE BETWEEN ? AND ? ");
+			}
+			
+		}else {
+			if(startDate != null && endDate != null) {
+				sb.append(" WHERE ORDER_DATE BETWEEN ? AND ? ");
+			}
+		}
+		
+		
+		sb.append("                ORDER  BY ORDER_DATE DESC))");
+		sb.append("WHERE  request_page = ?");
+
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setInt(1, params.getPageSize());
+
+			if (type != null) {
+				pstmt.setString(2, value);
+				
+				if(startDate != null && endDate != null) {
+					pstmt.setString(3, params.getDateStart());
+					pstmt.setString(4, params.getDateEnd());
+					pstmt.setInt(5, params.getPage());
+				}else {
+					pstmt.setInt(3, params.getPage());
+				}
+			}else {
+				if(startDate != null && endDate != null) {
+					pstmt.setString(2, params.getDateStart());
+					pstmt.setString(3, params.getDateEnd());
+					pstmt.setInt(4, params.getPage());
+				}else {
+					pstmt.setInt(2, params.getPage());
+				}
+			}
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<Orders>();
+
+			while (rs.next()) {
+				Orders order = createOrder(rs);
+				list.add(order);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcOrder.listByParams(OrderParams params) 실행 중 예외발생", e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (Exception e) {
+			}
+		}
+		return list;
+	}
+	
+	public Orders createOrder(ResultSet rs) throws SQLException{
+		Orders order = null;
+		
+		int no = rs.getInt("ORDER_NO");
+		int totalprice = rs.getInt("ORDER_TOTALPRICE");
+		String userName = rs.getString("ORDER_USER_NAME");
+		String address = rs.getString("ORDER_ADDRESS");
+		String addressDetail = rs.getString("ORDER_ADDRESS_DETAIL");
+		String message = rs.getString("ORDER_MESSAGE");
+		String telephone = rs.getString("ORDER_TELEPHONE");
+		String userId = rs.getString("USER_ID");
+		String date = rs.getString("ORDER_DATE");
+
+		order = new Orders(no, totalprice, userName, date, address, addressDetail, message, telephone, userId);
+
+		return order;
+	}
+	
+	@Override
+	public int pageCount(OrdersParams params) {
+		int count = 0;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(" SELECT COUNT(ORDER_NO) count");
+		sb.append(" FROM   ORDERS");
+
+		// 검색 유형별 WHERE 절 동적 추가
+		String type = params.getType();
+		String value = params.getValue();
+		String startDate = params.getDateStart();
+		String endDate = params.getDateEnd();
+		
+		if (type != null) {
+			switch (type) {
+			case "userID":
+				sb.append(" WHERE USER_ID = ? ");
+				break;
+			}
+			
+			if(startDate != null && endDate != null) {
+				sb.append(" AND ORDER_DATE BETWEEN ? AND ? ");
+			}
+			
+		}else {
+			if(startDate != null && endDate != null) {
+				sb.append(" WHERE ORDER_DATE BETWEEN ? AND ? ");
+			}
+		}
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			
+			// 전체검색이 아닌경우 경우
+			if (type != null) {
+				pstmt.setString(1, value);
+				
+				if(startDate != null && endDate != null) {
+					pstmt.setString(2, startDate);
+					pstmt.setString(3, endDate);
+				}
+			}else {
+				if(startDate != null && endDate != null) {
+					pstmt.setString(1, startDate);
+					pstmt.setString(2, endDate);
+				}
+			}
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcOwnerOrder.pageCount(OrderParams params) 실행 중 예외발생", e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (Exception e) {
+			}
+		}
+		
+		return count;
 	}
 
 	// 단위테스트
@@ -162,4 +364,6 @@ public class JdbcOrdersDao implements OrdersDao {
 		int no = ordersDao.create(order);
 		System.out.println("no:"+no);
 	}
+
+	
 }

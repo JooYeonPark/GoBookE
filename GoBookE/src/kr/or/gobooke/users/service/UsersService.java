@@ -27,5 +27,7 @@ public interface UsersService {
 	
 	/** 회원 정보 반환 */
 	public OrderUser getOrderUser(String userId);
+
+	public void userUpdate(String passwd, String address, String addressDetail, String userId);
 	
 }

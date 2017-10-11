@@ -27,7 +27,7 @@ public class OrdersController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 		ModelAndView mav = new ModelAndView();
-		
+
 		String userId = new UserId().getUserId(request);
 		String name = request.getParameter("order-name");
 		String postcode = request.getParameter("postcode");
@@ -67,8 +67,8 @@ public class OrdersController implements Controller {
 		for (CartList cart : cartList) {
 			total += cart.getBookTotalPrice();
 		}
-		
-		//배송비 추가
+
+		// 배송비 추가
 		total += 2500;
 
 		// #1. orders insert

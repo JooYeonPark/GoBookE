@@ -53,9 +53,9 @@ public class JdbcUsersDao implements UsersDao {
 		sb.append(" 				 user_address,    ");
 		sb.append(" 				 user_address_detail,    ");
 		sb.append(" 				 user_password,    ");
-		sb.append(" 				 user_admin_flag    ");
-		sb.append(" 				 user_regdate    ");
-		sb.append("VALUES(?, ?, ?, ?, ?, ?, 'N', sysdate)");
+		sb.append(" 				 user_admin_flag,    ");
+		sb.append(" 				 user_regdate)   ");
+		sb.append("VALUES(?, ?, ?, ?, ?, ?, ?, 'N', sysdate)");
 		
 		try {
 			con = dataSource.getConnection();
@@ -70,6 +70,8 @@ public class JdbcUsersDao implements UsersDao {
 			pstmt.setString(7, user.getPassword());
 			
 			pstmt.executeUpdate();
+			System.out.println("User Create Complated");
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

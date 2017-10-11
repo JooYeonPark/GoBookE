@@ -16,7 +16,7 @@
   </div>
   <div class="panel-body" id="sideNav">
     <ul class="nav nav-pills nav-stacked category-menu">
-      <li class="active"><a href="/view/admin/bookregist.jsp"> 도서 등록 </a></li>
+      <li class=""><a href="/view/admin/bookregist.jsp"> 도서 등록 </a></li>
       <li class=""><a href="/book/bookstock.do"> 도서재고 현황</a></li>
       <li class=""><a href="/book/getpublisher.do"> 도서 발주</a></li>
       <li class=""><a href="/admin/adminbookorderlist.do"> 발주 현황</a></li>

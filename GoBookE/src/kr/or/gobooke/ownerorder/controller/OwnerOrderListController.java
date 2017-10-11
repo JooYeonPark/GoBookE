@@ -42,7 +42,6 @@ public class OwnerOrderListController implements Controller {
 		
 		if(request.getParameter("type") != null) {
 			type = request.getParameter("type");
-			System.out.println("type  :" + type);
 			params.setType(type);
 		}
 		

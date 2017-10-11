@@ -62,13 +62,10 @@ public class UserCertifyController implements Controller {
 						cookie.setMaxAge(0);
 						cookie.setPath("/");
 						response.addCookie(cookie);
-						
-					}
-					else if (cookie.getName().equalsIgnoreCase("admin")) {
+					}else if (cookie.getName().equalsIgnoreCase("admin")) {
 						cookie.setMaxAge(0);
 						cookie.setPath("/");
 						response.addCookie(cookie);
-						
 					}
 				}
 			}

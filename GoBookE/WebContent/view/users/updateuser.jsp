@@ -126,9 +126,7 @@
         <div class="row">
         
           <%-- *** LEFT COLUMN *** --%>
-          <div class="col-sm-7">
             <jsp:include page="/view/users/userform.jsp"/>
-          </div>
           <%-- /.col-md-7 --%>
           
           <%-- *** RIGHT COLUMN *** --%>

@@ -32,7 +32,7 @@ $(function(){
 	$("form").submit(function(){
 		var dateStart = $("#fromDate1").val();
 		var dateEnd = $("#fromDate2").val();
-		
+
 		var data = {
 			type : "date",
 			dateStart : dateStart,

@@ -41,6 +41,17 @@
     <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
     <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
     <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+    
+    <script>
+    window.onload = function(){
+    	changeAction();
+    }
+    
+    function changeAction(){
+    	$("#userform").attr("action", "/user/regist.do");
+    }
+    	
+    </script>
 </head>
 
 <body>
@@ -58,7 +69,25 @@
         <jsp:include page="/layout/loginMo.jsp"/>        
        
         <%-- *** SIGNUP FORM *** --%>
+         <div id="heading-breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1>회원가입</h1>
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="breadcrumb">
+                            <li><a href="/index.jsp">Home</a>
+                            </li>
+                            <li>Sign Up</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <jsp:include page="/view/users/userform.jsp"/>
+        <%-- *** SIGNUP FORM END *** --%>
          
         <%-- *** FOOTER *** --%>
         <jsp:include page="/layout/footer.jsp"/>
@@ -74,11 +103,11 @@
     </script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-    <script src="js/jquery.cookie.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/jquery.parallax-1.1.3.js"></script>
-    <script src="js/front.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/jquery.counterup.min.js"></script>
+    <script src="/js/jquery.parallax-1.1.3.js"></script>
+    <script src="/js/front.js"></script>
 
 </body>
 

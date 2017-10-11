@@ -57,17 +57,29 @@
   <script>
   window.onload = function(){
 	  getOrderUser();
+	  changeAction();
   }
   
   function getOrderUser(){
+	 //user 값 읽어오기
 	$("#id").val("${user.id}");
 	$("#name").val("${user.name}");
 	$("#tel1").val("${tel1}");
 	$("#tel2").val("${tel2}");
 	$("#tel3").val("${tel3}");
 	$("#email").val("${user.email}");
-	$("#address").val("${user.address}");
-	$("#addressDetail").val("${user.addressDetail}");
+	
+	//변경은 오로지 password, address, addressDetail
+	$("#id").attr("disabled", true);
+	$("#name").attr("disabled", true);
+	$("#tel1").attr("disabled", true);
+	$("#tel2").attr("disabled", true);
+	$("#tel3").attr("disabled", true);
+	$("#email").attr("disabled", true);
+  }
+  
+  function changeAction(){
+  	$("#userform").attr("action", "/user/update.do");
   }
   </script>
     

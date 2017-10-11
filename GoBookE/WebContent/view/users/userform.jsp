@@ -4,9 +4,44 @@
 <head>
 <meta charset="utf-8">
 <title></title>
+
+
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+  
+<script>
+<%-- 주소 API --%>
+function daumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
+            }
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+            if(fullRoadAddr !== ''){
+                fullRoadAddr += extraRoadAddr;
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('address').value = fullRoadAddr;
+				
+            document.getElementById('guide').innerHTML = '(상세주소 예 : 101동 101호)';
+            
+        }
+    }).open();
+}
+</script>
 </head>
 <body>
-  <form action = "/user/regist.do" class="regist">
+  <form action = "" id="userform">
          <fieldset>
            <div class="container">
               <div class="row">

@@ -37,15 +37,15 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	/** 카트 수정 */
+	/** 카트 수정 및 total 반환 */
 	public int update(String userId, String bookTitle, int qty) {
 		return cartDao.update(userId, bookTitle, qty);
 	}
 
 	@Override
-	/** 카트 삭제 */
-	public void deleteCart(String userId,String bookTitle) {
-		cartDao.deleteCart(userId, bookTitle);
+	/** 카트 삭제 및 total 반환 */
+	public int deleteCart(String userId,String bookTitle) {
+		return cartDao.deleteCart(userId, bookTitle);
 	}
 	
 

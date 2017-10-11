@@ -9,6 +9,9 @@ String title = request.getParameter("bookTitle");
 int qty = Integer.parseInt(request.getParameter("qty"));
 
 int total = cartService.update(userId,title,qty);
+
+//배송비추가
+total += 2500;
 %>
 
 <%=total%>

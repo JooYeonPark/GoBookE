@@ -75,8 +75,11 @@ window.onload = function(){
 			data : "userId=${cookie.user.value}"+"&bookTitle="+bookTitle,
 			success : function(data){
 				alert("삭제 완료");
-				
 				tr.remove();
+				var total = data.trim();
+				$("#total").text(total-2500);
+				$("#total2").text(total);
+				$("#subtotal").text(total-2500);
 			},
 			error : function(xhr, statusText){
 				console.log("("+xhr.status+", "+statusText+")");
@@ -94,6 +97,7 @@ window.onload = function(){
 		var qty = sibling.eq(0).val();
 		
 		var price = $(this).parent().siblings().eq(3).text();
+		var booktotalPrice = $(this).parent().siblings().eq(4);
 		var Booktotal = price * qty;
 		
 		$.ajax({
@@ -102,10 +106,11 @@ window.onload = function(){
 			success : function(data){
 				alert("수정완료");
 				sibling.eq(0).val(qty);
-				$("#total").text(data.trim());
-				$("#total2").text(data.trim());
-				$("#subtotal").text(data.trim());
-				$("#bookTotalPrice").text(Booktotal);
+				var total = data.trim();
+				$("#total").text(total-2500);
+				$("#total2").text(total);
+				$("#subtotal").text(total-2500);
+				booktotalPrice.text(Booktotal);
 			},
 			error : function(xhr, statusText){
 				console.log("("+xhr.status+", "+statusText+")");
@@ -263,7 +268,7 @@ window.onload = function(){
 
 
                     <%-- SIDE BANNER --%>
-                    <c:forEach items="${list}" varStatus="status">
+                    
                       <div class="col-md-3">
                       <%--  <div class="box" id="order-summary STATICMENU"> --%>
                           <div class="box" id="STATICMENU">
@@ -284,7 +289,7 @@ window.onload = function(){
                                               <th>2500</th>
                                           </tr>
                                           
-                                          <tr class="total">
+                                          <tr>
                                               <td>Total</td>
                                               <th id="total2">${total}</th>  
                                           </tr>
@@ -297,7 +302,7 @@ window.onload = function(){
   
                       </div>
                       <%-- /.col-md-3 --%>
-                    </c:forEach>
+                    
                     <%-- /SIDE BANNER --%>
                 </div>
 

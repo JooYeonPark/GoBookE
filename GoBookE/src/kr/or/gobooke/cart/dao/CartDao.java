@@ -23,11 +23,11 @@ public interface CartDao {
 	/** 카트리스트 부분 조회 */
 	public List<CartList> listSome(String userId, int[] cartNoList);
 	
-	/** 카트 수정 */
+	/** 카트 수정 및 total 반환 */
 	public int update(String userId, String bookTitle, int qty);
 	
-	/** 카트 삭제 */
-	public void deleteCart(String userId, String bookTitle);
+	/** 카트 삭제 및 total 반환 */
+	public int deleteCart(String userId, String bookTitle);
 
 	/** 카트 반환 */
 	public Cart getCart(int cartNo);

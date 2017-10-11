@@ -242,7 +242,7 @@
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label for="order-name">주문자</label>
-                                                    <input type="text" class="form-control" id="order-name" value="">
+                                                    <input type="text" class="form-control" id="order-name" name="order-name">
                                                 </div>
                                             </div>
                                       </div>  <%-- /.row --%>
@@ -274,10 +274,10 @@
                                                 </div><%-- ./col-sm-2 --%>
                                                 
                                                 <div class="col-sm-2 form-group">
-                                                   <input type="text" class="form-control" id="tel2" value="">
+                                                   <input type="text" class="form-control" id="tel2" >
                                                 </div>
                                                 <div class="col-sm-2 form-group">
-                                                    <input type="text" class="form-control" id="tel3" value="">
+                                                    <input type="text" class="form-control" id="tel3">
                                                 </div>
                                       </div><%-- /.row --%>
                                      
@@ -303,7 +303,7 @@
                                           <div class="col-sm-3 form-group">
                                               <div class="form-group">
                                                   <label for="order-name">수취인</label>
-                                                  <input type="text" class="form-control" id="order-name" name="receiver-name" value="" required >
+                                                  <input type="text" class="form-control" id="receiver-name" name="receiver-name"  required >
                                               </div>
                                           </div>
                                       </div>
@@ -325,10 +325,10 @@
                                         
                                        <div class="row">
                                           <div class="col-sm-6 form-group">
-                                                 <input type="text" class="form-control" id="address" name="address" value="" required>
+                                                 <input type="text" class="form-control" id="address" name="address"  required>
                                           </div>
                                           <div class="col-sm-6 form-group">
-                                                 <input type="text" class="form-control" id="addressDetail" name="addressDetail" value="" required>
+                                                 <input type="text" class="form-control" id="addressDetail" name="addressDetail"  required>
                                                  <span id="guide" style="color:#999"></span>
                                           </div>
                                         </div><%-- /.row --%>
@@ -359,10 +359,10 @@
                                                 </div><%-- ./col-sm-2 --%>
                                                 
                                                 <div class="col-sm-2 form-group">
-                                                   <input type="text" class="form-control" id="order-tel2" name="order-tel2" value="" required>
+                                                   <input type="text" class="form-control" id="order-tel2" name="order-tel2" required>
                                                 </div>
                                                 <div class="col-sm-2 form-group">
-                                                    <input type="text" class="form-control" id="order-tel3" name="order-tel3" value="" required>
+                                                    <input type="text" class="form-control" id="order-tel3" name="order-tel3"  required>
                                                 </div>
                                         </div><%-- /.form-group --%>
                                       </div><%-- /.row --%>
@@ -408,7 +408,7 @@
                                                 </div>
                                       
                                         <input type="hidden" value="${total}" name="totalPrice">
-                                        <input type="hidden" value="${cartNoList}" name="cartNoList">
+                                        <input type="hidden" value="${cartNoList}" name="cartNoList"> 
                                       
                                       </div><%-- /.row --%>
                                 </fieldset>

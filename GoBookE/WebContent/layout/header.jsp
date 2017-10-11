@@ -21,7 +21,7 @@
           <c:choose>
           <c:when test="${empty cookie.user}">
              <a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a> 
-             <a href="/view/users/UserRegist.jsp"><i class="fa fa-user"></i><span class="hidden-xs text-uppercase">Sign up</span></a> 
+             <a href="/view/users/regist.jsp"><i class="fa fa-user"></i><span class="hidden-xs text-uppercase">Sign up</span></a> 
           </c:when>
           <c:otherwise>
           <a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase"><strong>${u:decode(cookie.user.value) }</strong>님 환영합니다.</span></a> 

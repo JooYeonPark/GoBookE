@@ -23,7 +23,9 @@ public class RegistController implements Controller {
 		
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
-		String telephone = request.getParameter("telephone");
+		String telephone = request.getParameter("tel1");
+		telephone += "-" + request.getParameter("tel2");
+		telephone += "-" + request.getParameter("tel3");
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
 		String addressDetail = request.getParameter("addressDetail");
@@ -34,9 +36,9 @@ public class RegistController implements Controller {
 		userService.create(user);
 		
 		// !!추후 회원가입 결과 화면으로 변경할 것!!
-		mav.setView("/index.do");
+		mav.setView("redirect:/index.jsp");
 		
-		return null;
+		return mav;
 	}
 
 }

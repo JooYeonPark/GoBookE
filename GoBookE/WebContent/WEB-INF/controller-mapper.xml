@@ -30,6 +30,7 @@
 	
 	<!-- 로그인 -->
 	<bean name="/user/certify" class="kr.or.gobooke.users.controller.UserCertifyController"/>
+	<bean name="/user/regist" class="kr.or.gobooke.users.controller.RegistController"/>
 	
 	<!-- 메인페이지 이동 -->
 	<bean name="/index" class="kr.or.gobooke.main.controller.MainController" />

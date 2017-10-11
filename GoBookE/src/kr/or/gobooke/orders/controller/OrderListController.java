@@ -79,6 +79,7 @@ public class OrderListController implements Controller {
 		mav.addObject("tel3", tel[2]);
 		mav.addObject("address", address);
 		mav.addObject("addressDetail", addressDetail);
+		mav.addObject("cartNoList", clickedCartNo);
 		mav.setView("/view/orders/order.jsp");
 
 		return mav;

@@ -124,7 +124,7 @@ window.onload = function(){
 			alert("선택 상품이 없습니다."); 
 		}
 		else{
-			$(location).attr('href','/order/list.do?cartNoList='+clickedCartNo+'&view=order');
+			$(location).attr('href','/order/list.do?cartNoList='+clickedCartNo);
 		}
 	});
 

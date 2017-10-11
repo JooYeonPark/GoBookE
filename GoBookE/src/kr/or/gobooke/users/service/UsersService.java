@@ -8,7 +8,7 @@ import kr.or.gobooke.users.domain.Users;
 /**
  * Domain(업무영역)별 고객의 요구사항을 반영하는 비즈니스 메소드 선언
  *
- * @author 김수진
+ * @author 박주연
  *
  */
 public interface UsersService {
@@ -17,7 +17,7 @@ public interface UsersService {
 	public void create(Users user);
 	
 	/** 사용자아이디를 이용한 사용자 상세 정보 조회 */
-	public Users search(String id);
+	public Users search(String userId);
 	
 	/** 회원정보 수정 */
 	public void update(Users user);

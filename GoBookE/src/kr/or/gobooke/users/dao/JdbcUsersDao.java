@@ -65,8 +65,8 @@ public class JdbcUsersDao implements UsersDao {
 			pstmt.setString(2, user.getName());
 			pstmt.setString(3, user.getTelephone());
 			pstmt.setString(4, user.getEmail());
-			pstmt.setString(5, user.getAdress());
-			pstmt.setString(6, user.getAdressDetail());
+			pstmt.setString(5, user.getAddress());
+			pstmt.setString(6, user.getAddressDetail());
 			pstmt.setString(7, user.getPassword());
 			
 			pstmt.executeUpdate();
@@ -85,39 +85,51 @@ public class JdbcUsersDao implements UsersDao {
 
 	}
 
-//	@Override
-//	public Users read(String id) {
-//
-//		PreparedStatement pstmt = null;
-//		Connection con = null;
-//		ResultSet rs = null;
-//
-//		Users user = null;
-//		String sql = "Select id, " + "       name, " + "       passwd, " + "       email, "
-//				+ "       To_char(, 'YYYY/MM/DD')  " + "From   users " + "WHERE id = ?";
-//		
-//		try {
-//			con = dataSource.getConnection();
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setString(1, id);
-//
-//			rs = pstmt.executeQuery();
-//			if (rs.next()) {
-//				user = createUser(rs);
-//			}
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			try {
-//				con.rollback();
-//			} catch (SQLException e1) {
-//			}
-//
-//			throw new BlogException("JdbcUserDao.read(Id) 실행중 예외 발생", e);
-//		}
-//
-//		return false;
-//	}
+	@Override
+	public Users search(String userId) {
+
+		Users user = null;
+		PreparedStatement pstmt = null;
+		Connection con = null;
+		ResultSet rs = null;
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT user_id,  ");
+		sb.append("		  user_name, ");
+		sb.append("		  user_password, ");
+		sb.append("		  user_email, ");
+		sb.append("		  user_telephone, ");
+		sb.append("		  user_address, ");
+		sb.append("		  user_address_detail ");
+		sb.append("FROM users  ");
+		sb.append("WHERE user_id = ? ");
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, userId);
+
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				user = new Users(rs.getString("user_id"), rs.getString("user_name"),rs.getString("user_password"), 
+						rs.getString("user_email"), rs.getString("user_telephone"), 
+						rs.getString("user_address"), rs.getString("user_address_detail"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcUsersDao.search 실행 중 예외발생", e);
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+				if(rs != null) rs.close();
+			} catch (Exception e) {}
+		}
+		
+		return user;
+	}
 
 //	@Override
 //	public List<Users> listAll() {
@@ -244,8 +256,8 @@ public class JdbcUsersDao implements UsersDao {
 		user.setName(name);
 		user.setTelephone(telephone);
 		user.setEmail(email);
-		user.setAdress(address);
-		user.setAdressDetail(address_detail);
+		user.setAddress(address);
+		user.setAddressDetail(address_detail);
 		user.setPassword(passwd);
 		user.setRegdate(regdate);
 		user.setAdminFlag(adminFlag);
@@ -290,13 +302,7 @@ public class JdbcUsersDao implements UsersDao {
 		}
 		return user;
 	}
-
-	@Override
-	public Users search(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public void update(Users user) {
 		// TODO Auto-generated method stub

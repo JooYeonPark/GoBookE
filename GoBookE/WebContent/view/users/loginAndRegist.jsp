@@ -158,6 +158,7 @@
                                 <div class="form-group">
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control" name="passwd" id="password">
+                                    <input type="hidden" name="referer" value="${referer }">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-template-main"><i class="fa fa-sign-in"></i> Log in</button>

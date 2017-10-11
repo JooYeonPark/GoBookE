@@ -40,7 +40,7 @@ public class LoginCheckFilter implements Filter {
 			String loginForm = "/view/users/loginAndRegist.do";
 			
 			String message = "로그인 사용자에게만 서비스하는 메뉴입니다^^;;.";
-			String referer = ((HttpServletRequest)request).getRequestURI();
+			String referer = ((HttpServletRequest)request).getHeader("Referer");
 			String contextPath = ((HttpServletRequest)request).getContextPath();
 			referer = referer.substring(contextPath.length());
 			

@@ -30,7 +30,7 @@
 
         <p class="text-center text-muted">로그인 해주세요.</p>
         <p class="text-center text-muted">
-          <a href="/view/users/UserRegist.jsp"><strong>회원가입</strong></a>
+          <a href="/view/users/loginAndRegist.do"><strong>회원가입</strong></a>
         </p>
 
       </div>

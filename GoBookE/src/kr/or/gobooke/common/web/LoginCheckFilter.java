@@ -37,7 +37,7 @@ public class LoginCheckFilter implements Filter {
 		if(user != null){
 			chain.doFilter(request, response);
 		}else{
-			String loginForm = "/view/users/login.jsp";
+			String loginForm = "/view/users/loginAndRegist.do";
 			
 			String message = "로그인 사용자에게만 서비스하는 메뉴입니다^^;;.";
 			String referer = ((HttpServletRequest)request).getRequestURI();

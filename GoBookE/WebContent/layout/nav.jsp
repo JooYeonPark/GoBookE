@@ -27,7 +27,7 @@
       <div class="navbar-collapse collapse" id="navigation">
 
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown active"><a href="/index.do">HOME</a>
+          <li class="dropdown"><a href="/index.do">HOME</a>
           </li>
            <li><a href="${pageContext.servletContext.contextPath}/book/bestSellerList.do">베스트셀러</a>
           </li>

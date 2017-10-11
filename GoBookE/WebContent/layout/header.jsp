@@ -25,8 +25,7 @@
           </c:when>
           <c:otherwise>
           <a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase"><strong>${u:decode(cookie.user.value) }</strong>님 환영합니다.</span></a> 
-          <!-- <a href="/view/users/UserRegist.jsp"><i class="fa fa-user"></i><span class="hidden-xs text-uppercase">Sign up</span></a> --> 
-          
+          <a class="glyphicon glyphicon-log-out" href="${pageContext.servletContext.contextPath}/user/certify.do">LOGOUT</a> 
           </c:otherwise>
         </c:choose>
           <a href="customer-register.html"><i class="fa fa-shopping-cart"></i>

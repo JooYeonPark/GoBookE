@@ -1,4 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+
+<style>
+.img-responsive{
+	height: 100%;
+}
+</style>
+
 <section class="bar background-white no-mb">
   <div class="container" data-animate="fadeInUp">
     <div class="row">
@@ -14,8 +21,7 @@
           <div class="col-sm-3">
             <div class="box-image">
               <div class="image">
-                <img src="img/portfolio-1.jpg" alt=""
-                  class="img-responsive">
+                <img src="/img/book_novel.jpg" alt=""class="img-responsive">
               </div>
               <div class="bg"></div>
               <div class="name">
@@ -38,8 +44,7 @@
           <div class="col-sm-3">
             <div class="box-image">
               <div class="image">
-                <img src="img/portfolio-2.png" alt=""
-                  class="img-responsive">
+                <img src="/img/book_reference.jpg" alt="" class="img-responsive image">
               </div>
               <div class="bg"></div>
               <div class="name">
@@ -62,8 +67,7 @@
           <div class="col-sm-3">
             <div class="box-image">
               <div class="image">
-                <img src="img/portfolio-3.png" alt=""
-                  class="img-responsive">
+                <img src="/img/book_comicBook.jpg" alt=""class="img-responsive">
               </div>
               <div class="bg"></div>
               <div class="name">
@@ -85,8 +89,7 @@
           <div class="col-sm-3">
             <div class="box-image">
               <div class="image">
-                <img src="img/portfolio-4.png" alt=""
-                  class="img-responsive">
+                <img src="/img/book_magazine.jpg" alt="" class="img-responsive">
               </div>
               <div class="bg"></div>
               <div class="name">
@@ -107,8 +110,7 @@
           <div class="col-sm-3">
             <div class="box-image">
               <div class="image">
-                <img src="img/portfolio-5.jpg" alt=""
-                  class="img-responsive">
+                <img src="/img/book_english.jpg" alt="" class="img-responsive">
               </div>
               <div class="bg"></div>
               <div class="name">
@@ -130,8 +132,7 @@
           <div class="col-sm-3">
             <div class="box-image">
               <div class="image">
-                <img src="img/portfolio-6.png" alt=""
-                  class="img-responsive">
+                <img src="/img/book_japan.jpg" alt=""  class="img-responsive">
               </div>
               <div class="bg"></div>
               <div class="name">
@@ -153,8 +154,7 @@
           <div class="col-sm-3">
             <div class="box-image">
               <div class="image">
-                <img src="img/portfolio-7.jpg" alt=""
-                  class="img-responsive">
+                <img src="/img/book_france.jpg" alt="" class="img-responsive">
               </div>
               <div class="bg"></div>
               <div class="name">
@@ -176,8 +176,7 @@
           <div class="col-sm-3">
             <div class="box-image">
               <div class="image">
-                <img src="img/portfolio-8.jpg" alt=""
-                  class="img-responsive">
+                <img src="/img/book_china.jpg" alt="" class="img-responsive">
               </div>
               <div class="bg"></div>
               <div class="name">

@@ -98,6 +98,7 @@
 		$("#order-tel2").val("");
 		$("#order-tel3").val("");
 		
+		$("#postcode").val("");
 		$("#address").val("");
 		$("#addressDetail").val("");
   }
@@ -313,7 +314,7 @@
                                        <div class="row">
                                          
                                               <div class="col-sm-4 form-group">
-                                                     <input type="text" class="form-control" id="postcode" name="postcode" required>
+                                                     <input type="text" class="form-control" id="postcode" name="postcode" value="08519" required>
                                               </div>
                                               <div class="col-sm-2 form-group">
                                                      <input type="button" onclick="daumPostcode()" value="우편번호 찾기" class="btn btn-template-main"><br>

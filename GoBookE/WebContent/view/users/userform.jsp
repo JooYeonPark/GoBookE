@@ -2,7 +2,6 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <script>
-	
 <%-- 주소 API --%>
 	function daumPostcode() {
 		new daum.Postcode(
@@ -37,7 +36,6 @@
 </script>
 
 
-<div class="col-sm-9">
   <form action="" id="userform">
     <fieldset>
       <div class="container">
@@ -170,9 +168,8 @@
         </div>
         <%-- /.box-footer --%>
       </div>
+      </div>
       <%-- /.container --%>
     </fieldset>
   </form>
 
-</div>
-<!-- /.col-md-9 -->

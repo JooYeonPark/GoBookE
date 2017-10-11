@@ -83,9 +83,9 @@
                         </ul>
 
                     </div>
-                </div>
-            </div>
-        </div>
+                </div> <%-- ./row --%>
+            </div><%-- ./container --%>
+        </div><%-- ./heading-breadcrumbs --%>
         <jsp:include page="/view/users/userform.jsp"/>
         <%-- *** SIGNUP FORM END *** --%>
          

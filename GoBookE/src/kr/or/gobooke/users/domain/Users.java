@@ -4,7 +4,7 @@ package kr.or.gobooke.users.domain;
  * 사용자 정보 저장을 위한 JavaBean
  * 변수명은 db에서 테이블명을 제외한 것.
  * 
- * @author 김수진
+ * @author 박주연
  *
  */
 
@@ -16,8 +16,8 @@ public class Users {
 	private String password;
 	private String email;
 	private String telephone;
-	private String adress;
-	private String adressDetail;
+	private String address;
+	private String addressDetail;
 	private char adminFlag;
 	private String regdate;
 	
@@ -36,9 +36,9 @@ public class Users {
 	 */
 	
 	
-	public Users(String id, String name, String password, String email, String telephone, String adress,
-			String adressDetail) {
-		this(id, name, password, email, telephone, adress, adressDetail, 'N', null);
+	public Users(String id, String name, String password, String email, String telephone, String address,
+			String addressDetail) {
+		this(id, name, password, email, telephone, address, addressDetail, 'N', null);
 	}
 
 	/**
@@ -48,20 +48,20 @@ public class Users {
 	 * @param password
 	 * @param email
 	 * @param telephone
-	 * @param adress
-	 * @param adressDetail
+	 * @param address
+	 * @param addressDetail
 	 * @param adminFlag
 	 * @param regdate
 	 */
-	public Users(String id, String name, String password, String email, String telephone, String adress,
-			String adressDetail, char adminFlag, String regdate) {
+	public Users(String id, String name, String password, String email, String telephone, String address,
+			String addressDetail, char adminFlag, String regdate) {
 		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.telephone = telephone;
-		this.adress = adress;
-		this.adressDetail = adressDetail;
+		this.address = address;
+		this.addressDetail = addressDetail;
 		this.adminFlag = adminFlag;
 		this.regdate = regdate;
 	}
@@ -107,20 +107,20 @@ public class Users {
 		this.telephone = telephone;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String adress) {
+		this.address = adress;
 	}
 
-	public String getAdressDetail() {
-		return adressDetail;
+	public String getAddressDetail() {
+		return addressDetail;
 	}
 
-	public void setAdressDetail(String adressDetail) {
-		this.adressDetail = adressDetail;
+	public void setAddressDetail(String adressDetail) {
+		this.addressDetail = adressDetail;
 	}
 
 	public char getAdminFlag() {
@@ -144,7 +144,7 @@ public class Users {
 	@Override
 	public String toString() {
 		return "Users [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", telephone="
-				+ telephone + ", adress=" + adress + ", adressDetail=" + adressDetail + ", adminFlag=" + adminFlag
+				+ telephone + ", address=" + address + ", adressDetail=" + addressDetail + ", adminFlag=" + adminFlag
 				+ ", regdate=" + regdate + "]";
 	}
 	

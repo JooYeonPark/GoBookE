@@ -9,7 +9,7 @@ import kr.or.gobooke.users.domain.Users;
 /**
  * Users 비즈니스 메소드 선언
  * 
- * @author 김수진
+ * @author 박주연
  *
  */
 
@@ -24,9 +24,8 @@ public class UserServiceImpl implements UsersService {
 	}
 
 	@Override
-	public Users search(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Users search(String userId) {
+		return userDao.search(userId);
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import kr.or.gobooke.users.domain.Users;
 /**
  * Users관련 Dao 주요 기능
  * 
- * @author 김수진
+ * @author 박주연
  */
 
 public interface UsersDao {
@@ -15,7 +15,7 @@ public interface UsersDao {
 	public void create(Users user);
 	
 	/** 사용자아이디를 이용한 사용자 상세 정보 조회 */
-	public Users search(String id);
+	public Users search(String userId);
 	
 	/** 회원정보 수정 */
 	public void update(Users user);

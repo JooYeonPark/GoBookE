@@ -38,8 +38,8 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	/** 카트 수정 */
-	public void update(String userId, String bookTitle, int qty) {
-		cartDao.update(userId, bookTitle, qty);
+	public int update(String userId, String bookTitle, int qty) {
+		return cartDao.update(userId, bookTitle, qty);
 	}
 
 	@Override

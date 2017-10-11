@@ -24,7 +24,7 @@ public interface CartDao {
 	public List<CartList> listSome(String userId, int[] cartNoList);
 	
 	/** 카트 수정 */
-	public void update(String userId, String bookTitle, int qty);
+	public int update(String userId, String bookTitle, int qty);
 	
 	/** 카트 삭제 */
 	public void deleteCart(String userId, String bookTitle);

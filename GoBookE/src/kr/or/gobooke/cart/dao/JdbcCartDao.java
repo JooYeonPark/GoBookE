@@ -184,11 +184,11 @@ private DataSource dataSource;
 	
 	
 	@Override
-	public void update(String userId, String bookTitle, int qty) {
-		
+	public int update(String userId, String bookTitle, int qty) {
+		int total = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		ResultSet rs = null;
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append(" UPDATE cart   ");
@@ -209,6 +209,26 @@ private DataSource dataSource;
 			pstmt.executeUpdate();
 			System.out.println("Cart Update Complated");
 			
+			if(pstmt != null) pstmt.close();
+			
+			sb = new StringBuilder();
+			
+			//update 성공시 total 값 계산
+			sb.append(" SELECT sum(book_price * cart_book_qty) as total   ");
+			sb.append(" FROM cart, book  ");
+			sb.append(" WHERE book.book_no = cart.book_no ");
+			sb.append(" 	  AND user_id = ? ");
+			
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				total = rs.getInt("total");
+			}
+			
+			System.out.println("Cart Total Select Complated");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new MallException("JdbcCartDao.update 실행 중 예외발생", e);
@@ -216,8 +236,11 @@ private DataSource dataSource;
 			try {
 				if(pstmt != null) pstmt.close();
 				if(con != null)   con.close();
+				if(rs != null)   rs.close();
 			} catch (Exception e) {}
 		}
+		
+		return total;
 	}
 
 	@Override
@@ -322,7 +345,7 @@ private DataSource dataSource;
 	//	cartDao.deleteCart("joo","1st Look(퍼스트 룩)(Vol. 142)");
 		
 		//수정 기능 테스트
-	//	cartDao.update("joo", "1st Look(퍼스트 룩)(Vol. 142)", 1);
+		//System.out.println(cartDao.update("joo", "1st Look(퍼스트 룩)(Vol. 142)", 1));
 		
 		//장바구니 조회
 	//	int[] arr = {2};
@@ -332,7 +355,8 @@ private DataSource dataSource;
 		//System.out.println(cartDao.getCart(1));
 		
 		//카트생성
-		cartDao.create(new Cart(4, 1, "joo"));
+	//	cartDao.create(new Cart(4, 1, "joo"));
+		
 	}
 	
 }

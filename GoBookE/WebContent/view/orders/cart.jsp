@@ -102,7 +102,9 @@ window.onload = function(){
 			success : function(data){
 				alert("수정완료");
 				sibling.eq(0).val(qty);
-				$("#total").text(${total});
+				$("#total").text(data.trim());
+				$("#total2").text(data.trim());
+				$("#subtotal").text(data.trim());
 				$("#bookTotalPrice").text(Booktotal);
 			},
 			error : function(xhr, statusText){
@@ -275,7 +277,7 @@ window.onload = function(){
                                       <tbody>
                                           <tr>
                                               <td>Order subtotal</td>
-                                              <th>${total-2500}</th> 
+                                              <th id="subtotal">${total-2500}</th> 
                                           </tr>
                                           <tr>
                                               <td>Shipping and handling</td>
@@ -284,7 +286,7 @@ window.onload = function(){
                                           
                                           <tr class="total">
                                               <td>Total</td>
-                                              <th>${total}</th>  
+                                              <th id="total2">${total}</th>  
                                           </tr>
                                       </tbody>
                                   </table>

@@ -49,6 +49,39 @@
       width : 87%;
     }
     </style>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+  
+<script>
+<%-- 주소 API --%>
+function daumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
+            }
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+            if(fullRoadAddr !== ''){
+                fullRoadAddr += extraRoadAddr;
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('address').value = fullRoadAddr;
+        
+            document.getElementById('guide').innerHTML = '(상세주소 예 : 101동 101호)';
+            
+        }
+    }).open();
+}
+</script>
 </head>
 <body>
 <div class="all">
@@ -95,44 +128,74 @@
 
                             <hr>
 
-                            <form action="customer-orders.html" method="post">
+                            <form action="${pageContext.servletContext.contextPath}/user/regist.do" method="post">
                                 <div class="form-group">
                                     <label for="id-login">ID</label>
-                                    <input type="text" class="form-control" id="id-login">
+                                    <input type="text" class="form-control" id="id-login" name="id">
                                 </div>
                                 <div class="form-group">
                                     <label for="name-login">이름</label>
-                                    <input type="text" class="form-control" id="name-login">
+                                    <input type="text" class="form-control" id="name-login" name="name">
                                 </div>
                                 <div class="form-group">
                                     <label for="password-login">비밀번호</label>
-                                    <input type="password" class="form-control" id="password-login">
+                                    <input type="password" class="form-control" id="password-login"  name="password">
                                 </div>
                                 <div class="form-group">
                                     <label for="password-login">비밀번호 확인</label>
-                                    <input type="password" class="form-control" id="password-login">
+                                    <input type="password" class="form-control" id="password-login" name="ckPassword">
                                 </div>
                                 <div class="form-group">
                                     <label for="email-login">이메일</label>
-                                    <input type="text" class="form-control" id="email-login">
+                                    <input type="text" class="form-control" id="email-login" name="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="telephone-login">전화번호</label>
-                                    <input type="text" class="form-control" id="telephone-login">
+                                    <div class="row">
+                  <div class="form-group">
+                    <div class="col-sm-3 form-group">
+                        <select class="form-control" style="width:100%;" id="tel1" name="tel1">
+                           <option value="010">010</option>
+                           <option value="02">02</option>
+                           <option value="031">031</option>
+                           <option value="032">032</option>
+                           <option value="033">033</option>
+                           <option value="041">041</option>
+                           <option value="042">042</option>
+                           <option value="043">043</option>
+                           <option value="051">051</option>
+                           <option value="052">052</option>
+                           <option value="053">053</option>
+                           <option value="054">054</option>
+                           <option value="055">055</option>
+                           <option value="061">061</option>
+                           <option value="062">062</option>
+                           <option value="063">063</option>
+                           <option value="064">064</option>
+                         </select>
+                  </div><%-- ./col-sm-2 --%>
+                  <div class="col-sm-3 form-group">
+                      <input type="text" class="form-control" id="tel2" name="tel2" required>
+                  </div>
+                      <div class="col-sm-3 form-group">
+                          <input type="text" class="form-control" id="tel3" name="tel3"  required>
+                      </div>
+                </div><%-- /.form-group --%>
+              </div><%-- /.row --%>
                                 </div>
                                 <div class="form-group">
                                     <label for="address-login">주소</label>
                                     <div style="width: 50%; margin-bottom: 10px;">
-                                    <input type="text" class="form-control" id="address-login">
+                                    <input type="text" class="form-control" id="postcode" name="postcode">
                                     </div>
                                     <div style="display: flex;">
-                                    <input type="text" class="form-control" id="address-login">
-                                    <button class="btn btn-template-main">주소찾기</button>
+                                    <input type="text" class="form-control" id="address" name="address">
+                                    <button class="btn btn-template-main" onclick="daumPostcode()">주소찾기</button>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="address-login">상세주소</label>
-                                    <input type="text" class="form-control" id="address-login">
+                                    <input type="text" class="form-control" id="addressDetail" name="addressDetail">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-template-main"><i class="fa fa-user-md"></i> Register</button>

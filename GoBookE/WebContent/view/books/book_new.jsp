@@ -89,13 +89,6 @@
 
                 <section>
                     <div class="row">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="heading">
-                                <h2>신간도서</h2>
-                           </div>
-                        </div>
-                    </div>
                     <div class="heading">
                                 <h2>국내신간도서</h2>
                     </div>

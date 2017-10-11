@@ -49,7 +49,13 @@ public class BookOrderController implements Controller {
 		//발주 리스트에 추가.
 		//나중에 user_id 로그인에서 받아오기.
 		String userid = new UserId().getUserId(request);
-		OwnerOrder ownerOrder = new OwnerOrder(book.getPublisher(), qty, book.getTitle(), totalprice, userid);
+		/*OwnerOrder ownerOrder = new OwnerOrder(book.getPublisher(), qty, book.getTitle(), totalprice, userid);*/
+		OwnerOrder ownerOrder=new OwnerOrder();
+		ownerOrder.setPublisher(book.getPublisher());
+		ownerOrder.setQty(qty);
+		ownerOrder.setBookName(book.getTitle());
+		ownerOrder.setTotalPrice(totalprice);
+		ownerOrder.setUser_id(userid);
 		orderService.create(ownerOrder);
 		
 		//book update - book_qty에 수량 추가

@@ -16,20 +16,20 @@
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
-    <!-- Bootstrap and Font Awesome css -->
+    <%-- Bootstrap and Font Awesome css --%>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-    <!-- Css animations  -->
+    <%-- Css animations  --%>
     <link href="../../../css/animate.css" rel="stylesheet">
 
-    <!-- Theme stylesheet, if possible do not edit this stylesheet -->
+    <%-- Theme stylesheet, if possible do not edit this stylesheet --%>
     <link href="../../css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
-    <!-- Custom stylesheet - for your changes -->
+    <%-- Custom stylesheet - for your changes --%>
     <link href="../../css/custom.css" rel="stylesheet">
     
-    <!-- #### JAVASCRIPT FILES ### -->
+    <%-- #### JAVASCRIPT FILES ### --%>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
@@ -99,8 +99,7 @@
         <div id="content">
             <div class="container">
                 <div class="row">
-                    <!-- *** LEFT COLUMN ***
-       _________________________________________________________ -->
+                    <%-- *** LEFT COLUMN *** --%>
                 <div id="comment-form">
               <form action="${pageContext.servletContext.contextPath}/review/reviewWrite.do" method="post">
                 <div class="row">
@@ -117,12 +116,24 @@
                       <input type="hidden" name="userId" value="${cookie.user.value}"> 
                       </c:otherwise>
                     </c:choose>
+                    
+                    <br><br>
+                    <label for="street">평가해주세요~!</label>
+                    <div class="row">
+                      <div class="col-sm-2 form-group">
+                          <div class="star"></div>
+                      </div>
+                      <div class="col-sm-2 form-group">
+                         <input type="text" id="starRating" readonly="readonly" name="grade" style="border: 0px; text-align: right; width: 50px"/> 점
+                         <input type="hidden" name="book_no" value="${bookNo}"/>
+                      </div>
+                    </div>
+                    <%-- /.row --%>
+                       
                       <textarea class="form-control" id="comment" rows="4" name="message" style="resize: none;"></textarea>
                       <div class=remaining style="text-align: right;">남은 글자수: <span class="count">2000</span></div>
-                      평가해주세요~!
-                      <div class="star"></div>
-                      <input type="text" id="starRating" readonly="readonly" name="grade"/>점
-                      <input type="hidden" name="book_no" value="${bookNo}"/>
+                     
+                      
                       <div class="text-right">
                       <c:choose>
                       <c:when test="${empty cookie.user}">
@@ -206,38 +217,38 @@
               </div>
             </div>
                   
-                    <!-- /.col-md-9 -->
+                    <%-- /.col-md-9 --%>
 
-                    <!-- *** LEFT COLUMN END *** -->
+                    <%-- *** LEFT COLUMN END *** --%>
 
-                    <!-- *** RIGHT COLUMN ***
-       _________________________________________________________ -->
+                    <%-- *** RIGHT COLUMN ***
+       _________________________________________________________ --%>
 
                     <div class="col-md-3">
 
-                        <!-- *** MENUS AND WIDGETS ***
- _________________________________________________________ -->
+                        <%-- *** MENUS AND WIDGETS ***
+ _________________________________________________________ --%>
                        
-                        <!-- *** MENUS AND FILTERS END *** -->
+                        <%-- *** MENUS AND FILTERS END *** --%>
 
                     </div>
-                    <!-- /.col-md-3 -->
+                    <%-- /.col-md-3 --%>
 
-                    <!-- *** RIGHT COLUMN END *** -->
+                    <%-- *** RIGHT COLUMN END *** --%>
 
                 </div>
-                <!-- /.row -->
+                <%-- /.row --%>
             </div>
-            <!-- /.container -->
+            <%-- /.container --%>
         </div>
-        <!-- /#content -->
-        <!-- *** FOOTER *** -->
+        <%-- /#content --%>
+        <%-- *** FOOTER *** --%>
         
-        <!-- /#footer -->
+        <%-- /#footer --%>
 
-        <!-- *** FOOTER END *** -->
+        <%-- *** FOOTER END *** --%>
     </div>
-    <!-- /#all -->
+    <%-- /#all --%>
 
 
     

@@ -1,4 +1,4 @@
-<%@page import="kr.or.gobooke.users.domain.Users"%>
+<%-- <%@page import="kr.or.gobooke.users.domain.Users"%>
 <%@page import="kr.or.gobooke.users.dao.JdbcUsersDao"%>
 <%@page import="kr.or.gobooke.common.db.DaoFactory"%>
 <%@page import="kr.or.gobooke.users.dao.UsersDao"%>
@@ -36,4 +36,4 @@
   
     response.sendRedirect(url);
   
-%>
+%> --%>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
 
@@ -49,10 +50,14 @@
               <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=2">일본도서</a></li>
               <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=3">프랑스도서</a></li>
               <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=4">중국도서</a></li>
-            </ul></li>
-            
-            <li class="dropdown use-yamm yamm-fw"><a href="/view/admin/bookregist.jsp">관리자</a>
+            </ul>
           </li>
+            
+            <c:if test="${not empty cookie.admin.value}">
+              <li class="dropdown use-yamm yamm-fw"><a href="/view/admin/bookregist.jsp">관리자</a>
+              </li>
+            </c:if>
+          
         </ul>
 
       </div>

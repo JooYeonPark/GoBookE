@@ -29,12 +29,6 @@ public class UserServiceImpl implements UsersService {
 	}
 
 	@Override
-	public void update(Users user) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public Users isMember(String id, String passwd) {
 		return userDao.isMember(id, passwd);
 	}
@@ -46,9 +40,15 @@ public class UserServiceImpl implements UsersService {
 	}
 
 	@Override
+	/** 회원 정보 수정 */
 	public void userUpdate(String passwd, String address, String addressDetail, String userId) {
 		userDao.userUpdate(passwd, address, addressDetail, userId);
 	}
 
+	@Override
+	/** 관리자 판별 */
+	public Boolean isAdmin(String id) {
+		return userDao.isAdmin(id);
+	}
 
 }

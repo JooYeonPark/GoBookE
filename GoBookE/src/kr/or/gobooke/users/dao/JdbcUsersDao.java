@@ -303,11 +303,6 @@ public class JdbcUsersDao implements UsersDao {
 		return user;
 	}
 	
-	@Override
-	public void update(Users user) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	@Override
 	/** 회원 정보 반환 */
@@ -385,6 +380,53 @@ public class JdbcUsersDao implements UsersDao {
 				if(con != null)   con.close();
 			} catch (Exception e) {}
 		}
+	}
+	
+	@Override
+	/** 관리자 판별 */
+	public Boolean isAdmin(String id) {
+		Boolean flag = false;
+		String str = null;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("SELECT 	user_admin_flag ");
+		sb.append("FROM users ");
+		sb.append("WHERE user_id = ? ");
+		
+		try {	
+			connection = dataSource.getConnection();		
+			pstmt = connection.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				str = rs.getString("user_admin_flag");
+			}
+
+			if((str.trim()).equals("Y")) {
+				flag = true;
+			}
+				
+		}	catch(Exception e) {
+			throw new RuntimeException("JdbcUsersDao.isAdmin Error!");
+			
+		}	finally {
+			if(rs != null)
+				try { rs.close(); } catch (SQLException e) {}
+			if(pstmt != null) 	
+				try { pstmt.close(); } catch (SQLException e) {}
+			if(connection != null) 	
+				try { connection.close(); } catch (SQLException e) {}
+		}
+		
+		return flag;
 	}
 	
 }

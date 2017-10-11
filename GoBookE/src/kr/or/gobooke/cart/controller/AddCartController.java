@@ -24,7 +24,7 @@ public class AddCartController implements Controller{
 		
 		cartService.create(new Cart(Integer.parseInt(bookNo), Integer.parseInt(cartBookQty), userId));
 
-		mav.setView("/cart/list.do");
+		mav.setView("redirect:"+"/cart/list.do");
 		
 		return mav;
 	}

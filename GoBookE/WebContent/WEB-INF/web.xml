@@ -45,6 +45,7 @@
   <filter-mapping>
     <filter-name>LoginCheckFilter</filter-name>
     <url-pattern>/cart/list.do</url-pattern>
+    <url-pattern>/cart/add.do</url-pattern>
     <url-pattern>/order/list.do</url-pattern>
   </filter-mapping>
   

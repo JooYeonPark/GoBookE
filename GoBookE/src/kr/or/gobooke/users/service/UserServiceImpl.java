@@ -46,5 +46,10 @@ public class UserServiceImpl implements UsersService {
 		return userDao.getOrderUser(userId);
 	}
 
+	@Override
+	public void userUpdate(String passwd, String address, String addressDetail, String userId) {
+		userDao.userUpdate(passwd, address, addressDetail, userId);
+	}
+
 
 }

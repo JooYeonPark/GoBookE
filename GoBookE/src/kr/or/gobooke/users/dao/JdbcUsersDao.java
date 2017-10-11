@@ -349,5 +349,32 @@ public class JdbcUsersDao implements UsersDao {
 		
 		return orderUser;
 	}
+
+	@Override
+	public void userUpdate(String passwd, String address, String addressDetail, String userId) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		String updateSql="update users set user_password=?, user_address=?, user_address_detail=? where user_id=?";
+		
+		try {
+			con=dataSource.getConnection();	
+			pstmt = con.prepareStatement(updateSql);
+			pstmt.setString(1, passwd);
+			pstmt.setString(2, address);
+			pstmt.setString(3, addressDetail);
+			pstmt.setString(4, userId);
+			pstmt.executeUpdate();
+			System.out.println("회원 정보 수정 완료");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcUsersDao.create 실행 중 예외발생", e);
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			} catch (Exception e) {}
+		}
+	}
 	
 }

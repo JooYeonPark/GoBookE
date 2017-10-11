@@ -9,7 +9,6 @@
 
 
 <script>
-
 $(function(){
 	var date = new Date();
 	var year = date.getFullYear();
@@ -23,28 +22,24 @@ $(function(){
 	}
 	var dateStr = year+"-"+month+"-"+day;
 	
-	/* $("#fromDate1").val(dateStr);
-	$("#fromDate2").val(dateStr); */
-	
 	$("fieldset a").click(function() {
 		var daysAttr = $(this).attr("days");
 		dateCal(daysAttr);
-		
 	});
 	
 	$("form").submit(function(){
 		var dateStart = $("#fromDate1").val();
 		var dateEnd = $("#fromDate2").val();
+		var userId = ${cookie.user.value}
 		
 		var data = {
-			type : "date",
 			dateStart : dateStart,
 			dateEnd : dateEnd
 		}
 		
 		var params = $.param(data);
 		
-		var url = "/admin/adminbookorderlist.do?"+params;
+		var url = "/order/userorderlist?"+params;
 		window.location.replace(url);
 		
 		return false;
@@ -86,14 +81,12 @@ $(function(){
 	}
 });
 
-
-
 </script>
 
 <div class="col-sm-9">
   <div class="col-md-10" id="customer-orders">
 
-    <h3>발주현황</h3>
+    <h3>주문 내역 조회</h3>
 
     <div class="xans-element- xans-myshop xans-myshop-orderhistoryhead ">
     <form>
@@ -141,32 +134,28 @@ $(function(){
 
     <fieldset>
       <div class="box">
-        <div class="table-responsive" id="adminOrder">
+        <div class="table-responsive" id="userOrder">
         <table class='table table-hover'> 
           <thead> 
             <tr> 
-            <th>Order</th> 
-            <th>BookTitle</th>
-            <th>Publisher</th> 
-            <th>QTY</th> 
-            <th>Price</th> 
-            <th>Order Date</th>
+            <th style="width: 20%; text-align: center;">Order No</th> 
+            <th style="width: 60%; text-align: center;">ITEM</th>
+            <th style="width: 10%; text-align: center;">QTY</th> 
+            <th style="width: 10%; text-align: center;">totalPrice</th> 
             </tr>
           </thead>
           <tbody>
           <c:choose>
             <c:when test="${empty list }">
-              <tr><td colspan='6'>검색된 결과가 없습니다.</td></tr>
+              <tr><td colspan='6' style="text-align: center;">검색된 결과가 없습니다.</td></tr>
             </c:when>
             <c:otherwise>
-              <c:forEach items="${list}" var="ownerOrder" varStatus="status">
+              <c:forEach items="${list}" var="order" varStatus="status">
                <tr>
-               <td>${rowCount - ((params.page-1)*10) - status.index}</td>
-               <td>${ownerOrder.bookName}</td>
-               <td>${ownerOrder.publisher}</td>
-               <td>${ownerOrder.qty}</td>
-               <td>${ownerOrder.totalPrice}</td>
-               <td>${ownerOrder.date}</td>
+               <td style="text-align: center;">${order.no}<br> &#91;${order.date}&#93;</td>
+               <td>Grammar In Use Intermediate with Answers(Cambridge)</td>
+               <td style="text-align: center;">10</td>
+               <td style="text-align: center;">${order.totalprice}won</td>
                </tr>
               </c:forEach>
             </c:otherwise>

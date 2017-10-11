@@ -82,12 +82,12 @@
       <div class="container">
         <div class="row">
           <div class="col-md-7">
-            <h1>MyPage - 정보수정</h1>
+            <h1>MyPage - Order List</h1>
           </div>
           <div class="col-md-5">
             <ul class="breadcrumb">
               <li><a href="/index.jsp">Home</a></li>
-              <li>MyPage - 정보수정</li>
+              <li>MyPage - Order List</li>
             </ul>
 
           </div>
@@ -101,7 +101,7 @@
         <div class="row">
 
           <!-- *** LEFT COLUMN *** -->
-          <jsp:include page="/userContainer/rightDemo.jsp" />
+          <jsp:include page="/userContainer/userOrderList.jsp" />
           <!-- *** LEFT COLUMN END *** -->
 
           <!-- *** RIGHT COLUMN *** -->

@@ -3,11 +3,11 @@ package kr.or.gobooke.common.web;
 /**
  * 페이징 계산 및 페이지 번호(1|2|3|4|5....) 출력을 각각의 JSP에서 처리하지 않고,
  * 재사용할 수 있도록 유틸리티 클래스 정의
- * @author 김기정
+ * @author 김수진
  */
-public class OwnerOrderPageBuilder {
+public class OrdersPageBuilder {
 	
-	private OwnerOrderParams params;            /** 요청 파라메터 */
+	private OrdersParams params;            /** 요청 파라메터 */
 	
 	private int totalRowCount;        /** 테이블로부터 검색된 행의 수 */
 	private int totalPageCount;       /** 연산에 따른 전체페이지 수 */
@@ -18,7 +18,7 @@ public class OwnerOrderPageBuilder {
 	private int nextStartPage;        /** 다음 목록의 시작페이지 번호 */
 	
 	
-	public OwnerOrderPageBuilder() {
+	public OrdersPageBuilder() {
 		this(null, 0);
 	}
 	
@@ -26,16 +26,16 @@ public class OwnerOrderPageBuilder {
 	 * @param params           요청 파라메터
 	 * @param totalRowCount    검색타입별 검색된 행의 수
 	 */
-	public OwnerOrderPageBuilder(OwnerOrderParams params, int totalRowCount ) {
+	public OrdersPageBuilder(OrdersParams params, int totalRowCount ) {
 		this.params = params;
 		this.totalRowCount = totalRowCount;
 	}
 
-	public OwnerOrderParams getParams() {
+	public OrdersParams getParams() {
 		return params;
 	}
 
-	public void setParams(OwnerOrderParams params) {
+	public void setParams(OrdersParams params) {
 		this.params = params;
 	}
 

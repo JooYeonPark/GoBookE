@@ -8,9 +8,9 @@
       <div class="navbar-header">
 
         <a class="navbar-brand home" href="/index.do"> <img
-          src="../img/logo.png" alt="Universal logo"
+          src="/img/logo.png" alt="Universal logo"
           class="hidden-xs hidden-sm"> <img
-          src="../img/logo-small.png" alt="Universal logo"
+          src="/img/logo-small.png" alt="Universal logo"
           class="visible-xs visible-sm"><span class="sr-only">Universal
             - go to homepage</span>
         </a>
@@ -50,6 +50,7 @@
               <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=3">프랑스도서</a></li>
               <li><a href="${pageContext.servletContext.contextPath}/book/inexBookList.do?category_big_no=2&category_no=4">중국도서</a></li>
             </ul></li>
+            
             <li class="dropdown use-yamm yamm-fw"><a href="/view/admin/bookregist.jsp">관리자</a>
           </li>
         </ul>

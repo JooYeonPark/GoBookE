@@ -243,11 +243,13 @@ private DataSource dataSource;
 		return total;
 	}
 
+	/** 카트 삭제 및 total 반환 */
 	@Override
-	public void deleteCart(String userId, String bookTitle) {
+	public int deleteCart(String userId, String bookTitle) {
+		int total = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		ResultSet rs = null;
 		StringBuilder sb = new StringBuilder();
 		  
 		sb.append(" DELETE from cart  ");
@@ -268,6 +270,25 @@ private DataSource dataSource;
 			pstmt.executeUpdate();
 			System.out.println("Cart Delete Complated");
 			
+			if(pstmt != null) pstmt.close();
+			sb = new StringBuilder();
+			
+			//update 성공시 total 값 계산
+			sb.append(" SELECT sum(book_price * cart_book_qty) as total   ");
+			sb.append(" FROM cart, book  ");
+			sb.append(" WHERE book.book_no = cart.book_no ");
+			sb.append(" 	  AND user_id = ? ");
+			
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				total = rs.getInt("total");
+			}
+			
+			System.out.println("Cart Total Select Complated");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new MallException("JdbcCartDao.delete 실행 중 예외발생", e);
@@ -275,8 +296,11 @@ private DataSource dataSource;
 			try {
 				if(pstmt != null) pstmt.close();
 				if(con != null)   con.close();
+				if(rs != null)   rs.close();
 			} catch (Exception e) {}
 		}
+		
+		return total;
 	}
 	
 	@Override

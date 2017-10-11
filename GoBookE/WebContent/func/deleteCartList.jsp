@@ -6,5 +6,10 @@ CartService cartService = new CartServiceImpl();
 String userId = request.getParameter("userId");
 String title = request.getParameter("bookTitle");
 
-cartService.deleteCart(userId,title);
+int total = cartService.deleteCart(userId,title);
+
+//배송비 추가
+total += 2500;
 %>
+
+<%=total%>

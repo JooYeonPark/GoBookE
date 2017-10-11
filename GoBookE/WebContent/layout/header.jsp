@@ -30,7 +30,7 @@
           </c:otherwise>
         </c:choose>
           <a href="customer-register.html"><i class="fa fa-shopping-cart"></i>
-            <span class="hidden-xs text-uppercase">Cart</span><span class="badge badge-default">0</span></a>
+            <span class="hidden-xs text-uppercase">Cart</span></a>
         </div>
 
       </div>

@@ -29,7 +29,6 @@ public class UserCertifyController implements Controller {
 			String id = request.getParameter("id");
 			String passwd = request.getParameter("passwd");
 			String referer = request.getParameter("referer");
-
 			Users user = userService.isMember(id, passwd);
 			if(user != null){
 			    String userInfo = null;
@@ -41,13 +40,12 @@ public class UserCertifyController implements Controller {
 				Cookie loginCookie = new Cookie("user", userInfo);
 				loginCookie.setPath("/");
 				response.addCookie(loginCookie);
-			    if(referer != null)  { location = referer; }
+			    if(referer != null && referer!="")  { location = referer; }
 			    else { location = "/index.do"; }
 			}else{
 			  location = "/view/users/loginAndRegist.do";
 			}
 		}else {// 로그아웃
-			String user = null;
 			Cookie[] cookies = request.getCookies();
 			if (cookies != null) {
 				for (Cookie cookie : cookies) {

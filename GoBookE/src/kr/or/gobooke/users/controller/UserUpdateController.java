@@ -11,18 +11,21 @@ import kr.or.gobooke.users.service.UsersService;
 
 public class UserUpdateController implements Controller {
 	UsersService userService=new UserServiceImpl();
+	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
+		
 		ModelAndView mav=new ModelAndView();
-		String passwd=request.getParameter("passwd");
+		String password=request.getParameter("password");
 		String address=request.getParameter("address");
 		String addressDetail=request.getParameter("addressDetail");
-		String userId=request.getParameter("userId");
+		String userId=request.getParameter("id");
 		
-		
-		userService.userUpdate(passwd, address, addressDetail, userId);
-		mav.setView("");//회원 수정 후 회원정보수정 페이지로 이동(redirect로)
+		System.out.println("비번:"+password+"주소:"+address);
+		userService.userUpdate(password, address, addressDetail, userId);
+
+		mav.setView("redirect:/user/info.do");
 		return mav;
 	}
 

@@ -40,7 +40,16 @@ public class UserCertifyController implements Controller {
 				Cookie loginCookie = new Cookie("user", userInfo);
 				loginCookie.setPath("/");
 				response.addCookie(loginCookie);
-			    if(referer != null && referer!="")  { location = referer; }
+				
+				boolean bool = userService.isAdmin(id);
+				if(bool) {
+					Cookie adminCookie = new Cookie("admin", "true");
+					adminCookie.setPath("/");
+					response.addCookie(adminCookie);
+				}
+				
+
+				if(referer != null && referer!="")  { location = referer; }
 			    else { location = "/index.do"; }
 			}else{
 			  location = "/view/users/loginAndRegist.do";
@@ -53,7 +62,13 @@ public class UserCertifyController implements Controller {
 						cookie.setMaxAge(0);
 						cookie.setPath("/");
 						response.addCookie(cookie);
-						break;
+						
+					}
+					else if (cookie.getName().equalsIgnoreCase("admin")) {
+						cookie.setMaxAge(0);
+						cookie.setPath("/");
+						response.addCookie(cookie);
+						
 					}
 				}
 			}

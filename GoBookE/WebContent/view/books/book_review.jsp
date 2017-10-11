@@ -160,7 +160,7 @@
                     <td>${review.userId}</td>
                     <td>${review.message}</td>
                     <td>${review.regdate }</td>
-                    <td><div class="star">${review.grade }</div></td>
+                    <td>${review.grade }</td>
                     <c:if test="${cookie.user.value==review.userId}">
                     <td><a href="${pageContext.servletContext.contextPath}/review/reviewDelete.do?no=${review.no}&book_no=${review.bookNo}">삭제</a></td>
                     </c:if>

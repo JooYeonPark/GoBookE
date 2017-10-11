@@ -63,12 +63,7 @@ public class OrderListController implements Controller {
 		String address = orderUser.getaddress();
 		String addressDetail = orderUser.getaddressDetail();
 		
-		String[] sTel = telephone.split("-");
-		int[] tel = new int[sTel.length];
-
-		for (int i = 0; i < tel.length; i++) {
-			tel[i] = Integer.parseInt(sTel[i]);
-		}
+		String[] tel = telephone.split("-");
 
 		mav.addObject("list", cartList);
 		mav.addObject("total", total);

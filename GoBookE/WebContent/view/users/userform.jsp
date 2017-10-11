@@ -85,8 +85,7 @@
         <div class="row">
           <div class="form-group">
             <div class="col-sm-2 form-group">
-              <select class="form-control" style="width: 100%;"
-                id="tel1" name="tel1">
+              <select class="form-control" style="width: 100%;" id="tel1" name="tel1">
                 <option value="010">010</option>
                 <option value="02">02</option>
                 <option value="031">031</option>

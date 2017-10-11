@@ -239,6 +239,7 @@
                               <fieldset>
                                 <legend>주문정보</legend>
                                      <div class="content">
+                                     
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <div class="form-group">
@@ -247,8 +248,6 @@
                                                 </div>
                                             </div>
                                       </div>  <%-- /.row --%>
-                                      
-                                      
                                       
                                        <label for="telephone">휴대폰번호</label>
                                        <div class="row">
@@ -287,11 +286,6 @@
                                 </fieldset>
                                 
                                 <fieldset>
-                                
-                             
-                                 
-                               
-                                
                                   <legend>배송지 정보</legend>
                                   <div class="content">
                                       <div class="row">
@@ -337,8 +331,9 @@
                                        <label for="telephone">휴대폰번호</label>
                                        <div class="row">
                                          <div class="form-group">
-                                              <div class="col-sm-2 form-group">
-                                                      <select class="form-control" style="width:100%;" id="order-tel1" name="order-tel1">
+                                         
+                                          <div class="col-sm-2 form-group">
+                                                      <select class="form-control" style="width:100%; text-align: center;" id="order-tel1" name="order-tel1>
                                                         <option value="010">010</option>
                                                         <option value="02">02</option>
                                                         <option value="031">031</option>

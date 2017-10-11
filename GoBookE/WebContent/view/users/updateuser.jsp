@@ -126,7 +126,10 @@
         <div class="row">
         
           <%-- *** LEFT COLUMN *** --%>
+          <div class="col-sm-9">
             <jsp:include page="/view/users/userform.jsp"/>
+          </div>
+          <!-- /.col-md-9 -->
           <%-- /.col-md-7 --%>
           
           <%-- *** RIGHT COLUMN *** --%>

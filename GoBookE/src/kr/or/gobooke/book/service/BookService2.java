@@ -14,8 +14,7 @@ public class BookService2 implements BookServiceImpl2 {
 
 	@Override
 	public void create(Book book) {
-		// TODO Auto-generated method stub
-
+		bookDao.create(book);
 	}
 
 	@Override

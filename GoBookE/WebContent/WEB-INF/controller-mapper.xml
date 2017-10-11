@@ -14,6 +14,7 @@
 	<bean name="/admin/adminbookorderlist" class="kr.or.gobooke.ownerorder.controller.OwnerOrderListController" /><!-- 발주 리스트 -->
 	
 	<!-- 책관련 리스트 -->
+	<bean name="/book/bookregist" class="kr.or.gobooke.book.controller.BookRegistController" /><!-- 관리자 도서 저장 -->
 	<bean name="/book/searchbookname" class="kr.or.gobooke.book.controller.BookNameController" /><!-- 북제목 리스트 -->
 	<bean name="/book/bookstock" class="kr.or.gobooke.book.controller.BookStockListController" /><!-- 북재고 리스트 -->
 	<bean name="/book/bookimgupload" class="kr.or.gobooke.book.controller.BookNameController" /><!-- 사진업로드 -->

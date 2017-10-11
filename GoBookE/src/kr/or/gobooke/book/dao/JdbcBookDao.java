@@ -19,6 +19,7 @@ import kr.or.gobooke.common.web.BookParams;
  * @author Park Joo-Yeon
  *
  */
+
 public class JdbcBookDao implements BookDao {
 
 	private DataSource dataSource;
@@ -38,7 +39,51 @@ public class JdbcBookDao implements BookDao {
 	@Override
 	/** 도서 등록 */
 	public void create(Book book) {
-
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(" INSERT INTO book(book_no,    ");
+		sb.append(" 				 BOOK_TITLE,  ");
+		sb.append(" 				 BOOK_AUTHOR,  ");
+		sb.append(" 				 BOOK_PUBLISHER,  ");
+		sb.append(" 				 BOOK_DETAIL,  ");
+		sb.append(" 				 BOOK_PRICE,  ");
+		sb.append(" 				 BOOK_IMAGE,  ");
+		sb.append(" 				 BOOK_REGDATE,  ");
+		sb.append(" 				 BOOK_QTY,  ");
+		sb.append(" 				 BOOK_GRADE,  ");
+		sb.append(" 				 CATEGORY_BIG_NO,  ");
+		sb.append(" 				 CATEGORY_NO)  ");
+		sb.append(" VALUES(book_no_seq.nextval, ?, ?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?) ");
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, book.getTitle());
+			pstmt.setString(2, book.getAuthor());
+			pstmt.setString(3, book.getPublisher());
+			pstmt.setString(4, book.getDetail());
+			pstmt.setInt(5, book.getPrice());
+			pstmt.setString(6, book.getImage());
+			pstmt.setInt(7, book.getQty());
+			pstmt.setDouble(8, book.getGrade());
+			pstmt.setInt(9, book.getCategoryBigNo());
+			pstmt.setInt(10, book.getCategoryNo());
+			
+			pstmt.executeUpdate();
+			System.out.println("BOOK Create Complated");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MallException("JdbcBookDao.create 실행 중 예외발생", e);
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			} catch (Exception e) {}
+		}
 	}
 
 	@Override

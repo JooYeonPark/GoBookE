@@ -23,9 +23,6 @@ $(function(){
 	}
 	var dateStr = year+"-"+month+"-"+day;
 	
-	/* $("#fromDate1").val(dateStr);
-	$("#fromDate2").val(dateStr); */
-	
 	$("fieldset a").click(function() {
 		var daysAttr = $(this).attr("days");
 		dateCal(daysAttr);

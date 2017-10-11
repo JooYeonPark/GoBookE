@@ -1,5 +1,7 @@
 package kr.or.gobooke.book.domain;
 
+import java.util.HashMap;
+
 /**
  * 책 도메인
  * 
@@ -22,6 +24,7 @@ public class Book {
 	private int categoryNo;
 	private double grade;
 	
+	private HashMap<String, String> dataMap;
 	
 	/** 생성자 */
 	
@@ -148,6 +151,21 @@ public class Book {
 
 	public void setCategoryBigNo(int categoryBigNo) {
 		this.categoryBigNo = categoryBigNo;
+	}
+	
+	public HashMap<String, String> getDataMap() {
+		return dataMap;
+	}
+
+	public void setDataMap(HashMap<String, String> dataMap) {
+		setTitle(dataMap.get("title"));
+		setAuthor(dataMap.get("author"));
+		setPublisher(dataMap.get("publisher"));
+		setDetail(dataMap.get("detail"));
+		setCategoryBigNo(Integer.parseInt(dataMap.get("categoryBigNo")));
+		setCategoryNo(Integer.parseInt(dataMap.get("categoryNo")));
+		setPrice(Integer.parseInt(dataMap.get("price")));
+		setQty(Integer.parseInt(dataMap.get("qty")));
 	}
 
 	@Override

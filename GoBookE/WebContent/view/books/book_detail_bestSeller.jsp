@@ -75,8 +75,9 @@
     </script>
     <script type="text/javascript">
     $(function(){
+    	var categoryId=${categoryId};
     	var title=$("#title").val();
-    	
+    	if(categoryId==100){
     	 $.ajax({
     		    url : "http://book.interpark.com/api/bestSeller.api?key=AD05009D9D975D46B742B91DF4D0F5663FEC24E72F5BFCA7A16ED288A972F90C&categoryId=100",
     		    dataType : "xml",
@@ -96,10 +97,31 @@
     		        	$("#bookImg").attr("src",$(this).find("coverLargeUrl").text());
     		        }
     		      });
-    		      /* $("#internal").html(output);
-    		      $(".image").css("height",280); */
     		    }
     		  });
+    	}else if(categoryId==200){
+    	 $.ajax({
+ 		    url : "http://book.interpark.com/api/bestSeller.api?key=AD05009D9D975D46B742B91DF4D0F5663FEC24E72F5BFCA7A16ED288A972F90C&categoryId=200",
+ 		    dataType : "xml",
+ 		    type: 'GET',
+ 		    success : function(res) {
+ 		      var myXML = res.responseText;
+ 		      xmlDoc=$.parseXML(myXML);
+ 		      var output = "";
+ 		      $(xmlDoc).find("item").each(function(index){
+ 		        if(title==$(this).find("title").text()){
+ 		        	$("#bookTitle").text($(this).find("title").text());
+ 		        	$("#bookAuthor").text("저자 : "+$(this).find("author").text());
+ 		        	$("#publisher").text("출판사 : "+$(this).find("publisher").text());
+ 		        	$("#regdate").text("출판일 : "+$(this).find("pubDate").text());
+ 		        	$("#bookPrice").text("가격 : "+$(this).find("priceStandard").text());
+ 		        	$("#bookDetail").text($(this).find("description").text());
+ 		        	$("#bookImg").attr("src",$(this).find("coverLargeUrl").text());
+ 		        }
+ 		      });
+ 		    }
+ 		  });
+    	}
     	
     });
     </script>

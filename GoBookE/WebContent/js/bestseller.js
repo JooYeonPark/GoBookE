@@ -10,16 +10,16 @@ $(function() {
       $(xmlDoc).find("item").each(function(index){
         output += "<div class=\"col-md-3 col-sm-4\"><div class=\"product\">";
         output +="<div class=\"image\">";
-        output +="<a href=\"/book/bestSellerDetail.do?title="+$(this).find("title").text()+"\">";
+        output +="<a href=\"/book/bestSellerDetail.do?categoryId=100&title="+$(this).find("title").text()+"\">";
         /* output += "<img src="+$(this).find("coverLargeUrl").text()+"class=\"img-responsive image1\">"; */
         output += " <img  style=\"height: 280px; display: unset;\" class=\"img-responsive image1\" align=\"center\" src="+$(this).find("coverLargeUrl").text()+">";
         output +="</a>";
         output +="</div>";
         output +="<div class=\"text\">";
-        output +="<h3><a href=\"/book/bestSellerDetail.do?title="+$(this).find("title").text()+"\">";
+        output +="<h3><a href=\"/book/bestSellerDetail.do?categoryId=100&title="+$(this).find("title").text()+"\">";
         output +=$(this).find("title").text();
         output +="</a></h3>";
-        output +="<p class=\"price\">가격:"+$(this).find("priceSales").text()+"</p>";
+        output +="<p class=\"price\">가격:"+$(this).find("priceStandard").text()+"</p>";
         output +="<p class=\"buttons\"><a href=\"shop-detail.html\" class=\"btn btn-default\">View detail</a><a href=\"shop-basket.html\" class=\"btn btn-template-main\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a></p>";
         output +="</div>";
         output += "</div></div>";
@@ -44,16 +44,16 @@ $(function() {
 	      $(xmlDoc).find("item").each(function(index){
 	        output += "<div class=\"col-md-3 col-sm-4\"><div class=\"product\">";
 	        output +="<div class=\"image\">";
-	        output +="<a href=\"/book/bestSellerDetail.do?title="+$(this).find("title").text()+"\">";
+	        output +="<a href=\"/book/bestSellerDetail.do?categoryId=200&title="+$(this).find("title").text()+"\">";
 	        /* output += "<img src="+$(this).find("coverLargeUrl").text()+"class=\"img-responsive image1\">"; */
 	        output += " <img  style=\"height: 280px; display: unset;\" class=\"img-responsive image1\" align=\"center\" src="+$(this).find("coverLargeUrl").text()+">";
 	        output +="</a>";
 	        output +="</div>";
 	        output +="<div class=\"text\">";
-	        output +="<h3><a href=\"/book/bestSellerDetail.do?title="+$(this).find("title").text()+"\">";
+	        output +="<h3><a href=\"/book/bestSellerDetail.do?categoryId=200&title="+$(this).find("title").text()+"\">";
 	        output +=$(this).find("title").text();
 	        output +="</a></h3>";
-	        output +="<p class=\"price\">가격:"+$(this).find("priceSales").text()+"</p>";
+	        output +="<p class=\"price\">가격:"+$(this).find("priceStandard").text()+"</p>";
 	        output +="<p class=\"buttons\"><a href=\"shop-detail.html\" class=\"btn btn-default\">View detail</a><a href=\"shop-basket.html\" class=\"btn btn-template-main\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a></p>";
 	        output +="</div>";
 	        output += "</div></div>";

@@ -115,7 +115,7 @@
                                     <p class="buttons">
                                         <a href="${pageContext.servletContext.contextPath}/book/bookDetail.do?book_no=${inBook.no}" class="btn btn-template-transparent-primary">상세보기</a>
                                         <a href="#" class="btn btn-template-transparent-primary"><i class="fa fa-won"></i>바로구매</a>
-                                        <a href="#" class="btn btn-template-transparent-primary"><i class="fa fa-shopping-cart"></i>장바구니에 담기</a>
+                                        <a href="${pageContext.servletContext.contextPath}/cart/add.do?bookNo=${inBook.no}&cartBookQty=1" class="btn btn-template-transparent-primary"><i class="fa fa-shopping-cart"></i>장바구니에 담기</a>
                                     </p>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                     <p class="buttons">
                                         <a href="${pageContext.servletContext.contextPath}/book/bookDetail.do?book_no=${exBook.no}" class="btn btn-template-transparent-primary">상세보기</a>
                                         <a href="#" class="btn btn-template-transparent-primary"><i class="fa fa-won"></i>바로구매</a>
-                                        <a href="#" class="btn btn-template-transparent-primary"><i class="fa fa-shopping-cart"></i>장바구니에 담기</a>
+                                        <a href="${pageContext.servletContext.contextPath}/cart/add.do?bookNo=${exBook.no}&cartBookQty=1" class="btn btn-template-transparent-primary"><i class="fa fa-shopping-cart"></i>장바구니에 담기</a>
                                     </p>
                                 </div>
                             </div>

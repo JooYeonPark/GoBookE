@@ -42,7 +42,6 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 	public void create(OwnerOrder ownerOrder) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
 		String sql = " INSERT INTO owner_order " + "            (owner_order_no, "
 				+ "             owner_order_publisher, " + "             owner_order_bookname,  "
 				+ "             owner_order_qty,  " + "             owner_order_totalprice,  "
@@ -51,7 +50,7 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 				"            ?, " + // 책제목
 				"            ?,  " + // 수량
 				"            ?,  " + // 총가격
-				"            'bangry11' ) "; // 관리자 아이디 - 나중에 로그인 아이디 받아오기.
+				"            ? ) "; // 관리자 아이디 - 나중에 로그인 아이디 받아오기.
 		try {
 			con = dataSource.getConnection();
 			con.setAutoCommit(false);
@@ -61,6 +60,7 @@ public class JdbcOwnerOrderDao implements OwnerOrderDao {
 			pstmt.setString(2, ownerOrder.getBookName());
 			pstmt.setInt(3, ownerOrder.getQty());
 			pstmt.setInt(4, ownerOrder.getTotalPrice());
+			pstmt.setString(5, ownerOrder.getUser_id());
 			pstmt.executeUpdate();
 
 			con.commit();

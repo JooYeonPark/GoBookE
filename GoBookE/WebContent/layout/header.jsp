@@ -29,7 +29,7 @@
           <a class="glyphicon glyphicon-log-out" href="${pageContext.servletContext.contextPath}/user/certify.do">LOGOUT</a> 
           </c:otherwise>
         </c:choose>
-          <a href="/order/list.do"><i class="fa fa-shopping-cart"></i>
+          <a href="/cart/list.do"><i class="fa fa-shopping-cart"></i>
             <span class="hidden-xs text-uppercase">Cart</span></a>
         </div>
 

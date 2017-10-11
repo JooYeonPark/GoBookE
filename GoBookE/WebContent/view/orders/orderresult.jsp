@@ -87,7 +87,7 @@
       
                           <div id="customer-order">
       
-                              <p class="lead"> <strong>userId,</strong> 님 항상 저희 쇼핑몰을 이용해주셔서 감사합니다.</p>
+                              <p class="lead"> <strong>${cookie.user.value},</strong> 님 항상 저희 쇼핑몰을 이용해주셔서 감사합니다.</p>
                               <p class="lead text-muted">[주문번호  ${orderNo}] 결제가 안전하게 처리되었습니다.</p>
       
                               <div class="box">

@@ -10,9 +10,7 @@ import javax.sql.DataSource;
 
 import kr.or.gobooke.cart.domain.Cart;
 import kr.or.gobooke.cart.domain.CartList;
-import kr.or.gobooke.common.db.DaoFactory;
-import kr.or.gobooke.common.exception.MallException;
-import kr.or.gobooke.common.web.Params;
+import kr.or.gobooke.common.exception.MallException;	
 
 
 /**
@@ -347,7 +345,7 @@ private DataSource dataSource;
 	
 	/* 단위테스트 */
 	public static void main(String[] args) {
-		CartDao cartDao = (CartDao) DaoFactory.getInstance().getDao(JdbcCartDao.class);
+		//CartDao cartDao = (CartDao) DaoFactory.getInstance().getDao(JdbcCartDao.class);
 
 //		int pageSize = 5;
 //		int pageNum = 5;

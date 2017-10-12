@@ -4,7 +4,6 @@ import java.util.List;
 
 import kr.or.gobooke.common.web.Params;
 import kr.or.gobooke.review.domain.Review;
-import kr.or.gobooke.users.domain.Users;
 
 /**
  * Domain(업무영역)별 고객의 요구사항을 반영하는 비즈니스 메소드 선언

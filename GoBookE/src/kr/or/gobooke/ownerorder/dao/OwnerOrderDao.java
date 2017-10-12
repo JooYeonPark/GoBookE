@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import kr.or.gobooke.common.web.OwnerOrderParams;
-import kr.or.gobooke.common.web.Params;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 
 /**

@@ -1,7 +1,5 @@
 package kr.or.gobooke.payment.dao;
 
-import java.util.List;
-
 import kr.or.gobooke.payment.domain.Payment;
 
 /**

@@ -4,14 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-import kr.or.gobooke.cart.dao.CartDao;
-import kr.or.gobooke.cart.dao.JdbcCartDao;
-import kr.or.gobooke.cart.domain.CartList;
-import kr.or.gobooke.common.db.DaoFactory;
 import kr.or.gobooke.common.exception.MallException;
 import kr.or.gobooke.users.domain.OrderUser;
 import kr.or.gobooke.users.domain.Users;

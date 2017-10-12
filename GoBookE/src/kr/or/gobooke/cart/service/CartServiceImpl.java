@@ -7,7 +7,6 @@ import kr.or.gobooke.cart.dao.JdbcCartDao;
 import kr.or.gobooke.cart.domain.Cart;
 import kr.or.gobooke.cart.domain.CartList;
 import kr.or.gobooke.common.db.DaoFactory;
-import kr.or.gobooke.common.web.Params;
 
 /**
  * Users 비즈니스 메소드 선언

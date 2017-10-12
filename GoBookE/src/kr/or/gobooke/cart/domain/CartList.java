@@ -1,8 +1,5 @@
 package kr.or.gobooke.cart.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CartList {
 	
 	private int cartNo;

@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 
 import kr.or.gobooke.common.exception.MallException;
 import kr.or.gobooke.common.web.OwnerOrderParams;
-import kr.or.gobooke.common.web.Params;
 import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 
 /**

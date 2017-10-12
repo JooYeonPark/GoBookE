@@ -14,8 +14,6 @@ import kr.or.gobooke.common.web.UserId;
 import kr.or.gobooke.orders.domain.Orders;
 import kr.or.gobooke.orders.service.OrdersService;
 import kr.or.gobooke.orders.service.OrdersServiceImpl;
-import kr.or.gobooke.ordersList.service.OrderListService;
-import kr.or.gobooke.ordersList.service.OrderListServiceImpl;
 
 /**
  * 사용자 마이페이지 orderList가져오는 컨트롤러

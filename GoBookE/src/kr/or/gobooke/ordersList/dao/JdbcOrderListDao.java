@@ -8,7 +8,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import kr.or.gobooke.cart.domain.Cart;
-import kr.or.gobooke.common.db.DaoFactory;
 import kr.or.gobooke.common.exception.MallException;
 import kr.or.gobooke.ordersList.domain.OrderList;
 

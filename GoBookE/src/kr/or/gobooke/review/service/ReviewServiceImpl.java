@@ -7,8 +7,6 @@ import kr.or.gobooke.common.web.Params;
 import kr.or.gobooke.review.dao.JdbcReviewDao;
 import kr.or.gobooke.review.dao.ReviewDao;
 import kr.or.gobooke.review.domain.Review;
-import kr.or.gobooke.users.dao.JdbcUsersDao;
-import kr.or.gobooke.users.dao.UsersDao;
 
 /**
  * Users 비즈니스 메소드 선언

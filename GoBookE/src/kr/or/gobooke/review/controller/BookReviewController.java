@@ -6,8 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.gobooke.book.service.BookService;
-import kr.or.gobooke.book.service.BookServiceImpl;
 import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
 import kr.or.gobooke.common.web.PageBuilder;

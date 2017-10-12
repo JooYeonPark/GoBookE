@@ -1,12 +1,9 @@
 package kr.or.gobooke.orders.service;
 
 import java.util.List;
-import java.util.Map;
 
 import kr.or.gobooke.common.web.OrdersParams;
-import kr.or.gobooke.common.web.OwnerOrderParams;
 import kr.or.gobooke.orders.domain.Orders;
-import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 
 /**
  * 주문에 관한 고객의 요구사항을 반영하는 비즈니스 메소드 선언

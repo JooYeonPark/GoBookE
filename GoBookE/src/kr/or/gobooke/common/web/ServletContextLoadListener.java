@@ -1,6 +1,5 @@
 package kr.or.gobooke.common.web;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 

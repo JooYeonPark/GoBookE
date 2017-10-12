@@ -6,7 +6,6 @@ import java.util.List;
 
 import kr.or.gobooke.common.web.OrdersParams;
 import kr.or.gobooke.orders.domain.Orders;
-import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 
 /**
  * 주문 데이터베이스 처리 클래스

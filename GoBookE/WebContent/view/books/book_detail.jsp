@@ -167,7 +167,7 @@
                     </select>
                     </div>
                     <p class="text-center">
-                      <a class="btn btn-template-main" id="directBuy">
+                      <a class="btn btn-template-main" href="../../view/orders/orderBackup.html" id="directBuy">
                         <i class="fa fa-won"></i>바로 구매하기
                       </a>
                       <a class="btn btn-template-main" id="inCart">

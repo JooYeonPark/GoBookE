@@ -115,7 +115,7 @@
                                                      </td>
                                                      <td><p id="bookTitle">${list[status.index].bookTitle}</p></td>
                                                      <td>
-                                                       <input type="number" value="${list[status.index].cartBookQty}" class="form-control" id="qty">
+                                                       <input type="number" value="${list[status.index].cartBookQty}" class="form-control" id="qty" readonly>
                                                      </td>
                                                      <td>${list[status.index].bookPrice}</td>
                                                      <td>${list[status.index].bookTotalPrice}</td>

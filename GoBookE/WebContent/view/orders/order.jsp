@@ -76,24 +76,21 @@
 	  $("#order-name").val("${name}");
 		$("#receiver-name").val("${name}");
 		
-		$("#tel1 option:selected").text("${tel1}");
+		$("#tel1").val("${tel1}");
 		$("#tel2").val("${tel2}");
 		$("#tel3").val("${tel3}");
 		$("#order-tel1 option:selected").text("${tel1}");
 		$("#order-tel2").val("${tel2}");
 		$("#order-tel3").val("${tel3}");
 		
+		$("#postcode").val("08521");
 		$("#address").val("${address}");
 		$("#addressDetail").val("${addressDetail}");
   }
   
   function orderUserRemove(){
-	  $("#order-name").val("");
 		$("#receiver-name").val("");
 		
-		$("#tel1 option:selected").text("");
-		$("#tel2").val("");
-		$("#tel3").val("");
 		$("#order-tel1 option:selected").text("");
 		$("#order-tel2").val("");
 		$("#order-tel3").val("");
@@ -244,7 +241,7 @@
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label for="order-name">주문자</label>
-                                                    <input type="text" class="form-control" id="order-name" name="order-name">
+                                                    <input type="text" class="form-control" id="order-name" name="order-name" readonly>
                                                 </div>
                                             </div>
                                       </div>  <%-- /.row --%>
@@ -252,32 +249,14 @@
                                        <label for="telephone">휴대폰번호</label>
                                        <div class="row">
                                               <div class="col-sm-2 form-group">
-                                                      <select class="form-control" style="width:100%; text-align: center;">
-                                                        <option value="010">010</option>
-                                                        <option value="02">02</option>
-                                                        <option value="031">031</option>
-                                                        <option value="032">032</option>
-                                                        <option value="033">033</option>
-                                                        <option value="041">041</option>
-                                                        <option value="042">042</option>
-                                                        <option value="043">043</option>
-                                                        <option value="051">051</option>
-                                                        <option value="052">052</option>
-                                                        <option value="053">053</option>
-                                                        <option value="054">054</option>
-                                                        <option value="055">055</option>
-                                                        <option value="061">061</option>
-                                                        <option value="062">062</option>
-                                                        <option value="063">063</option>
-                                                        <option value="064">064</option>
-                                                      </select>
+                                                       <input type="text" class="form-control" id="tel1" readonly>
                                                 </div><%-- ./col-sm-2 --%>
                                                 
                                                 <div class="col-sm-2 form-group">
-                                                   <input type="text" class="form-control" id="tel2" >
+                                                   <input type="text" class="form-control" id="tel2" readonly>
                                                 </div>
                                                 <div class="col-sm-2 form-group">
-                                                    <input type="text" class="form-control" id="tel3">
+                                                    <input type="text" class="form-control" id="tel3" readonly>
                                                 </div>
                                       </div><%-- /.row --%>
                                      

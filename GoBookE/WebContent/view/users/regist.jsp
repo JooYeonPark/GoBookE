@@ -6,7 +6,7 @@
     <meta name="googlebot" content="index,follow,snippet,archive">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GoBook-E</title>
+    <title>GoBook-E 회원가입</title>
 
     <meta name="keywords" content="">
 

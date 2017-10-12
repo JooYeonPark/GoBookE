@@ -10,7 +10,7 @@
     <meta name="googlebot" content="index,follow,snippet,archive">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Universal - All In 1 Template</title>
+    <title>GoBook-E 신간도서</title>
 
     <meta name="keywords" content="">
 

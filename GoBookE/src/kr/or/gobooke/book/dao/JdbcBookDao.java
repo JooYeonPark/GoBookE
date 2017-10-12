@@ -291,7 +291,8 @@ public class JdbcBookDao implements BookDao {
 		if(type != null){
 			switch (params.getType()) {
 				case "title":    
-					sb.append(" AND  book_title  = ?");
+					sb.append(" AND  book_title  LIKE ?");
+					value = "%" + value + "%";
 					break;
 				case "author":  
 					sb.append(" AND  book_author LIKE ?");
@@ -358,7 +359,8 @@ public class JdbcBookDao implements BookDao {
 		if(type != null){
 			switch (params.getType()) {
 				case "title":
-					sb.append(" AND  book_title  = ?");
+					sb.append(" AND  book_title  LIKE ?");
+					value = "%" + value + "%";
 					break;
 				case "author":
 					sb.append(" AND  book_author LIKE ?");

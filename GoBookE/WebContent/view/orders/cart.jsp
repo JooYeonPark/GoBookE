@@ -63,6 +63,7 @@
 window.onload = function(){
 	<%-- 선택상품 주문을 위해 cartNo들을 저장하는 변수 --%>
 	var clickedCartNo = new String;
+	console.log(clickedCartNo);
 	
 	//항목 삭제
 	$(btnDelete).click(function(){
@@ -124,6 +125,7 @@ window.onload = function(){
 		var cartNo = $(this).siblings().eq(0).val();
 		clickedCartNo += cartNo + ",";
 	});
+
 	
 	//전체상품구매
 	$(btnAllCheckout).click(function(){
@@ -268,7 +270,7 @@ window.onload = function(){
 
 
                     <%-- SIDE BANNER --%>
-                    
+                    <c:if test = "${not empty list}">
                       <div class="col-md-3">
                       <%--  <div class="box" id="order-summary STATICMENU"> --%>
                           <div class="box" id="STATICMENU">
@@ -302,7 +304,7 @@ window.onload = function(){
   
                       </div>
                       <%-- /.col-md-3 --%>
-                    
+                    </c:if>
                     <%-- /SIDE BANNER --%>
                 </div>
 

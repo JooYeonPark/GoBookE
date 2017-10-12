@@ -9,14 +9,10 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import kr.or.gobooke.cart.dao.CartDao;
-import kr.or.gobooke.cart.dao.JdbcCartDao;
-import kr.or.gobooke.cart.domain.CartList;
 import kr.or.gobooke.common.db.DaoFactory;
 import kr.or.gobooke.common.exception.MallException;
 import kr.or.gobooke.common.web.OrdersParams;
 import kr.or.gobooke.orders.domain.Orders;
-import kr.or.gobooke.ownerorder.domain.OwnerOrder;
 
 /**
  * 주문 데이터베이스 처리 인터페이스
@@ -198,13 +194,13 @@ public class JdbcOrdersDao implements OrdersDao {
 			}
 			
 			if(startDate != null && endDate != null) {
-				sb.append(" AND OWNER_ORDER_DATE  >= to_date( ? , 'YY/MM/DD') and OWNER_ORDER_DATE  <= to_date( ? , 'YY/MM/DD HH24:MI:SS')");
+				sb.append(" AND ORDER_DATE  >= to_date( ? , 'YY/MM/DD') and ORDER_DATE  <= to_date( ? , 'YY/MM/DD HH24:MI:SS')");
 				
 			}
 			
 		}else {
 			if(startDate != null && endDate != null) {
-				sb.append(" where OWNER_ORDER_DATE  >= to_date( ? , 'YY/MM/DD') and OWNER_ORDER_DATE  <= to_date( ? , 'YY/MM/DD HH24:MI:SS')");
+				sb.append(" where ORDER_DATE  >= to_date( ? , 'YY/MM/DD') and ORDER_DATE  <= to_date( ? , 'YY/MM/DD HH24:MI:SS')");
 				
 			}
 		}
@@ -344,7 +340,7 @@ public class JdbcOrdersDao implements OrdersDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new MallException("JdbcOwnerOrder.pageCount(OrderParams params) 실행 중 예외발생", e);
+			throw new MallException("JdbcOrder.pageCount(OrderParams params) 실행 중 예외발생", e);
 		} finally {
 			try {
 				if (rs != null)

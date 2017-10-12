@@ -30,7 +30,7 @@ $(function(){
 	$("form").submit(function(){
 		var dateStart = $("#fromDate1").val();
 		var dateEnd = $("#fromDate2").val();
-		var userId = ${cookie.user.value}
+		var userId =  $.cookie('user');
 		
 		var data = {
 			dateStart : dateStart,
@@ -39,7 +39,7 @@ $(function(){
 		
 		var params = $.param(data);
 		
-		var url = "/order/userorderlist?"+params;
+		var url = "/order/userorderlist.do?"+params;
 		window.location.replace(url);
 		
 		return false;

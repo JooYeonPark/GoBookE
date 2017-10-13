@@ -12,11 +12,10 @@ $(function() {
       var output = "";
       $(xmlDoc).find("item").each(function(index){
     	  var test=$(this).find("title").text();
-    	  var title=test.replaceAll("&","%26").replaceAll("+","%2B");
+    	  var title=test.replaceAll("&","%26").replaceAll("+","%2B");	//책이름에 특수문자 포함시 url에 변경하여 요청
         output += "<div class=\"col-md-3 col-sm-4\"><div class=\"product\">";
         output +="<div class=\"image\">";
         output +="<a href=\"/book/bestSellerDetail.do?categoryId=100&title="+title+"\">";
-        /* output += "<img src="+$(this).find("coverLargeUrl").text()+"class=\"img-responsive image1\">"; */
         output += " <img  style=\"height: 280px; display: unset;\" class=\"img-responsive image1\" align=\"center\" src="+$(this).find("coverLargeUrl").text()+">";
         output +="</a>";
         output +="</div>";

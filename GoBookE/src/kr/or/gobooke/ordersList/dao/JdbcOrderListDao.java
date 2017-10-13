@@ -11,6 +11,12 @@ import kr.or.gobooke.cart.domain.Cart;
 import kr.or.gobooke.common.exception.MallException;
 import kr.or.gobooke.ordersList.domain.OrderList;
 
+/**
+ * 주문항목 데이터베이스 처리 메소드 
+ * 
+ * @author Park Joo-Yeon
+ *
+ */
 public class JdbcOrderListDao implements OrderListDao {
 	
 	private DataSource dataSource;

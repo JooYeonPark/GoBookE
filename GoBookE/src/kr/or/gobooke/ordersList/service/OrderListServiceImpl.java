@@ -12,6 +12,12 @@ import kr.or.gobooke.ordersList.dao.JdbcOrderListDao;
 import kr.or.gobooke.ordersList.dao.OrderListDao;
 import kr.or.gobooke.ordersList.domain.OrderList;
 
+/**
+ * 주문항목처리 비즈니스 메소드 
+ * 
+ * @author Park Joo-Yeon
+ *
+ */
 public class OrderListServiceImpl implements OrderListService {
 	OrderListDao ordersDao = (OrderListDao) DaoFactory.getInstance().getDao(JdbcOrderListDao.class);
 	CartDao cartDao = (CartDao) DaoFactory.getInstance().getDao(JdbcCartDao.class);

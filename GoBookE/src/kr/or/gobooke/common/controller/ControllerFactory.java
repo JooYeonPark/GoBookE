@@ -16,7 +16,7 @@ import kr.or.gobooke.common.exception.MallException;
  * 세부컨트롤러 매핑 파일로 XML 사용
  * DOM API 활용 XML 파싱 처리
  * 
- * @author 김기정
+ * @author Park Joo-Yeon
  */
 public class ControllerFactory {
 

@@ -9,9 +9,9 @@ import kr.or.gobooke.cart.domain.CartList;
 import kr.or.gobooke.common.db.DaoFactory;
 
 /**
- * Users 비즈니스 메소드 선언
+ * 장바구니 cart 비즈니스 메소드 
  * 
- * @author 김수진
+ * @author Park Joo-Yeon
  *
  */
 

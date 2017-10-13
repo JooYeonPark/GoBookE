@@ -8,7 +8,7 @@ import kr.or.gobooke.cart.domain.CartList;
 /**
  * Cart 관련 Dao 주요 기능
  * 
- * @author 박주연
+ * @author Park Joo-Yeon
  */
 
 public interface CartDao {

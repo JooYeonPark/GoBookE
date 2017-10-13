@@ -16,10 +16,9 @@ import kr.or.gobooke.common.view.ViewResolver;
 /**
  * 모든 브라우저 요청에 대한 단일 진입점 역할의 프론트 컨트롤러 서블릿(메인 컨트롤러)
  * 
- * @author 김기정
+ * @author Park Joo-Yeon
  */
 public class SimpleFrontControllerServlet_V4 extends HttpServlet {
-	/**  */
 
 	private String controllerMapperLocation;
 	

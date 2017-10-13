@@ -17,7 +17,7 @@ import kr.or.gobooke.common.exception.MallException;
  * JDBC API를 이용한 사용자(users) 테이블 관련 영속성 처리 DAO 클래스
  * DAO 패턴 적용
  * 
- * @author 박주연
+ * @author Park Joo-Yeon
  */
 public class JdbcCartDao implements CartDao{
 	
@@ -39,6 +39,7 @@ private DataSource dataSource;
 
 	
 	@Override
+	/** 카트 신규 등록 */
 	public void create(Cart cart) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -73,6 +74,7 @@ private DataSource dataSource;
 	}
 
 	@Override
+	/** 카트리스트 전체 조회 */
 	public List<CartList> listAll(String userId) {
 		List<CartList> cartList;
 		Connection connection = null;
@@ -182,6 +184,7 @@ private DataSource dataSource;
 	
 	
 	@Override
+	/** 카트 수정 및 total 반환 */
 	public int update(String userId, String bookTitle, int qty) {
 		int total = 0;
 		Connection con = null;
@@ -241,8 +244,8 @@ private DataSource dataSource;
 		return total;
 	}
 
-	/** 카트 삭제 및 total 반환 */
 	@Override
+	/** 카트 삭제 및 total 반환 */
 	public int deleteCart(String userId, String bookTitle) {
 		int total = 0;
 		Connection con = null;
@@ -341,44 +344,6 @@ private DataSource dataSource;
 		}
 		
 		return cart;
-	}
-	
-	/* 단위테스트 */
-	public static void main(String[] args) {
-		//CartDao cartDao = (CartDao) DaoFactory.getInstance().getDao(JdbcCartDao.class);
-
-//		int pageSize = 5;
-//		int pageNum = 5;
-		
-//		Params params = new Params();
-//		params.setPage(1);
-//		params.setType("user_id");
-//		params.setValue("joo");
-		
-//		List<CartList> books = cartDao.listAll(params);
-//		for (CartList list : books) {
-//			System.out.println(list);
-//		}
-		
-//		int count = cartDao.pageCount(params);
-//		System.out.println(count);
-		
-		//삭제 기능 테스트
-	//	cartDao.deleteCart("joo","1st Look(퍼스트 룩)(Vol. 142)");
-		
-		//수정 기능 테스트
-		//System.out.println(cartDao.update("joo", "1st Look(퍼스트 룩)(Vol. 142)", 1));
-		
-		//장바구니 조회
-	//	int[] arr = {2};
-	//	System.out.println(cartDao.listSome("joo", arr));
-		
-		//카트반환
-		//System.out.println(cartDao.getCart(1));
-		
-		//카트생성
-	//	cartDao.create(new Cart(4, 1, "joo"));
-		
 	}
 	
 }

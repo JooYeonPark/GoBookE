@@ -1,9 +1,15 @@
 package kr.or.gobooke.cart.domain;
 
+/**
+ * 장바구니 화면 리스트를 위한 도메인
+ * 
+ * @author Park Joo-Yeon
+ *
+ */
 public class CartList {
 	
 	private int cartNo;
-	private String bookImage;
+	private String bookImage; 
 	private String bookTitle;
 	private int cartBookQty;
 	private int bookPrice;

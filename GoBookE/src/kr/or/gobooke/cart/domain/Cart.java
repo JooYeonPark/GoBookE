@@ -1,9 +1,9 @@
 package kr.or.gobooke.cart.domain;
 
 /**
- * 장바구니 데이터 을 위한 JavaBean
+ * 장바구니 데이터베이스 데이터을 위한 도메인
  * 
- * @author 박주연
+ * @author Park Joo-Yeon
  *
  */
 

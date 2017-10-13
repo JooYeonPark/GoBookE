@@ -15,7 +15,7 @@ import kr.or.gobooke.common.web.OrdersParams;
 import kr.or.gobooke.orders.domain.Orders;
 
 /**
- * 주문 데이터베이스 처리 인터페이스
+ * 주문 데이터베이스 처리 클래스
  * 
  * @author Park Joo-Yeon
  *
@@ -142,6 +142,7 @@ public class JdbcOrdersDao implements OrdersDao {
 	
 	
 	@Override
+	/** 주문 리스트 조회 */
 	public List<Orders> listByParams(OrdersParams params) {
 		List<Orders> list = null;
 
@@ -280,6 +281,7 @@ public class JdbcOrdersDao implements OrdersDao {
 	}
 	
 	@Override
+	/** 주문 전체 리스트 조회 */
 	public int pageCount(OrdersParams params) {
 		int count = 0;
 
@@ -354,15 +356,6 @@ public class JdbcOrdersDao implements OrdersDao {
 		}
 		
 		return count;
-	}
-
-	// 단위테스트
-	public static void main(String[] args) {
-		OrdersDao ordersDao = (OrdersDao) DaoFactory.getInstance().getDao(JdbcOrdersDao.class);
-
-		Orders order = new Orders(20000, "박주연", "서울특별시", "신대방1동", "집앞에 놔주세요", "010-1234-5678", "joo");
-		int no = ordersDao.create(order);
-		System.out.println("no:"+no);
 	}
 
 	

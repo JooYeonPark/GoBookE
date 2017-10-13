@@ -4,7 +4,7 @@ package kr.or.gobooke.common.web;
  * 여러개의 요청파라메터들을 저장(포장)하기 위한 JavaBean
  * {사용자 선택페이지, 검색유형, 검색값, 한페이지에 출력하는 행의 갯수, 페이지 번호 등}
  *  
- * @author 김기정
+ * @author 김수진
  */
 public class Params {
 	private int page;         /** 사용자 요청 페이지 */

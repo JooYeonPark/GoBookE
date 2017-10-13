@@ -3,7 +3,7 @@ package kr.or.gobooke.common.web;
 /**
  * 페이징 계산 및 페이지 번호(1|2|3|4|5....) 출력을 각각의 JSP에서 처리하지 않고,
  * 재사용할 수 있도록 유틸리티 클래스 정의
- * @author 김기정
+ * @author 김수진
  */
 public class OwnerOrderPageBuilder {
 	

@@ -7,6 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
 
+/**
+ *
+ * 메인페이지 요청 컨트롤러
+ * @author 박성준
+ *
+ */
 public class MainController implements Controller {
 
 	@Override

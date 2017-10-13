@@ -12,8 +12,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+
 /**
+ *
  * 회원 인증 여부 서블릿 필터
+ * @author 박성준
+ *
  */
 public class LoginCheckFilter implements Filter {
 	

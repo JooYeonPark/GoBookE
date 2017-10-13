@@ -31,22 +31,6 @@
     <!-- Custom stylesheet - for your changes -->
     <link href="../../css/custom.css" rel="stylesheet">
 
-    <!-- Responsivity for older IE -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
-
-    <!-- Favicon and apple touch icons-->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
-    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-touch-icon-76x76.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152x152.png" />
     <!-- #### JAVASCRIPT FILES ### -->
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -63,6 +47,7 @@
     <script type="text/javascript" src="../../js/jquery.raty.js"></script>
     <script type="text/javascript" src="../../js/xml2json.js"></script>
     <script type="text/javascript" src="../../js/jquery.xdomainajax.js"></script>
+    <script type="text/javascript" src="../../js/book_detail_bestseller.js"></script>
     <script type="text/javascript">
         $(function() {
             $('div.star').raty({
@@ -201,19 +186,6 @@
 
                         <div class="box" id="details">
                             <p>
-                                
-                                <!-- <p>White lace top, woven, has a round neck, short sleeves, has knitted lining attached</p>
-                                <h4>Material & care</h4>
-                                <ul>
-                                    <li>Polyester</li>
-                                    <li>Machine wash</li>
-                                </ul>
-                                <h4>Size & Fit</h4>
-                                <ul>
-                                    <li>Regular fit</li>
-                                    <li>The model (height 5'8" and chest 33") is wearing a size S</li>
-                                </ul> -->
-
                                 <blockquote>
                                 <h4>책 소개</h4>
                                     <p><em id="bookDetail">${book.detail}</em>
@@ -266,26 +238,11 @@
               </div>
             </div>
 
-                      
-
-                        
-
-                        <!-- *** MENUS AND FILTERS END *** -->
-
-                        
-                        <!-- /.banner -->
                     </div>
-                    <!-- /.col-md-3 -->
-
-                    <!-- *** RIGHT COLUMN END *** -->
-
                 </div>
-                <!-- /.row -->
 
             </div>
-            <!-- /.container -->
         </div>
-        <!-- /#content -->
 
       <!-- *** FOOTER *** -->
         <jsp:include page="../..//layout/footer.jsp"/>

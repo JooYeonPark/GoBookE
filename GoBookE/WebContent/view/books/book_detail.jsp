@@ -31,12 +31,6 @@
 <!-- Custom stylesheet - for your changes -->
 <link href="../../css/custom.css" rel="stylesheet">
 
-<!-- Responsivity for older IE -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
-
 <!-- Favicon and apple touch icons-->
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
@@ -82,11 +76,6 @@
 			var count=$("#count option:selected").text();
 			$("#inCart").attr("href","/cart/add.do?bookNo="+${book.no}+"&cartBookQty="+count);
 		});
-		
-		function getContextPath() {
-			var hostIndex = location.href.indexOf( location.host ) + location.host.length;
-			return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
-		};
 	});
 </script>
 </head>
@@ -185,18 +174,6 @@
 
             <div class="box" id="details">
               <p>
-
-                <!-- <p>White lace top, woven, has a round neck, short sleeves, has knitted lining attached</p>
-                                <h4>Material & care</h4>
-                                <ul>
-                                    <li>Polyester</li>
-                                    <li>Machine wash</li>
-                                </ul>
-                                <h4>Size & Fit</h4>
-                                <ul>
-                                    <li>Regular fit</li>
-                                    <li>The model (height 5'8" and chest 33") is wearing a size S</li>
-                                </ul> -->
               <blockquote>
                 <h4>책 소개</h4>
                 <p>
@@ -251,28 +228,10 @@
 
               </div>
             </div>
-
-
-
-
-
-            <!-- *** MENUS AND FILTERS END *** -->
-
-
-            <!-- /.banner -->
           </div>
-          <!-- /.col-md-3 -->
-
-          <!-- *** RIGHT COLUMN END *** -->
-
         </div>
-        <!-- /.row -->
-
       </div>
-      <!-- /.container -->
     </div>
-    <!-- /#content -->
-
     <!-- *** FOOTER *** -->
     <jsp:include page="../..//layout/footer.jsp" />
     <!-- /#footer -->

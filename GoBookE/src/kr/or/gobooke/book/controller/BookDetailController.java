@@ -10,6 +10,12 @@ import kr.or.gobooke.book.service.BookServiceImpl2;
 import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
 
+/**
+ *
+ * 책상세보기 요청 컨트롤러
+ * @author 박성준
+ *
+ */
 public class BookDetailController implements Controller {
 
 	BookServiceImpl2 bookService = new BookService2();

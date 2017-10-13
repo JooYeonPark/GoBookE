@@ -25,23 +25,29 @@ public interface BookDao {
 	/** BOOK 객체 생성*/
 	public Book createBook(ResultSet set);
 
+	/** BookParams로 책정보 요청*/	
 	public List<Book> getBookListByParams(BookParams params);
 	public List<Book> getlistStock(BookParams params);
-
+	
+	/**한 페이지에 표기될 갯수 지정*/
 	public int pageCount(BookParams params);
+	
 	public int stockpageCount(BookParams params);
-
+	
+	/**책 상세보기 요청*/
 	public Book getBookDetail(int book_no);
-
+	
 	public Book getBookByTitle(String title);
 	
 	/** 도서 가격 반환 */
 	public int getBookPrice(int bookNo);
-
+	
+	/**국내 신간도서 리스트*/
 	public List<Book> getInBookList();
-
+	/**외국 신간도서 리스트*/
 	public List<Book> getExBookList();
-
+	
+	/**해당 카테고리 명 가져오기*/
 	public String getCategoryTitle(int category_big_no, int category_no);
 	
 	/** 출판사 종류 가져오기 */

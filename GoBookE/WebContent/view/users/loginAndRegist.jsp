@@ -28,11 +28,6 @@
     <!-- Custom stylesheet - for your changes -->
     <link href="../../css/custom.css" rel="stylesheet">
 
-    <!-- Responsivity for older IE -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 
     <!-- Favicon and apple touch icons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -173,15 +168,15 @@ function daumPostcode() {
                            <option value="063">063</option>
                            <option value="064">064</option>
                          </select>
-                  </div><%-- ./col-sm-2 --%>
+                  </div><!-- ./col-sm-2 -->
                   <div class="col-sm-3 form-group">
                       <input type="text" class="form-control" id="tel2" name="tel2" required>
                   </div>
                       <div class="col-sm-3 form-group">
                           <input type="text" class="form-control" id="tel3" name="tel3"  required>
                       </div>
-                </div><%-- /.form-group --%>
-              </div><%-- /.row --%>
+                </div><!-- /.form-group -->
+              </div><!-- /.row -->
                                 </div>
                                 <div class="form-group">
                                     <label for="address-login">주소</label>

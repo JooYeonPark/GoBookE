@@ -10,7 +10,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
+ *
  * 요청파라메터 한글인코딩 처리 필터
+ * @author 박성준
+ *
  */
 public class CharacterEncodingFilter implements Filter {
 	

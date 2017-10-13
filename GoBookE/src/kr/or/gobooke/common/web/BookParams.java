@@ -1,5 +1,11 @@
 package kr.or.gobooke.common.web;
 
+/**
+ *
+ * 책목록에 대한 페이지와 카테고리 객체지정 클래스
+ * @author 박성준
+ *
+ */
 public class BookParams {
 	
 	private int page;         /** 사용자 요청 페이지 */

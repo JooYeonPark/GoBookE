@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -82,7 +83,9 @@ public class BookRegistController implements Controller {
 					String path=request.getContextPath();
 					System.out.println("path : " + path);*/
 					
-					String path = "C:\\Users\\kosta\\Documents\\GoBookE\\GoBookE\\WebContent\\img\\books";
+					/*String path = "C:\\Users\\kosta\\Documents\\GoBookE\\GoBookE\\WebContent\\img\\books";*/
+					ServletContext context=request.getServletContext();
+					String path=context.getRealPath("/img/books");
 	                
 					File file = new File(path, fileName);
 					try {

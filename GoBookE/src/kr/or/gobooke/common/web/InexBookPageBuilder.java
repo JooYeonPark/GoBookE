@@ -1,5 +1,11 @@
 package kr.or.gobooke.common.web;
 
+/**
+ *
+ * 외국, 국내도서 page 관리 클래스
+ * @author 박성준
+ *
+ */
 public class InexBookPageBuilder {
 	
 	private BookParams bookParams;            /** 요청 파라메터 */

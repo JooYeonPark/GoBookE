@@ -14,6 +14,12 @@ import kr.or.gobooke.common.controller.ModelAndView;
 import kr.or.gobooke.common.web.BookParams;
 import kr.or.gobooke.common.web.InexBookPageBuilder;
 
+/**
+ *
+ * 외국도서 국내도서 리스트 요청 컨트롤러
+ * @author 박성준
+ *
+ */
 public class InexBookListController implements Controller {
 	private BookServiceImpl2 bookService = new BookService2();
 	

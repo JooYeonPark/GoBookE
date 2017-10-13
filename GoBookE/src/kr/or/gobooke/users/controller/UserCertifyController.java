@@ -14,6 +14,12 @@ import kr.or.gobooke.users.domain.Users;
 import kr.or.gobooke.users.service.UserServiceImpl;
 import kr.or.gobooke.users.service.UsersService;
 
+/**
+ *
+ * 회원확인 컨트롤러
+ * @author 박성준
+ *
+ */
 public class UserCertifyController implements Controller {
 	
 	UsersService userService=new UserServiceImpl();

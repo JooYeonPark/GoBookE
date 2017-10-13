@@ -5,7 +5,7 @@ import javax.servlet.ServletContextListener;
 
 /**
  * ServletContext 생명주기(생성/소멸) 관련 이벤트 리스너
- * @author 김기정
+ * @author 김수진
  */
 public class ServletContextLoadListener implements ServletContextListener {
 	

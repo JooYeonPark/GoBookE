@@ -70,9 +70,9 @@ $(function(){
         </tbody>
       </table>
     </div>
-    <!-- /.table-responsive -->
+    <%-- /.table-responsive --%>
     
-    <!-- 페이징 -->
+    <%-- 페이징 --%>
         <div style="text-align: center;">
           <ul class="pagination" style="margin: auto;">
             <c:if test="${pageBuilder.showFirst }">
@@ -108,7 +108,7 @@ $(function(){
 
   </div>
   </fieldset>
-  <!-- /.box -->
+  <%-- /.box --%>
 
     
     

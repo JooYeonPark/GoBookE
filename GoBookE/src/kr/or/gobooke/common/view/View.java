@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 모든 뷰에 대한 실행메소드 규약 선언
- * @author 김기정
+ * @author 김수진
  */
 public interface View {
 	

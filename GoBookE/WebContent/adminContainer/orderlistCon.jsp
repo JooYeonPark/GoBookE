@@ -7,7 +7,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
 
-
 <script>
 
 $(function(){
@@ -171,11 +170,11 @@ $(function(){
           </tbody>
           </table>
         </div>
-        <!-- /.table-responsive -->
+        <%-- /.table-responsive --%>
         
        
         
-        <!-- 페이징 -->
+        <%-- 페이징 --%>
         <div style="text-align: center;">
           <ul class="pagination" style="margin: auto;">
             <c:if test="${pageBuilder.showFirst }">
@@ -211,8 +210,8 @@ $(function(){
 
       </div>
     </fieldset>
-    <!-- /.box -->
+    <%-- /.box --%>
 
   </div>
 </div>
-<!-- /.col-md-9 -->
+<%-- /.col-md-9 --%>

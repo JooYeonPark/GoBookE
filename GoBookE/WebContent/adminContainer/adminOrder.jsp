@@ -70,6 +70,7 @@
 	}
 </script>
 
+<%-- --%>
 <div class="col-sm-9">
   <h2>출판사 도서주문</h2>
   <br>
@@ -102,7 +103,7 @@
           </div>
         </div>
       </div>
-      <!-- /.row -->
+      <%-- /.row --%>
 
       <div class="row">
         <div class="col-sm-6">
@@ -112,7 +113,7 @@
           </div>
         </div>
       </div>
-      <!-- /.row -->
+      <%-- /.row --%>
 
       <div class="row">
         <div class="col-sm-6">
@@ -135,8 +136,8 @@
           </div>
         </div>
       </div>
-      <!-- /.row -->
+      <%-- /.row --%>
     </div>
   </form>
 </div>
-<!-- /.col-md-9 -->
+<%-- /.col-md-9 --%>

@@ -3,7 +3,7 @@ package kr.or.gobooke.common.exception;
 /**
  * 사용자 정의 RuntimeException
  * 
- * @author 김기정
+ * @author 김수진
  */
 public class MallException extends RuntimeException {
 	

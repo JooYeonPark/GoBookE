@@ -15,29 +15,29 @@
   href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800'
   rel='stylesheet' type='text/css'>
 
-<!-- Bootstrap and Font Awesome css -->
+<%-- Bootstrap and Font Awesome css --%>
 <link rel="stylesheet"
   href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet"
   href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- Css animations  -->
+<%-- Css animations  --%>
 <link href="/css/animate.css" rel="stylesheet">
 
-<!-- Theme stylesheet, if possible do not edit this stylesheet -->
+<%-- Theme stylesheet, if possible do not edit this stylesheet --%>
 <link href="/css/style.default.css" rel="stylesheet"
   id="theme-stylesheet">
 
-<!-- Custom stylesheet - for your changes -->
+<%-- Custom stylesheet - for your changes --%>
 <link href="/css/custom.css" rel="stylesheet">
 
-<!-- Responsivity for older IE -->
-<!--[if lt IE 9]>
+<%-- Responsivity for older IE --%>
+<%--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]--%>
 
-<!-- Favicon and apple touch icons-->
+<%-- Favicon and apple touch icons--%>
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
 <link rel="apple-touch-icon" sizes="57x57"
@@ -54,7 +54,7 @@
   href="/img/apple-touch-icon-144x144.png" />
 <link rel="apple-touch-icon" sizes="152x152"
   href="/img/apple-touch-icon-152x152.png" />
-<!-- owl carousel css -->
+<%-- owl carousel css --%>
 
 <link href="/css/owl.carousel.css" rel="stylesheet">
 <link href="/css/owl.theme.css" rel="stylesheet">
@@ -65,20 +65,20 @@
   <div id="all">
 
     <header>
-      <!-- *** TOP *** -->
+      <%-- *** TOP *** --%>
       <jsp:include page="/layout/header.jsp" />
-      <!-- *** TOP END *** -->
-      <!-- *** NAVBAR ***  -->
+      <%-- *** TOP END *** --%>
+      <%-- *** NAVBAR ***  --%>
       <jsp:include page="/layout/nav.jsp" />
-      <!-- *** NAVBAR END *** -->
+      <%-- *** NAVBAR END *** --%>
     </header>
 
-    <!-- *** LOGIN MODAL *** -->
+    <%-- *** LOGIN MODAL *** --%>
     <jsp:include page="/layout/loginMo.jsp" />
-    <!-- *** LOGIN MODAL END *** -->
+    <%-- *** LOGIN MODAL END *** --%>
 
 
-    <!-- Container Section START  -->
+    <%-- Container Section START  --%>
     <div id="heading-breadcrumbs">
       <div class="container">
         <div class="row">
@@ -95,42 +95,42 @@
         </div>
       </div>
     </div>
-    <!-- Container Section END   -->
+    <%-- Container Section END   --%>
 
     <div id="content">
       <div class="container">
         <div class="row">
 
-          <!-- *** LEFT COLUMN *** -->
+          <%-- *** LEFT COLUMN *** --%>
           <jsp:include page="/adminContainer/adminOrder.jsp" />
-          <!-- *** LEFT COLUMN END *** -->
+          <%-- *** LEFT COLUMN END *** --%>
 
-          <!-- *** RIGHT COLUMN *** -->
+          <%-- *** RIGHT COLUMN *** --%>
           <div class="col-sm-3">
-            <!-- *** MENUS AND FILTERS ***  -->
+            <%-- *** MENUS AND FILTERS ***  --%>
             <jsp:include page="/adminContainer/sidebarMenu.jsp" />
-            <!-- *** MENUS AND FILTERS END *** -->
+            <%-- *** MENUS AND FILTERS END *** --%>
           </div>
-          <!-- /.col-md-3 -->
+          <%-- /.col-md-3 --%>
 
-          <!-- *** RIGHT COLUMN END *** -->
+          <%-- *** RIGHT COLUMN END *** --%>
         </div>
 
       </div>
-      <!-- /.container -->
+      <%-- /.container --%>
     </div>
-    <!-- /#content -->
+    <%-- /#content --%>
 
-    <!-- *** FOOTER *** -->
+    <%-- *** FOOTER *** --%>
     <jsp:include page="/layout/footer.jsp" />
-    <!-- /#footer -->
+    <%-- /#footer --%>
 
-    <!-- *** FOOTER END *** -->
+    <%-- *** FOOTER END *** --%>
 
   </div>
-  <!-- /#all -->
+  <%-- /#all --%>
 
-  <!-- #### JAVASCRIPT FILES ### -->
+  <%-- #### JAVASCRIPT FILES ### --%>
 
   <script
     src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -148,7 +148,7 @@
   <script src="/js/jquery.parallax-1.1.3.js"></script>
   <script src="/js/front.js"></script>
 
-  <!-- owl carousel -->
+  <%-- owl carousel --%>
   <script src="/js/owl.carousel.min.js"></script>
 
 

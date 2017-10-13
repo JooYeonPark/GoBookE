@@ -74,10 +74,11 @@
 	});
 </script>
 
+<%-- --%>
 <div class="col-sm-9">
   <form action="${pagecontext}/book/bookregist.do" enctype="multipart/form-data" method="post">
 
-    <!-- 사진 추가 및 사진 보여주기 -->
+    <%-- 사진 추가 및 사진 보여주기 --%>
     <div class="col-sm-6">
       <table class="table">
         <tr>
@@ -103,7 +104,7 @@
       </div>
     </div>
 
-    <!-- 도서 등록 내용 -->
+    <%-- 도서 등록 내용 --%>
     <div class="col-sm-6">
       <div class="row">
         <div class="col-sm-10">
@@ -188,4 +189,4 @@
     </div>
   </form>
 </div>
-<!-- /.col-md-9 -->
+<%-- /.col-md-9 --%>

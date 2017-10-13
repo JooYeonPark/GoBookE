@@ -18,7 +18,7 @@ import kr.or.gobooke.ownerorder.service.OwnerOrderServiceImpl;
  * 출판사명으로 책이름 가져오는 처리
  * 
  * /adminBookOrder 요청에 대한 세부 컨트롤러
- * @author 김기정
+ * @author 김수진
  *
  */
 public class OwnerOrderListController implements Controller {

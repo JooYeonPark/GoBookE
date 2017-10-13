@@ -21,7 +21,7 @@ import kr.or.gobooke.common.controller.ModelAndView;
 /**
  * 출판사가져오는 처리
  * 
- * /searchBookname 요청에 대한 세부 컨트롤러
+ * /book/getpublisher 요청에 대한 세부 컨트롤러
  * @author 김수진
  *
  */

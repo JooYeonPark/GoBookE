@@ -1,5 +1,11 @@
 package kr.or.gobooke.ordersList.domain;
 
+/**
+ * 주문항목 도메인 (주문항목의 bookNo은 book테이블의 기본키를 참조)
+ * 
+ * @author Park Joo-Yeon
+ *
+ */
 public class OrderList {
 	
 	/** 인스턴스 변수 총 5개 */

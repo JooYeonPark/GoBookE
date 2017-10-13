@@ -16,6 +16,12 @@ import kr.or.gobooke.users.domain.OrderUser;
 import kr.or.gobooke.users.service.UserServiceImpl;
 import kr.or.gobooke.users.service.UsersService;
 
+/**
+ * 주문화면의 주문할 상품리스트 띄어주는 컨트롤러
+ * 
+ * @author Park Joo-Yeon
+ *
+ */
 public class OrderListController implements Controller {
 	private CartService cartService = new CartServiceImpl();
 	private UsersService userService = new UserServiceImpl();
@@ -26,9 +32,9 @@ public class OrderListController implements Controller {
 
 		ModelAndView mav = new ModelAndView();
 		String userId = new UserId().getUserId(request);
+		List<CartList> cartList;
 		// 장바구니에서 클릭된 리스트의 cartNo을 받아옴
 		String clickedCartNo = request.getParameter("cartNoList");
-		List<CartList> cartList;
 
 		//전체 상품 구매
 		if(clickedCartNo == null) {

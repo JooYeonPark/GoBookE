@@ -9,9 +9,9 @@ import kr.or.gobooke.orders.dao.OrdersDao;
 import kr.or.gobooke.orders.domain.Orders;
 
 /**
- * 주문 비즈니스 메소드 선언
+ * 주문에 관한 고객의 요구사항을 반영하는 비즈니스 메소드 
  * 
- * @author 김수진
+ * @author Park Joo-Yeon
  *
  */
 
@@ -25,11 +25,13 @@ public class OrdersServiceImpl implements OrdersService {
 	}
 
 	@Override
+	/** 주문리스트 조회 */
 	public List<Orders> listByParams(OrdersParams params) {
 		return ordersDao.listByParams(params);
 	}
 
 	@Override
+	/** 주문리스트 전체 수 가져오기 */
 	public int pageCount(OrdersParams params) {
 		return ordersDao.pageCount(params);
 	}

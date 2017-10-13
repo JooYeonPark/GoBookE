@@ -6,8 +6,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 모든 세부 컨트롤러에 대한 실행메소드 규약 선언 - 커맨드패턴 적용
- * @author 김기정
+ * @author Park Joo-Yeon
  */
+
 public interface Controller {
 	
 	/** 실행 규약 메소드 */

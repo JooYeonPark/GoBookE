@@ -3,7 +3,13 @@ package kr.or.gobooke.common.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-/** 모델 및 뷰 패스 저장을 위한 Wrapper 클래스 */
+/**
+ * 
+ * 모델 및 뷰 패스 저장을 위한 Wrapper 클래스
+ * 
+ * @author Park Joo-Yeon
+ *
+ */
 public class ModelAndView{
 	private String view;
 	private Map<String, Object> model;

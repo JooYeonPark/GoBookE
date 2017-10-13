@@ -8,7 +8,7 @@ import kr.or.gobooke.common.web.OrdersParams;
 import kr.or.gobooke.orders.domain.Orders;
 
 /**
- * 주문 데이터베이스 처리 클래스
+ * 주문 데이터베이스 처리 인터페이스
  * 
  * @author Park Joo-Yeon
  *

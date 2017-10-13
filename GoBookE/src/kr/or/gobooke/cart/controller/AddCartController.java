@@ -11,12 +11,21 @@ import kr.or.gobooke.common.controller.Controller;
 import kr.or.gobooke.common.controller.ModelAndView;
 import kr.or.gobooke.common.web.UserId;
 
+/**
+ * cart db에 추가하는 컨트롤러
+ * 
+ * @author Park Joo-Yeon
+ *
+ */
+
 public class AddCartController implements Controller{
 	private CartService cartService = new CartServiceImpl();
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		
 		ModelAndView mav = new ModelAndView();
+		
 		String userId = new UserId().getUserId(request);
 		String bookNo = request.getParameter("bookNo");
 		String cartBookQty = request.getParameter("cartBookQty");

@@ -19,6 +19,14 @@ import kr.or.gobooke.orders.service.OrdersServiceImpl;
 import kr.or.gobooke.ordersList.service.OrderListService;
 import kr.or.gobooke.ordersList.service.OrderListServiceImpl;
 
+/**
+ * 
+ * 주문관련 매개변수를 받아 order테이블에 추가하는 컨트롤러
+ * 
+ * @author Park Joo-Yeon
+ *
+ */
+
 public class OrdersController implements Controller {
 	private OrdersService ordersService = new OrdersServiceImpl();
 	private OrderListService ordersListService = new OrderListServiceImpl();
@@ -37,7 +45,6 @@ public class OrdersController implements Controller {
 		String deliveryMsg = request.getParameter("deliveryMsg");
 		String totalPrice = request.getParameter("totalPrice");
 		String cartNoList = request.getParameter("cartNoList");
-		System.out.println("OrdersController 40 : "+ cartNoList);
 
 		String telephone = request.getParameter("order-tel1");
 		telephone += "-" + request.getParameter("order-tel2");
@@ -71,9 +78,8 @@ public class OrdersController implements Controller {
 
 		// 선택주문
 		else {
-			/*
-			 * String형태의 cartNo("2,3,4")을 콤마단위로 한 개씩 잘라 형 변환 한 뒤 cartNoArr int 배열에 저장
-			 */
+			
+			//String형태의 cartNo("2,3,4")을 콤마단위로 한 개씩 잘라 형 변환 한 뒤 cartNoArr int 배열에 저장
 			String[] list = cartNoList.split(",");
 			int[] cartNoArr = new int[list.length];
 			for (int i = 0; i < list.length; i++) {

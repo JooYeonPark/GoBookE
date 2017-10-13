@@ -13,7 +13,7 @@ import kr.or.gobooke.common.exception.MallException;
  * #4. DataSource가 설정된 Dao 반환
  * DaoFactory에 싱글톤 패턴 적용
  * 
- * @author 김기정
+ * @author Park Joo-Yeon
  */
 public class DaoFactory {
 	

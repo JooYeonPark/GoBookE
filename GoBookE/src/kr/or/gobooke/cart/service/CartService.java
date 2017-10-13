@@ -8,7 +8,7 @@ import kr.or.gobooke.cart.domain.CartList;
 /**
  * 장바구니에 관한 고객의 요구사항을 반영하는 비즈니스 메소드 선언
  *
- * @author 박주연
+ * @author Park Joo-Yeon
  *
  */
 public interface CartService {
